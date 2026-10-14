@@ -72,6 +72,7 @@ jobs:
           import json
           r = json.load(open("collected/runs/report.json"))
           print(f"## Plate collection\n{r['ok']}/{r['attempted']} sources OK; {r['offers']} fresh offers.")
+          print(f"{r.get('reviewed_offers', 0)} reviewed observations retained with original dates.")
           if r["failed"]:
               print("Needs attention: " + ", ".join(r["failed"]))
           print("Shipping remains unknown. Retained offers keep their original timestamps.")

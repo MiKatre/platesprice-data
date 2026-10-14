@@ -131,12 +131,25 @@ def run(catalog, previous, client, only=None):
     return snapshot, attempted
 
 
+def merge_reviewed(snapshot, reviewed):
+    """Curated facts are not re-fetched, nor re-dated by a scraper run."""
+    if reviewed is None:
+        return snapshot
+    ids = {s.id for s in snapshot.sources}
+    if ids.intersection(s.id for s in reviewed.sources):
+        raise ValueError("reviewed and automated source IDs overlap")
+    if any(s.collection_mode != "reviewed" for s in reviewed.sources):
+        raise ValueError("reviewed file contains an automated source")
+    return Snapshot(generated_at=snapshot.generated_at, sources=snapshot.sources + reviewed.sources)
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--catalog", type=Path, default=ROOT / "catalog.json")
     parser.add_argument("--output", type=Path, default=ROOT / "data/latest.json")
     parser.add_argument("--report", type=Path, default=ROOT / "runs/report.json")
     parser.add_argument("--only", nargs="+")
+    parser.add_argument("--reviewed", type=Path, default=ROOT / "reviewed/latest.json")
     args = parser.parse_args(argv)
     catalog = Catalog.model_validate_json(args.catalog.read_text())
     if not catalog.sources:
@@ -147,12 +160,18 @@ def main(argv=None):
     previous = (
         Snapshot.model_validate_json(args.output.read_text()) if args.output.exists() else None
     )
+    reviewed = (
+        Snapshot.model_validate_json(args.reviewed.read_text()) if args.reviewed.exists() else None
+    )
+    if reviewed and {s.id for s in reviewed.sources}.intersection(s.id for s in catalog.sources):
+        parser.error("reviewed sources cannot also be automatically collected")
     with httpx.Client(
         timeout=httpx.Timeout(20),
         headers={"User-Agent": USER_AGENT, "Accept": "text/html,application/json;q=0.9"},
         follow_redirects=False,
     ) as client:
         snapshot, attempted = run(catalog, previous, client, args.only)
+    snapshot = merge_reviewed(snapshot, reviewed)
     payload = snapshot.model_dump(mode="json")
     atomic_json(args.output, payload)
     summary = {
@@ -161,6 +180,9 @@ def main(argv=None):
         "ok": sum(s.status == "ok" for s in attempted),
         "offers": sum(len(s.offers) for s in attempted if s.status == "ok"),
         "failed": [s.id for s in attempted if s.status != "ok"],
+        "reviewed_offers": sum(
+            len(s.offers) for s in snapshot.sources if s.collection_mode == "reviewed"
+        ),
         "snapshot": payload,
     }
     atomic_json(args.report, summary)

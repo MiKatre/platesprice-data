@@ -126,13 +126,15 @@ class Offer(Model):
     price: Decimal = Field(gt=0, allow_inf_nan=False)
     price_per_kg: Decimal | None = Field(default=None, gt=0, allow_inf_nan=False)
     price_per_lb: Decimal | None = Field(default=None, gt=0, allow_inf_nan=False)
-    available: bool  # Shopify purchasability; not proof of immediate stock.
+    available: bool | None = Field(default=None, strict=True)  # Purchasability, not physical stock.
     stock_status: Literal["unknown"] = "unknown"
     tax_basis: Literal["excluded", "included", "unknown"]
     shipping_status: Literal["unknown"] = "unknown"
     shipping_price: None = None
     delivered_price: None = None
     observed_at: datetime
+    pack_evidence: str | None = None
+    price_basis: str | None = None
 
     @model_validator(mode="after")
     def coherent(self):
@@ -167,6 +169,8 @@ class SourceState(Model):
     last_success_at: datetime | None = None
     retained_previous: bool = False
     error: str | None = None
+    collection_mode: Literal["automated", "reviewed"] = "automated"
+    reviewed_at: datetime | None = None
     offers: list[Offer] = Field(default_factory=list)
     documents: list[dict] = Field(default_factory=list)
 
@@ -183,7 +187,11 @@ class Snapshot(Model):
             raise ValueError("duplicate source IDs")
         ids = []
         for source in self.sources:
+            if source.collection_mode == "reviewed" and source.reviewed_at is None:
+                raise ValueError("reviewed sources require a review date")
             for offer in source.offers:
+                if source.collection_mode == "reviewed" and not offer.pack_evidence:
+                    raise ValueError("reviewed offers require pack evidence")
                 if offer.source_id != source.id or offer.observed_at > self.generated_at:
                     raise ValueError("invalid source or future timestamp")
                 ids.append(offer.id)

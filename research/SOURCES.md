@@ -3,6 +3,42 @@
 Research, not legal advice or a claim that access grants data rights.
 Stop reasons distinguish explicit collection bans, access failures and broader use restrictions.
 
+## Added after Codex CLI research — reviewed snapshots
+
+25 observations across four retailers; 12 have explicit pack contents and real unit prices.
+The new sources are curated observations, not silently enabled scrapers. `reviewed/latest.json`
+stores original capture dates, review dates, source URLs, short pack evidence and document hashes.
+Native Codex search supplied discovery; exact prices/weights/currencies were checked against
+saved merchant HTTP responses. Search snippets were not imported as verified prices.
+
+- **Strength Shop**: [Deep Dish Cast Iron](https://strengthshop.eu/products/deep-dish-cast-iron-plates-singles-or-sets).
+  Four individual plates: 5/10/20/25 kg at €17.99/34.99/68.99/84.99.
+  Product JSON-LD explicitly says sold individually, not in pairs; EUR currency explicit.
+  [Mainland Spain delivery](https://strengthshop.eu/pages/shipping-deals).
+  Generic storefront prices; destination VAT may change. Inspected sales terms had no express
+  scraping ban; agent-identity requirements and controlling German terms need further review
+  before recurring ingestion. No .js route or Spain checkout quote claimed.
+- **ATLETICA**: [Color Bumper Plates](https://atletica.de/products/color-bumper-plates-paarweise-5-25kg),
+  five pairs: 2×5/10/15/20/25 kg at €58/88/128/164/198.
+  [110 kg set](https://atletica.de/products/color-bumper-plates-set-110kg): €474;
+  2×5 + 2×10 + 4×20 kg. HTML/JSON agree; shipping grams ignored.
+  [Spain delivery table](https://atletica.de/pages/bestellablauf-zahlung-versand);
+  [reviewed legal terms](https://atletica.de/pages/legal-imprints).
+  German storefront VAT-inclusive prices, not verified Spanish checkout prices.
+  Public product HTML/.js allowed by inspected robots; no express automation ban found
+  in inspected terms. No affirmative reuse licence inferred. Best next adapter candidate.
+- **Get RXd**: [45 lb cast iron single](https://getrxd.com/products/cast-iron-olympic-plate-45-lbs-piece),
+  $62; [25 lb rubber-coated single](https://getrxd.com/products/rubber-coated-olympic-plate-25-lbs-piece),
+  $39. Titles explicitly specify one piece; USD/price cross-checked across HTML, JSON-LD and
+  embedded variant data. Orderability remains null because signals conflict.
+  [Terms](https://getrxd.com/policies/terms-of-service): no express collection ban found;
+  generic IP restrictions and automated-agent identification remain distinct concerns.
+  No scheduled/authenticated ingestion or actual stock guarantee claimed.
+
+EU rows belong to the Spain-delivery discovery view, not a claim of Spain-localized tax.
+No shipping totals inferred from country tariffs. US and EUR prices never mixed.
+Original 13 Singular rows remain unranked; no assumed single-plate quantities.
+
 ## Local pilot — hosted collection paused
 
 **Singular WOD / Spain**

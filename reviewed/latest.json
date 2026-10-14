@@ -1,0 +1,475 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-10-14T13:58:06.828547Z",
+  "sources": [
+    {
+      "id": "strengthshop-eu",
+      "name": "Strength Shop",
+      "status": "ok",
+      "attempted_at": "2026-10-14T13:50:58.386739Z",
+      "last_success_at": "2026-10-14T13:50:58.386739Z",
+      "retained_previous": false,
+      "error": null,
+      "collection_mode": "reviewed",
+      "reviewed_at": "2026-10-14T13:58:06.828547Z",
+      "offers": [
+        {
+          "id": "strengthshop-eu:45020055798025",
+          "source_id": "strengthshop-eu",
+          "market": "ES",
+          "currency": "EUR",
+          "title": "Deep Dish Cast Iron",
+          "variant_title": "5 kg",
+          "variant_id": "45020055798025",
+          "source_url": "https://strengthshop.eu/products/deep-dish-cast-iron-plates-singles-or-sets?variant=45020055798025",
+          "plate_type": "iron",
+          "sale_unit": "single",
+          "components": [
+            {
+              "weight": "5.0",
+              "unit": "kg",
+              "count": 1
+            }
+          ],
+          "total_weight_kg": "5.0",
+          "price": "17.99",
+          "price_per_kg": "3.598000",
+          "price_per_lb": "1.632025",
+          "available": true,
+          "stock_status": "unknown",
+          "tax_basis": "unknown",
+          "shipping_status": "unknown",
+          "shipping_price": null,
+          "delivered_price": null,
+          "observed_at": "2026-10-14T13:50:58.386739Z",
+          "pack_evidence": "Please note: the plates are sold individually, not in pairs.",
+          "price_basis": "Observed unlocalized EUR storefront; destination VAT may change at checkout"
+        },
+        {
+          "id": "strengthshop-eu:45020055830793",
+          "source_id": "strengthshop-eu",
+          "market": "ES",
+          "currency": "EUR",
+          "title": "Deep Dish Cast Iron",
+          "variant_title": "10 kg",
+          "variant_id": "45020055830793",
+          "source_url": "https://strengthshop.eu/products/deep-dish-cast-iron-plates-singles-or-sets?variant=45020055830793",
+          "plate_type": "iron",
+          "sale_unit": "single",
+          "components": [
+            {
+              "weight": "10.0",
+              "unit": "kg",
+              "count": 1
+            }
+          ],
+          "total_weight_kg": "10.0",
+          "price": "34.99",
+          "price_per_kg": "3.499000",
+          "price_per_lb": "1.587120",
+          "available": true,
+          "stock_status": "unknown",
+          "tax_basis": "unknown",
+          "shipping_status": "unknown",
+          "shipping_price": null,
+          "delivered_price": null,
+          "observed_at": "2026-10-14T13:50:58.386739Z",
+          "pack_evidence": "Please note: the plates are sold individually, not in pairs.",
+          "price_basis": "Observed unlocalized EUR storefront; destination VAT may change at checkout"
+        },
+        {
+          "id": "strengthshop-eu:45020055896329",
+          "source_id": "strengthshop-eu",
+          "market": "ES",
+          "currency": "EUR",
+          "title": "Deep Dish Cast Iron",
+          "variant_title": "20 kg",
+          "variant_id": "45020055896329",
+          "source_url": "https://strengthshop.eu/products/deep-dish-cast-iron-plates-singles-or-sets?variant=45020055896329",
+          "plate_type": "iron",
+          "sale_unit": "single",
+          "components": [
+            {
+              "weight": "20.0",
+              "unit": "kg",
+              "count": 1
+            }
+          ],
+          "total_weight_kg": "20.0",
+          "price": "68.99",
+          "price_per_kg": "3.449500",
+          "price_per_lb": "1.564667",
+          "available": true,
+          "stock_status": "unknown",
+          "tax_basis": "unknown",
+          "shipping_status": "unknown",
+          "shipping_price": null,
+          "delivered_price": null,
+          "observed_at": "2026-10-14T13:50:58.386739Z",
+          "pack_evidence": "Please note: the plates are sold individually, not in pairs.",
+          "price_basis": "Observed unlocalized EUR storefront; destination VAT may change at checkout"
+        },
+        {
+          "id": "strengthshop-eu:56125772923145",
+          "source_id": "strengthshop-eu",
+          "market": "ES",
+          "currency": "EUR",
+          "title": "Deep Dish Cast Iron",
+          "variant_title": "25 kg",
+          "variant_id": "56125772923145",
+          "source_url": "https://strengthshop.eu/products/deep-dish-cast-iron-plates-singles-or-sets?variant=56125772923145",
+          "plate_type": "iron",
+          "sale_unit": "single",
+          "components": [
+            {
+              "weight": "25.0",
+              "unit": "kg",
+              "count": 1
+            }
+          ],
+          "total_weight_kg": "25.0",
+          "price": "84.99",
+          "price_per_kg": "3.399600",
+          "price_per_lb": "1.542033",
+          "available": true,
+          "stock_status": "unknown",
+          "tax_basis": "unknown",
+          "shipping_status": "unknown",
+          "shipping_price": null,
+          "delivered_price": null,
+          "observed_at": "2026-10-14T13:50:58.386739Z",
+          "pack_evidence": "Please note: the plates are sold individually, not in pairs.",
+          "price_basis": "Observed unlocalized EUR storefront; destination VAT may change at checkout"
+        }
+      ],
+      "documents": [
+        {
+          "url": "https://strengthshop.eu/products/deep-dish-cast-iron-plates-singles-or-sets",
+          "status": 200,
+          "observed_at": "2026-10-14T13:50:58.386739+00:00",
+          "sha256": "003730429b28df09c5a4cbc22a56848f562965aa62ae2672049610f37bc6a4e6"
+        }
+      ]
+    },
+    {
+      "id": "atletica-eu",
+      "name": "ATLETICA",
+      "status": "ok",
+      "attempted_at": "2026-10-14T13:53:37.385959Z",
+      "last_success_at": "2026-10-14T13:53:37.385959Z",
+      "retained_previous": false,
+      "error": null,
+      "collection_mode": "reviewed",
+      "reviewed_at": "2026-10-14T13:58:06.828547Z",
+      "offers": [
+        {
+          "id": "atletica-eu:56203545739643",
+          "source_id": "atletica-eu",
+          "market": "ES",
+          "currency": "EUR",
+          "title": "Color Bumper Plates",
+          "variant_title": "5 kg",
+          "variant_id": "56203545739643",
+          "source_url": "https://atletica.de/products/color-bumper-plates-2x5kg?variant=56203545739643",
+          "plate_type": "bumper",
+          "sale_unit": "pair",
+          "components": [
+            {
+              "weight": "5.0",
+              "unit": "kg",
+              "count": 2
+            }
+          ],
+          "total_weight_kg": "10.0",
+          "price": "58.0",
+          "price_per_kg": "5.800000",
+          "price_per_lb": "2.630836",
+          "available": true,
+          "stock_status": "unknown",
+          "tax_basis": "unknown",
+          "shipping_status": "unknown",
+          "shipping_price": null,
+          "delivered_price": null,
+          "observed_at": "2026-10-14T13:52:26.618923Z",
+          "pack_evidence": "Color Bumper Plates | 2x5kg",
+          "price_basis": "Observed German storefront EUR incl. VAT, shipping excluded; Spain checkout not verified"
+        },
+        {
+          "id": "atletica-eu:56203546329467",
+          "source_id": "atletica-eu",
+          "market": "ES",
+          "currency": "EUR",
+          "title": "Color Bumper Plates",
+          "variant_title": "10 kg",
+          "variant_id": "56203546329467",
+          "source_url": "https://atletica.de/products/color-bumper-plates-2x10kg?variant=56203546329467",
+          "plate_type": "bumper",
+          "sale_unit": "pair",
+          "components": [
+            {
+              "weight": "10.0",
+              "unit": "kg",
+              "count": 2
+            }
+          ],
+          "total_weight_kg": "20.0",
+          "price": "88.0",
+          "price_per_kg": "4.400000",
+          "price_per_lb": "1.995806",
+          "available": true,
+          "stock_status": "unknown",
+          "tax_basis": "unknown",
+          "shipping_status": "unknown",
+          "shipping_price": null,
+          "delivered_price": null,
+          "observed_at": "2026-10-14T13:52:26.618923Z",
+          "pack_evidence": "Color Bumper Plates | 2x10kg",
+          "price_basis": "Observed German storefront EUR incl. VAT, shipping excluded; Spain checkout not verified"
+        },
+        {
+          "id": "atletica-eu:56203546591611",
+          "source_id": "atletica-eu",
+          "market": "ES",
+          "currency": "EUR",
+          "title": "Color Bumper Plates",
+          "variant_title": "15 kg",
+          "variant_id": "56203546591611",
+          "source_url": "https://atletica.de/products/color-bumper-plates-2x15kg?variant=56203546591611",
+          "plate_type": "bumper",
+          "sale_unit": "pair",
+          "components": [
+            {
+              "weight": "15.0",
+              "unit": "kg",
+              "count": 2
+            }
+          ],
+          "total_weight_kg": "30.0",
+          "price": "128.0",
+          "price_per_kg": "4.266667",
+          "price_per_lb": "1.935327",
+          "available": true,
+          "stock_status": "unknown",
+          "tax_basis": "unknown",
+          "shipping_status": "unknown",
+          "shipping_price": null,
+          "delivered_price": null,
+          "observed_at": "2026-10-14T13:52:26.618923Z",
+          "pack_evidence": "Color Bumper Plates | 2x15kg",
+          "price_basis": "Observed German storefront EUR incl. VAT, shipping excluded; Spain checkout not verified"
+        },
+        {
+          "id": "atletica-eu:56203546624379",
+          "source_id": "atletica-eu",
+          "market": "ES",
+          "currency": "EUR",
+          "title": "Color Bumper Plates",
+          "variant_title": "20 kg",
+          "variant_id": "56203546624379",
+          "source_url": "https://atletica.de/products/color-bumper-plates-2x20kg?variant=56203546624379",
+          "plate_type": "bumper",
+          "sale_unit": "pair",
+          "components": [
+            {
+              "weight": "20.0",
+              "unit": "kg",
+              "count": 2
+            }
+          ],
+          "total_weight_kg": "40.0",
+          "price": "164.0",
+          "price_per_kg": "4.100000",
+          "price_per_lb": "1.859729",
+          "available": true,
+          "stock_status": "unknown",
+          "tax_basis": "unknown",
+          "shipping_status": "unknown",
+          "shipping_price": null,
+          "delivered_price": null,
+          "observed_at": "2026-10-14T13:52:26.618923Z",
+          "pack_evidence": "Color Bumper Plates | 2x20kg",
+          "price_basis": "Observed German storefront EUR incl. VAT, shipping excluded; Spain checkout not verified"
+        },
+        {
+          "id": "atletica-eu:56203546722683",
+          "source_id": "atletica-eu",
+          "market": "ES",
+          "currency": "EUR",
+          "title": "Color Bumper Plates",
+          "variant_title": "25 kg",
+          "variant_id": "56203546722683",
+          "source_url": "https://atletica.de/products/color-bumper-plates-2x25kg?variant=56203546722683",
+          "plate_type": "bumper",
+          "sale_unit": "pair",
+          "components": [
+            {
+              "weight": "25.0",
+              "unit": "kg",
+              "count": 2
+            }
+          ],
+          "total_weight_kg": "50.0",
+          "price": "198.0",
+          "price_per_kg": "3.960000",
+          "price_per_lb": "1.796226",
+          "available": true,
+          "stock_status": "unknown",
+          "tax_basis": "unknown",
+          "shipping_status": "unknown",
+          "shipping_price": null,
+          "delivered_price": null,
+          "observed_at": "2026-10-14T13:52:26.618923Z",
+          "pack_evidence": "Color Bumper Plates | 2x25kg",
+          "price_basis": "Observed German storefront EUR incl. VAT, shipping excluded; Spain checkout not verified"
+        },
+        {
+          "id": "atletica-eu:44373465465099",
+          "source_id": "atletica-eu",
+          "market": "ES",
+          "currency": "EUR",
+          "title": "Color Bumper Plates SET | 110kg",
+          "variant_title": "110 kg set",
+          "variant_id": "44373465465099",
+          "source_url": "https://atletica.de/products/color-bumper-plates-set-110kg?variant=44373465465099",
+          "plate_type": "bumper",
+          "sale_unit": "set",
+          "components": [
+            {
+              "weight": "5",
+              "unit": "kg",
+              "count": 2
+            },
+            {
+              "weight": "10",
+              "unit": "kg",
+              "count": 2
+            },
+            {
+              "weight": "20",
+              "unit": "kg",
+              "count": 4
+            }
+          ],
+          "total_weight_kg": "110",
+          "price": "474",
+          "price_per_kg": "4.309091",
+          "price_per_lb": "1.954571",
+          "available": true,
+          "stock_status": "unknown",
+          "tax_basis": "unknown",
+          "shipping_status": "unknown",
+          "shipping_price": null,
+          "delivered_price": null,
+          "observed_at": "2026-10-14T13:53:37.385959Z",
+          "pack_evidence": "Set 110 kg bestehend aus: 2 x 5 kg, 2 x 10 kg, 4 x 20 kg",
+          "price_basis": "Observed German storefront EUR incl. VAT, shipping excluded; Spain checkout not verified"
+        }
+      ],
+      "documents": [
+        {
+          "url": "https://atletica.de/products/color-bumper-plates-paarweise-5-25kg.js",
+          "status": 200,
+          "observed_at": "2026-10-14T13:52:26.618923+00:00",
+          "sha256": "55ab36f7b2e0c3602ff90dba789e0fc181b76d736579a422bdfec3d1548582e3"
+        },
+        {
+          "url": "https://atletica.de/products/color-bumper-plates-set-110kg.js",
+          "status": 200,
+          "observed_at": "2026-10-14T13:53:37.385959+00:00",
+          "sha256": "ce35653d11309bc24292299467ac1788be7f36558d486aa7532f537144f6fd97"
+        }
+      ]
+    },
+    {
+      "id": "getrxd-us",
+      "name": "Get RXd",
+      "status": "ok",
+      "attempted_at": "2026-10-14T13:53:43Z",
+      "last_success_at": "2026-10-14T13:53:43Z",
+      "retained_previous": false,
+      "error": null,
+      "collection_mode": "reviewed",
+      "reviewed_at": "2026-10-14T13:58:06.828547Z",
+      "offers": [
+        {
+          "id": "getrxd-us:50046246846759",
+          "source_id": "getrxd-us",
+          "market": "US",
+          "currency": "USD",
+          "title": "Cast Iron Olympic Plate - 45 LBS [piece] (OPCILB-45)",
+          "variant_title": "45 lb",
+          "variant_id": "50046246846759",
+          "source_url": "https://getrxd.com/products/cast-iron-olympic-plate-45-lbs-piece?variant=50046246846759",
+          "plate_type": "iron",
+          "sale_unit": "single",
+          "components": [
+            {
+              "weight": "45",
+              "unit": "lb",
+              "count": 1
+            }
+          ],
+          "total_weight_kg": "20.41165665",
+          "price": "62",
+          "price_per_kg": "3.037480",
+          "price_per_lb": "1.377778",
+          "available": null,
+          "stock_status": "unknown",
+          "tax_basis": "unknown",
+          "shipping_status": "unknown",
+          "shipping_price": null,
+          "delivered_price": null,
+          "observed_at": "2026-10-14T13:53:39Z",
+          "pack_evidence": "Cast Iron Olympic Plate - 45 LBS [piece] (OPCILB-45)",
+          "price_basis": "Observed US storefront USD price; shipping and taxes excluded or unverified."
+        },
+        {
+          "id": "getrxd-us:50046249173287",
+          "source_id": "getrxd-us",
+          "market": "US",
+          "currency": "USD",
+          "title": "Rubber Coated Olympic Plate - 25 LBS [piece] (OPRLB-25)",
+          "variant_title": "25 lb",
+          "variant_id": "50046249173287",
+          "source_url": "https://getrxd.com/products/rubber-coated-olympic-plate-25-lbs-piece?variant=50046249173287",
+          "plate_type": "rubber_coated",
+          "sale_unit": "single",
+          "components": [
+            {
+              "weight": "25",
+              "unit": "lb",
+              "count": 1
+            }
+          ],
+          "total_weight_kg": "11.33980925",
+          "price": "39",
+          "price_per_kg": "3.439211",
+          "price_per_lb": "1.560000",
+          "available": null,
+          "stock_status": "unknown",
+          "tax_basis": "unknown",
+          "shipping_status": "unknown",
+          "shipping_price": null,
+          "delivered_price": null,
+          "observed_at": "2026-10-14T13:53:43Z",
+          "pack_evidence": "Rubber Coated Olympic Plate - 25 LBS [piece] (OPRLB-25)",
+          "price_basis": "Observed US storefront USD price; shipping and taxes excluded or unverified."
+        }
+      ],
+      "documents": [
+        {
+          "url": "https://getrxd.com/products/cast-iron-olympic-plate-45-lbs-piece",
+          "status": 200,
+          "observed_at": "2026-10-14T13:53:39Z",
+          "sha256": "8d17ff7f66e3d21a8d5a950b65a9a764f5f4939ebf3f84ba7dd42d762dd628e8"
+        },
+        {
+          "url": "https://getrxd.com/products/rubber-coated-olympic-plate-25-lbs-piece",
+          "status": 200,
+          "observed_at": "2026-10-14T13:53:43Z",
+          "sha256": "c0903376ca991e39480acfb38272c5319bd8cf5248c86243b4a1025734c5f031"
+        }
+      ]
+    }
+  ]
+}

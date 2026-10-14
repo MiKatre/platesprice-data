@@ -2,8 +2,13 @@
 
 Small, reviewed gym-plate price collector. Public data pipeline; website separate.
 
-**Pilot: Singular WOD Spain; 3 products, 13 variants. Pack quantities unverified.
-All 13 are unranked observations, not €/kg comparisons. No active US sources yet.**
+**25 observations across 4 retailers: 12 confirmed packs with unit prices;
+13 Singular WOD variants still awaiting pack verification.**
+
+- EU storefronts delivering to Spain: Strength Shop, 4 singles; ATLETICA, 5 pairs + 110 kg set.
+- US: Get RXd, 2 single plates. Availability unconfirmed.
+- These 12 additions are reviewed, dated observations—not automatically refreshed offers.
+- Original Singular WOD automated pilot remains paused; do not retry its hosted access block.
 
 Local collection succeeded. First GitHub-hosted collection received HTTP 429;
 prior observations retained unchanged. **Schedule paused; manual workflow only**
@@ -22,7 +27,10 @@ uv run --locked python -m plates.collect --only singularwod-es
 ```
 
 - `catalog.json`: explicitly reviewed storefronts, product URLs, variant IDs/titles, pack evidence.
-- `data/latest.json`: validated current snapshot; decimal strings, UTC timestamps.
+- `data/latest.json`: merged validated snapshot; decimal strings, UTC timestamps.
+- `reviewed/latest.json`: 12 curated factual observations, pack evidence, raw-response hashes,
+  source dates and separate review dates. No merchant images/descriptions copied.
+  Collector merges these without network requests or re-dating them.
 - `runs/report.json`: ignored local run report; uploaded as a 14-day Actions artifact.
 - `research/SOURCES.md`: source findings, exclusions, next decisions.
 - No database, browser, login, proxies, API keys, checkout calls or dynamic crawler.
@@ -65,16 +73,17 @@ Large legitimate discounts need review; no automatic quarantine release.
 ## Read the data correctly
 
 - `price`: variant's advertised price, in `currency`; not checkout/landed price.
-- `available`: Shopify says purchasable. **Not verified immediate stock**;
-  preorders can be true. `stock_status` stays unknown.
+- `available`: observed purchasability, **not verified immediate stock**;
+  preorders can be true. Null means uncertain/conflicting evidence. `stock_status` stays unknown.
 - `sale_unit: unknown`, empty components: pack quantity not verified.
   Total weight and both unit prices must remain null.
 - Reviewed single/pair/set components use nominal plate mass.
   Price/kg = price / total included kg; 1 lb = exactly 0.45359237 kg.
 - Shipping, delivered price and destination-specific tax treatment remain unknown.
-- Rank only fresh (<24 hours), successful-source offers with verified pack contents
-  and non-null unit prices. Show purchaser availability/preorder uncertainty separately.
-  This repository provides data, not a public ranking UI.
+- Historical unit prices remain mathematically valid when pack contents are confirmed;
+  display them as recorded prices with original dates/status, not live best-buy claims.
+  A current-offer recommendation would additionally require fresh successful observations
+  and appropriate availability checks. This repository supplies observations, not guarantees.
 - Never call a shipping-unknown offer cheapest delivered. Separate US and Spain;
   do not compare USD and EUR as though they were interchangeable.
 - Current Singular evidence supports EUR and nominal variant labels, but **not pack counts**.
