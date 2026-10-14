@@ -1,7 +1,7 @@
 name: Collect plate prices
 on:
-  schedule:
-    - cron: "37 2,8,14,20 * * *"
+  # Schedule paused: first GitHub-hosted collection received HTTP 429.
+  # After an approved access route is verified, restore: 37 2,8,14,20 * * *
   workflow_dispatch:
 permissions:
   contents: read

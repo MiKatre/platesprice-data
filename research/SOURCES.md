@@ -3,7 +3,7 @@
 Research, not legal advice or a claim that access grants data rights.
 Stop reasons distinguish explicit collection bans, access failures and broader use restrictions.
 
-## Active pilot
+## Local pilot — hosted collection paused
 
 **Singular WOD / Spain**
 - [Robots](https://singularwod.com/robots.txt): reviewed public product HTML and .js routes allowed.
@@ -17,7 +17,9 @@ Stop reasons distinguish explicit collection bans, access failures and broader u
 - Negro page displays reservation wording despite Shopify available=true. Purchasability is not physical stock.
 - Croma vendor differs from merchandising brand; not used as manufacturer attribution.
 - VAT terms: unless stated otherwise, applicable taxes included for mainland Spain/Balearics. Destination exceptions exist.
-- Next: confirm units/pairs with merchant, permission/affiliate-feed scope, delivery regions and shipping rules.
+- Local collector: 13 offers succeeded at 12:34 UTC. First GitHub-hosted run at 12:37 UTC returned HTTP 429; stopped without retry. Original observations retained, status failed.
+- [Runner evidence](https://github.com/MiKatre/platesprice-data/actions/runs/38565263992). Scheduled trigger removed; no proxy/IP-switch workaround.
+- Next: approved runner/feed access; confirm units/pairs with merchant, permission/affiliate-feed scope, delivery regions and shipping rules.
 
 ## US — not scheduled
 
@@ -51,7 +53,7 @@ Generic copyright language alone was not treated as an explicit scraping ban.
 
 ## Expansion queue
 
-1. Singular: resolve pack quantities; observe several scheduled runs.
+1. Singular: resolve hosted-access block and pack quantities before enabling scheduled runs.
 2. Request approved feeds from Giant/Bells/Fringe; no outreach sent.
 3. Maniak/Ruster: clarify reuse scope, then tiny source-specific adapters.
 4. Expand only reviewed variants; separately track sources, products, variants and rankable offers.

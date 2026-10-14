@@ -5,6 +5,10 @@ Small, reviewed gym-plate price collector. Public data pipeline; website separat
 **Pilot: Singular WOD Spain; 3 products, 13 variants. Pack quantities unverified.
 All 13 are unranked observations, not €/kg comparisons. No active US sources yet.**
 
+Local collection succeeded. First GitHub-hosted collection received HTTP 429;
+prior observations retained unchanged. **Schedule paused; manual workflow only**
+until an approved runner-access/feed route is verified.
+
 ## Run
 
 Python 3.12+, uv, macOS/Linux. Synchronous CLI; hard request deadlines use POSIX signals.
@@ -25,7 +29,8 @@ uv run --locked python -m plates.collect --only singularwod-es
 
 ## Automation
 
-GitHub Actions: 02:37, 08:37, 14:37, 20:37 UTC; manual dispatch also available.
+GitHub Actions currently manual-only; do not repeatedly dispatch against the blocked host.
+Planned cadence after access validation: 02:37, 08:37, 14:37, 20:37 UTC.
 Scheduled runs can be delayed; not real-time. GitHub may disable inactive public-repo schedules.
 
 1. Read-only job installs locked dependencies, runs offline tests, collects prices.
