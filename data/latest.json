@@ -1,15 +1,15 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-14T12:35:01.577399Z",
+  "generated_at": "2026-10-14T12:37:56.824399Z",
   "sources": [
     {
       "id": "singularwod-es",
       "name": "Singular WOD",
-      "status": "ok",
-      "attempted_at": "2026-10-14T12:34:53.430370Z",
+      "status": "failed",
+      "attempted_at": "2026-10-14T12:37:54.772678Z",
       "last_success_at": "2026-10-14T12:34:53.430370Z",
-      "retained_previous": false,
-      "error": null,
+      "retained_previous": true,
+      "error": "FetchError: HTTP 429; stop this source, no bypass",
       "offers": [
         {
           "id": "singularwod-es:45463565107455",
@@ -328,32 +328,8 @@
         {
           "url": "https://singularwod.com/robots.txt",
           "status": 200,
-          "observed_at": "2026-10-14T12:34:53.583904+00:00",
+          "observed_at": "2026-10-14T12:37:54.992567+00:00",
           "sha256": "586b5dcdd588dda8507932996f056121ff6d71196857ddaf6951af2cfc0ef407"
-        },
-        {
-          "url": "https://singularwod.com/products/disco-olimpico",
-          "status": 200,
-          "observed_at": "2026-10-14T12:34:55.939821+00:00",
-          "sha256": "b0b87ee8b829b45c4d069c555714f29f1ac2de09172b4f2ef1bf8e574f152997"
-        },
-        {
-          "url": "https://singularwod.com/products/disco-olimpico.js",
-          "status": 200,
-          "observed_at": "2026-10-14T12:34:57.624381+00:00",
-          "sha256": "ce41dc3be15747fc102bae1d75a5e718c58124415b5b5d950d5f4efaee9966c0"
-        },
-        {
-          "url": "https://singularwod.com/products/disco-training-negro.js",
-          "status": 200,
-          "observed_at": "2026-10-14T12:34:59.566771+00:00",
-          "sha256": "7c097311aa391191db15a62fdde88e9bcb339fd873eda366c1745a67c8318224"
-        },
-        {
-          "url": "https://singularwod.com/products/discos-training-croma.js",
-          "status": 200,
-          "observed_at": "2026-10-14T12:35:01.576539+00:00",
-          "sha256": "92029d53d432315b012b13d39f8c9d708ccf2913c53a113e9e8259a983f72a5f"
         }
       ]
     }
