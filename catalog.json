@@ -1,0 +1,137 @@
+{
+  "schema_version": 1,
+  "sources": [
+    {
+      "id": "singularwod-es",
+      "name": "Singular WOD",
+      "origin": "https://singularwod.com",
+      "market": "ES",
+      "currency": "EUR",
+      "currency_evidence_url": "https://singularwod.com/products/disco-olimpico",
+      "tax_basis": "unknown",
+      "terms_url": "https://singularwod.com/pages/terminos-y-condiciones",
+      "notes": [
+        "Pilot: 13 reviewed variants; pack quantities unknown, no EUR/kg rankings.",
+        "available means purchasable, not verified in stock; Training Negro page displayed preorder wording.",
+        "Read-only public product endpoints allowed by reviewed robots. No explicit collection ban found in inspected sales terms; not a grant of reuse rights.",
+        "Shipping and VAT inclusion not independently verified. No descriptions or images republished."
+      ],
+      "products": [
+        {
+          "url": "https://singularwod.com/products/disco-olimpico",
+          "data_url": "https://singularwod.com/products/disco-olimpico.js",
+          "adapter": "shopify_js",
+          "title": "DISCO OLÍMPICO SINGULARWOD",
+          "plate_type": "bumper",
+          "variants": [
+            {
+              "id": "45463565107455",
+              "title": "10 kg",
+              "components": [],
+              "sale_unit": "unknown"
+            },
+            {
+              "id": "45463565140223",
+              "title": "15 kg",
+              "components": [],
+              "sale_unit": "unknown"
+            },
+            {
+              "id": "45463565172991",
+              "title": "20 kg",
+              "components": [],
+              "sale_unit": "unknown"
+            },
+            {
+              "id": "45463565205759",
+              "title": "25 kg",
+              "components": [],
+              "sale_unit": "unknown"
+            }
+          ],
+          "evidence": "Variant labels show nominal plate weights, not verified pack totals. No explicit single/pair statement found in sampled HTML or description. Shopify shipping weight is not nominal plate mass.",
+          "pack_evidence": null,
+          "reviewed_on": "2026-10-14"
+        },
+        {
+          "url": "https://singularwod.com/products/disco-training-negro",
+          "data_url": "https://singularwod.com/products/disco-training-negro.js",
+          "adapter": "shopify_js",
+          "title": "DISCO TRAINING NEGRO",
+          "plate_type": "bumper",
+          "variants": [
+            {
+              "id": "45463559602431",
+              "title": "5 kg",
+              "components": [],
+              "sale_unit": "unknown"
+            },
+            {
+              "id": "45463559635199",
+              "title": "10 kg",
+              "components": [],
+              "sale_unit": "unknown"
+            },
+            {
+              "id": "45463559667967",
+              "title": "15 kg",
+              "components": [],
+              "sale_unit": "unknown"
+            },
+            {
+              "id": "45463559700735",
+              "title": "20 kg",
+              "components": [],
+              "sale_unit": "unknown"
+            },
+            {
+              "id": "45463559733503",
+              "title": "25 kg",
+              "components": [],
+              "sale_unit": "unknown"
+            }
+          ],
+          "evidence": "Variant labels show nominal plate weights, not verified pack totals. No explicit single/pair statement found in sampled HTML or description. Shopify shipping weight is not nominal plate mass.",
+          "pack_evidence": null,
+          "reviewed_on": "2026-10-14"
+        },
+        {
+          "url": "https://singularwod.com/products/discos-training-croma",
+          "data_url": "https://singularwod.com/products/discos-training-croma.js",
+          "adapter": "shopify_js",
+          "title": "DISCO TRAINING CROMA",
+          "plate_type": "bumper",
+          "variants": [
+            {
+              "id": "55333414994306",
+              "title": "10 kg",
+              "components": [],
+              "sale_unit": "unknown"
+            },
+            {
+              "id": "55333415027074",
+              "title": "15 kg",
+              "components": [],
+              "sale_unit": "unknown"
+            },
+            {
+              "id": "55333415059842",
+              "title": "20 kg",
+              "components": [],
+              "sale_unit": "unknown"
+            },
+            {
+              "id": "55333415092610",
+              "title": "25 kg",
+              "components": [],
+              "sale_unit": "unknown"
+            }
+          ],
+          "evidence": "Variant labels show nominal plate weights, not verified pack totals. No explicit single/pair statement found in sampled HTML or description. Shopify shipping weight is not nominal plate mass.",
+          "pack_evidence": null,
+          "reviewed_on": "2026-10-14"
+        }
+      ]
+    }
+  ]
+}
