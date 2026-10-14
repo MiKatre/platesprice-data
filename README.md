@@ -1,107 +1,97 @@
 # PlatesPrice data
 
-Small, reviewed gym-plate price collector. Public data pipeline; website separate.
+Public factual weight-plate observations; static website separate. No API keys.
 
-**25 observations across 4 retailers: 12 confirmed packs with unit prices;
-13 Singular WOD variants still awaiting pack verification.**
+**2026-10-14 seed: 1,031 priced offers, 709 confirmed packs, 16 retailers.**
 
-- EU storefronts delivering to Spain: Strength Shop, 4 singles; ATLETICA, 5 pairs + 110 kg set.
-- US: Get RXd, 2 single plates. Availability unconfirmed.
-- These 12 additions are reviewed, dated observations—not automatically refreshed offers.
-- Original Singular WOD automated pilot remains paused; do not retry its hosted access block.
-
-Local collection succeeded. First GitHub-hosted collection received HTTP 429;
-prior observations retained unchanged. **Schedule paused; manual workflow only**
-until an approved runner-access/feed route is verified.
+- Spain/EU: 606 offers; 398 with recorded price/kg. US: 425 offers; 311 with price/kg.
+- Seven Shopify catalog collectors discover variants automatically; no per-variant allowlist.
+- Eight additional retailers use reviewed WooCommerce/custom-store captures, preserving original dates.
+- Singular WOD: original 13 unverified variants retained; source explicitly paused after hosted 429.
+- Hampton: partial historical capture, refresh stopped after 403.
+- [Coverage, exclusions and next work](research/CATALOGS.md).
 
 ## Run
 
-Python 3.12+, uv, macOS/Linux. Synchronous CLI; hard request deadlines use POSIX signals.
+Python 3.12+, uv, macOS/Linux. Hard request deadlines use POSIX signals.
 
 ```sh
 uv sync --locked --group dev
 uv run --locked pytest -q
 uv run --locked ruff check .
+uv run --locked python -m plates.collect --only atletica-eu
 uv run --locked python -m plates.collect
-uv run --locked python -m plates.collect --only singularwod-es
 ```
 
-- `catalog.json`: explicitly reviewed storefronts, product URLs, variant IDs/titles, pack evidence.
-- `data/latest.json`: merged validated snapshot; decimal strings, UTC timestamps.
-- `reviewed/latest.json`: 12 curated factual observations, pack evidence, raw-response hashes,
-  source dates and separate review dates. No merchant images/descriptions copied.
-  Collector merges these without network requests or re-dating them.
-- `runs/report.json`: ignored local run report; uploaded as a 14-day Actions artifact.
-- `research/SOURCES.md`: source findings, exclusions, next decisions.
-- No database, browser, login, proxies, API keys, checkout calls or dynamic crawler.
+`paused` sources are never requested, even with `--only`. Clear a pause only after access review.
+The manual GitHub workflow remains unscheduled. New catalog adapters have been tested against
+saved actual responses and synthetic regressions; hosted access is not yet validated for them.
 
-## Automation
+## Files
 
-GitHub Actions currently manual-only; do not repeatedly dispatch against the blocked host.
-Planned cadence after access validation: 02:37, 08:37, 14:37, 20:37 UTC.
-Scheduled runs can be delayed; not real-time. GitHub may disable inactive public-repo schedules.
-
-1. Read-only job installs locked dependencies, runs offline tests, collects prices.
-2. Artifact carries snapshot + report; no merchant HTML/images/descriptions published.
-3. Separate minimal write-enabled job commits only `data/latest.json`.
-4. Reject publishing if `master` changed during collection. Never force-push.
-5. Partial failures publish good/retained observations, then mark the run failed.
-
-Actions pinned to commit SHAs. Only the collection publisher has write permission.
-No website build hook yet: there is no deployed website to rebuild.
-Git tracks snapshots; no duplicate per-run JSON history in the repository.
+- `catalog.json`: approved storefront scope, currency evidence, feed endpoints, pause reasons.
+  Legacy exact-product entries remain supported for exceptional reviewed products.
+- `plates/normalize.py`: multilingual plate qualification, explicit pack parsing, Decimal pricing.
+- `plates/feeds.py`: bounded pagination, duplicate detection, coverage and recoverable issues.
+- `data/latest.json`: merged observations, decimal strings, original UTC capture timestamps.
+- `reviewed/latest.json`: bulk-reviewed Woo/custom observations; no requests or re-dating on merge.
+- `research/coverage.json`: per-storefront counts, capture hashes, access/coverage notes.
+- `runs/report.json`: ignored run report; uploaded as a 14-day Actions artifact.
+- `tests/fixtures/`: frozen pilot arithmetic cases, independent of live catalog growth.
+- `.captures/`: ignored local evidence cache. No merchant HTML, images or descriptions published.
 
 ## Collection rules
 
-- Explicit User-Agent; check robots each run, including redirects.
-- Wildcards, longest-rule precedence, normalized URLs; no off-origin redirects.
-- At least two seconds between request starts; respect longer crawl delays.
-- Fail closed on unrecognized robots or Request-rate directives (locked parser has a rate bug).
-- Stop a source on 401/403/429. No retry or workaround for blocks.
-- One retry for transient network/5xx failures; 30 requests/source maximum.
-- 5 MB decoded response cap; 90-second hard source deadline; 10-minute total collection budget.
-- Exact reviewed product/variant titles; new variants ignored until reviewed.
-- Confirm storefront currency each run. Do not use Shopify shipping grams as plate mass.
-- More than 50% price change: quarantine the source; retain approved prior observations.
-- Failed refresh: retain only still-approved offers, preserving original timestamps.
-- Empty/corrupt previous snapshot fails before overwrite. Missing prices never become zero.
+- Identifying User-Agent; robots checked per run and redirect. No off-origin redirects.
+- At least two seconds between starts; honor longer crawl delays.
+- Stop on 401/403/429; no proxies, login, cookie negotiation, impersonation or block bypass.
+- Fail closed on unrecognized robots and unsupported Request-rate directives.
+- One retry for transient network/5xx failures. Maximum 30 requests/source, 5 MB/response,
+  90 seconds/source, ten minutes/run. Each feed capped at four pages by default.
+- Confirm storefront currency. Shopify feed prices use major units; `.js` prices use cents.
+- Classify actual plates; exclude storage, hardware, merchandise and mixed equipment bundles.
+- Parse all variants. Explicit quantity + nominal mass required for unit-price arithmetic.
+  Never use shipping grams, parent minimum prices or guessed singles.
+- Ambiguous packs retain observed prices with null totals/unit prices. Bad variants become issues,
+  not a reason to discard unrelated valid catalog rows. Coverage records capped/incomplete feeds.
+- Dedupe identities and proven aliases within a retailer. Shared SKU alone cannot collapse
+  different colors, sizes or conditions. Never dedupe equivalent offers across retailers.
+- More than 50% price change or changed composition: quarantine the affected feed offer.
+  Legacy exact-product collectors still quarantine at source level.
+- Failed feeds retain observations only when the configured scope/parser signature matches.
+  Preserve original dates. Corrupt previous snapshots fail before overwrite.
 
-The whole source is retained if any reviewed product fails: deliberately simpler than
-a product-level merge. Removed/unreviewed variants cannot reappear through retention.
-Large legitimate discounts need review; no automatic quarantine release.
+## Read correctly
 
-## Read the data correctly
+- `price`: recorded selected offer price, not a delivered or guaranteed current price.
+- `available`: observed purchasability; not physical stock. Null means unresolved evidence.
+- `sale_unit: unknown`: empty components and null total weight / unit prices.
+- Price/kg = price ÷ total nominal kg of every included plate. 1 lb = exactly 0.45359237 kg.
+- `condition`: explicit used/B-stock labels only; unknown does not mean verified new.
+- Historical unit-price arithmetic remains valid; age and refresh status are separate.
+- EUR storefront prices are not uniformly Spain-localized VAT quotes. No FX conversion.
+- Shipping and delivered totals remain unknown. Never treat unknown shipping as free.
+- `collection_mode: reviewed`: saved observations, not automatically refreshed catalog data.
 
-- `price`: variant's advertised price, in `currency`; not checkout/landed price.
-- `available`: observed purchasability, **not verified immediate stock**;
-  preorders can be true. Null means uncertain/conflicting evidence. `stock_status` stays unknown.
-- `sale_unit: unknown`, empty components: pack quantity not verified.
-  Total weight and both unit prices must remain null.
-- Reviewed single/pair/set components use nominal plate mass.
-  Price/kg = price / total included kg; 1 lb = exactly 0.45359237 kg.
-- Shipping, delivered price and destination-specific tax treatment remain unknown.
-- Historical unit prices remain mathematically valid when pack contents are confirmed;
-  display them as recorded prices with original dates/status, not live best-buy claims.
-  A current-offer recommendation would additionally require fresh successful observations
-  and appropriate availability checks. This repository supplies observations, not guarantees.
-- Never call a shipping-unknown offer cheapest delivered. Separate US and Spain;
-  do not compare USD and EUR as though they were interchangeable.
-- Current Singular evidence supports EUR and nominal variant labels, but **not pack counts**.
-  Its terms describe VAT-inclusive mainland/Balearic prices unless stated otherwise;
-  destination-specific tax interpretation is not implemented.
+## Add coverage
 
-## Add a source, simply
+1. Discover relevant public collection feeds or sitemaps, not two sample products.
+2. Record robots/access results and exact terms URLs. Distinguish express collection restrictions
+   from generic IP notices; unread terms remain unknown, not affirmative permission.
+3. Confirm currency and delivery geography. Keep blocked/restricted hosts as explicit exceptions.
+4. Add a bounded `feeds` entry. Check complete returned catalogs; separate priced, confirmed,
+   ambiguous, duplicate and withheld counts. Preserve variant-level evidence.
+5. Add synthetic regressions for new formats; validate one paced capture before enabling refresh.
+6. Port reviewed custom/Woo sources to reusable adapters next. Do not silently re-date snapshots.
 
-1. Read robots and linked merchant terms. Record dated URLs and concrete restrictions.
-2. Explicit collection ban, blocked request or uncertain authorization: leave in research;
-   request an approved feed/export rather than bypassing.
-3. Review a few product variants. Verify currency, pack quantity, nominal mass and price basis.
-4. Add an allowlisted product/variant entry. Unknown pack is allowed but unranked.
-   Known packs require an exact current evidence phrase in the description/product title
-   or the applicable reviewed variant title—not another variant.
-5. Add synthetic parser regression tests. Run tests, then one paced live collection.
-6. Check GitHub-hosted execution before increasing coverage. Observe several scheduled runs.
+## GitHub Actions
 
-Public access and robots permission are not a redistribution license.
-Only factual observations and links are published; no merchant creative assets.
-No affiliate-rate assumptions, affiliate enrollment or outreach performed.
+Manual-only until hosted access is verified. Singular remains individually paused.
+
+1. Read-only job installs locked dependencies, tests offline, collects configured catalogs.
+2. Artifact contains snapshot/report, not raw merchant content.
+3. Separate minimal write-enabled publisher commits only `data/latest.json`.
+4. Refuse stale publication if `master` changed. Never force-push.
+5. Publish good/retained observations before signalling partial failure.
+
+Actions pinned to SHAs. No deployed website build hook yet. No affiliate applications or outreach.

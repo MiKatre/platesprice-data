@@ -25,6 +25,18 @@ class Component(Model):
         return self.weight * self.count * (LB_KG if self.unit == "lb" else Decimal(1))
 
 
+def validate_pack(sale_unit, components):
+    count = sum(c.count for c in components)
+    if sale_unit == "unknown" and components:
+        raise ValueError("unknown pack must not invent components")
+    if sale_unit == "single" and count != 1:
+        raise ValueError("single must contain one plate")
+    if sale_unit == "pair" and (count != 2 or len(components) != 1):
+        raise ValueError("pair must contain two identical plates")
+    if sale_unit == "set" and count < 2:
+        raise ValueError("set must contain multiple plates")
+
+
 class Variant(Model):
     id: str = Field(pattern=r"^[0-9]+$")
     title: str
@@ -33,15 +45,7 @@ class Variant(Model):
 
     @model_validator(mode="after")
     def coherent(self):
-        count = sum(c.count for c in self.components)
-        if self.sale_unit == "unknown" and self.components:
-            raise ValueError("unknown pack must not invent components")
-        if self.sale_unit == "single" and count != 1:
-            raise ValueError("single must contain one plate")
-        if self.sale_unit == "pair" and (count != 2 or len(self.components) != 1):
-            raise ValueError("pair must contain two identical plates")
-        if self.sale_unit == "set" and count < 2:
-            raise ValueError("set must contain multiple plates")
+        validate_pack(self.sale_unit, self.components)
         return self
 
 
@@ -66,6 +70,21 @@ class Product(Model):
         return self
 
 
+class Feed(Model):
+    """Approved catalog endpoint; discover variants without enumerating their IDs."""
+
+    url: str
+    adapter: Literal["shopify_feed"] = "shopify_feed"
+    max_pages: int = Field(default=4, ge=1, le=8)
+
+    @model_validator(mode="after")
+    def endpoint(self):
+        parts = urlsplit(self.url)
+        if not parts.path.endswith("/products.json") or parts.query or parts.fragment:
+            raise ValueError("feed must be a products.json endpoint without query or fragment")
+        return self
+
+
 class Source(Model):
     id: str = Field(pattern=r"^[a-z0-9-]+$")
     name: str
@@ -75,9 +94,12 @@ class Source(Model):
     currency_evidence_url: str
     # Markets are separate storefronts, not FX-converted versions of one catalog.
     tax_basis: Literal["excluded", "included", "unknown"] = "unknown"
-    terms_url: str
+    terms_url: str | None = None
     notes: list[str] = Field(default_factory=list)
-    products: list[Product] = Field(min_length=1)
+    paused: bool = False
+    pause_reason: str | None = None
+    products: list[Product] = Field(default_factory=list)
+    feeds: list[Feed] = Field(default_factory=list)
 
     @model_validator(mode="after")
     def safe_urls(self):
@@ -86,13 +108,19 @@ class Source(Model):
             raise ValueError("source requires an HTTPS origin")
         if origin.path not in ("", "/") or origin.query or origin.fragment:
             raise ValueError("origin cannot contain a path/query/fragment")
-        for url in [self.currency_evidence_url, self.terms_url] + [
-            u for p in self.products for u in (p.url, p.data_url)
-        ]:
+        if not self.products and not self.feeds:
+            raise ValueError("source requires products or catalog feeds")
+        if self.paused and not self.pause_reason:
+            raise ValueError("paused source requires a reason")
+        for url in (
+            [u for u in (self.currency_evidence_url, self.terms_url) if u]
+            + [u for p in self.products for u in (p.url, p.data_url)]
+            + [f.url for f in self.feeds]
+        ):
             parts = urlsplit(url)
             if (parts.scheme, parts.netloc) != (origin.scheme, origin.netloc):
                 raise ValueError("all source URLs must share the approved HTTPS origin")
-        urls = [p.data_url for p in self.products]
+        urls = [p.data_url for p in self.products] + [f.url for f in self.feeds]
         if len(urls) != len(set(urls)):
             raise ValueError("duplicate product URL")
         return self
@@ -112,6 +140,8 @@ class Catalog(Model):
 
 class Offer(Model):
     id: str
+    sku: str | None = None
+    condition: Literal["new", "used", "b_stock", "unknown"] = "unknown"
     source_id: str
     market: Literal["US", "ES"]
     currency: Literal["USD", "EUR"]
@@ -146,12 +176,7 @@ class Offer(Model):
             ):
                 raise ValueError("unknown pack cannot have total weight or unit prices")
             return self
-        Variant(
-            id=self.variant_id,
-            title=self.variant_title,
-            components=self.components,
-            sale_unit=self.sale_unit,
-        )
+        validate_pack(self.sale_unit, self.components)
         if self.total_weight_kg != sum(c.kg for c in self.components):
             raise ValueError("inconsistent total weight")
         kg = (self.price / self.total_weight_kg).quantize(Decimal("0.000001"))
@@ -173,6 +198,9 @@ class SourceState(Model):
     reviewed_at: datetime | None = None
     offers: list[Offer] = Field(default_factory=list)
     documents: list[dict] = Field(default_factory=list)
+    coverage: dict[str, int] = Field(default_factory=dict)
+    issues: list[str] = Field(default_factory=list)
+    catalog_signature: str | None = None
 
 
 class Snapshot(Model):
@@ -190,7 +218,11 @@ class Snapshot(Model):
             if source.collection_mode == "reviewed" and source.reviewed_at is None:
                 raise ValueError("reviewed sources require a review date")
             for offer in source.offers:
-                if source.collection_mode == "reviewed" and not offer.pack_evidence:
+                if (
+                    source.collection_mode == "reviewed"
+                    and offer.sale_unit != "unknown"
+                    and not offer.pack_evidence
+                ):
                     raise ValueError("reviewed offers require pack evidence")
                 if offer.source_id != source.id or offer.observed_at > self.generated_at:
                     raise ValueError("invalid source or future timestamp")

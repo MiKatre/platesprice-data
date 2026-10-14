@@ -9,10 +9,12 @@ import time
 from datetime import datetime, timezone
 from decimal import Decimal
 from pathlib import Path
+from urllib.parse import urlsplit
 
 import httpx
 
 from .adapters import check_currency, parse_product
+from .feeds import catalog_signature, collect_feeds
 from .fetch import USER_AGENT, Fetcher
 from .models import Catalog, Snapshot, SourceState
 
@@ -38,7 +40,17 @@ def retained_offers(source, previous):
     retained = []
     for offer in previous.offers if previous else []:
         spec = approved.get(offer.id)
-        if spec and (
+        if (
+            source.feeds
+            and previous.catalog_signature == catalog_signature(source)
+            and offer.market == source.market
+            and offer.currency == source.currency
+            and offer.tax_basis == source.tax_basis
+            and urlsplit(offer.source_url)[:2] == urlsplit(source.origin)[:2]
+            and spec is None
+        ):
+            retained.append(offer)
+        elif spec and (
             offer.market == source.market
             and offer.currency == source.currency
             and offer.components == spec[1].components
@@ -64,6 +76,7 @@ def collect_source(source, fetcher, previous=None, *, now=None):
         offers=retained,
         last_success_at=previous.last_success_at if previous else None,
         retained_previous=bool(retained),
+        catalog_signature=catalog_signature(source) if source.feeds else None,
     )
     try:
         check_currency(fetcher.get(source.currency_evidence_url), source.currency)
@@ -71,10 +84,15 @@ def collect_source(source, fetcher, previous=None, *, now=None):
         for product in source.products:
             body = fetcher.get(product.data_url)
             offers.extend(parse_product(source, product, body, at))
+        if source.feeds:
+            discovered, state.coverage, state.issues = collect_feeds(source, fetcher, at)
+            reviewed_ids = {o.id for o in offers}
+            offers.extend(o for o in discovered if o.id not in reviewed_ids)
         ids = [o.id for o in offers]
         if not offers or len(ids) != len(set(ids)):
             raise ValueError("empty or duplicate offers")
         old = {o.id: o for o in state.offers}
+        accepted = []
         for offer in offers:
             prior = old.get(offer.id)
             if prior and (
@@ -83,12 +101,27 @@ def collect_source(source, fetcher, previous=None, *, now=None):
                 or prior.market != offer.market
                 or abs(offer.price / prior.price - 1) > Decimal("0.50")
             ):
+                message = f"review required: weight/currency/market/price changed: {offer.id}"
+                if source.feeds:
+                    state.issues.append(message)
+                    state.coverage["quarantined_variants"] = (
+                        state.coverage.get("quarantined_variants", 0) + 1
+                    )
+                    continue
                 state.status = "quarantined"
-                raise ValueError(
-                    f"review required: weight/currency/market/price changed: {offer.id}"
-                )
+                raise ValueError(message)
+            accepted.append(offer)
+        if not accepted:
+            state.status = "quarantined"
+            raise ValueError("all offers require review")
         state.status = "ok"
-        state.offers = offers
+        state.offers = accepted
+        if source.feeds:
+            state.coverage.update(
+                priced_variants=len(accepted),
+                confirmed_packs=sum(o.sale_unit != "unknown" for o in accepted),
+                unconfirmed_packs=sum(o.sale_unit == "unknown" for o in accepted),
+            )
         state.last_success_at = at
         state.retained_previous = False
     except Exception as exc:  # isolate malformed responses; never swallow process interrupts
@@ -103,7 +136,7 @@ def run(catalog, previous, client, only=None):
     attempted = []
     deadline = time.monotonic() + 600
     for source in catalog.sources:
-        if only and source.id not in only:
+        if source.paused or (only and source.id not in only):
             if source.id in old:
                 prior = old[source.id]
                 offers = retained_offers(source, prior)
@@ -113,6 +146,16 @@ def run(catalog, previous, client, only=None):
                             "offers": offers,
                             "retained_previous": prior.retained_previous and bool(offers),
                         }
+                    )
+                )
+            elif source.paused:
+                states.append(
+                    SourceState(
+                        id=source.id,
+                        name=source.name,
+                        status="failed",
+                        attempted_at=datetime.now(timezone.utc),
+                        error=f"Paused without request: {source.pause_reason}",
                     )
                 )
             continue
@@ -180,6 +223,14 @@ def main(argv=None):
         "ok": sum(s.status == "ok" for s in attempted),
         "offers": sum(len(s.offers) for s in attempted if s.status == "ok"),
         "failed": [s.id for s in attempted if s.status != "ok"],
+        "paused": [s.id for s in catalog.sources if s.paused],
+        "coverage": {
+            "storefronts_with_prices": sum(bool(s.offers) for s in snapshot.sources),
+            "priced_offers": sum(len(s.offers) for s in snapshot.sources),
+            "confirmed_packs": sum(
+                o.sale_unit != "unknown" for s in snapshot.sources for o in s.offers
+            ),
+        },
         "reviewed_offers": sum(
             len(s.offers) for s in snapshot.sources if s.collection_mode == "reviewed"
         ),

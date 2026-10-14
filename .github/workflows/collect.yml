@@ -25,7 +25,7 @@ jobs:
           python-version: "3.12"
       - run: uv sync --locked --group dev
       - run: uv run --locked ruff check . && uv run --locked pytest -q
-      - name: Collect reviewed offers
+      - name: Collect configured catalogs
         id: collect
         continue-on-error: true
         run: uv run --locked python -m plates.collect
@@ -73,6 +73,8 @@ jobs:
           r = json.load(open("collected/runs/report.json"))
           print(f"## Plate collection\n{r['ok']}/{r['attempted']} sources OK; {r['offers']} fresh offers.")
           print(f"{r.get('reviewed_offers', 0)} reviewed observations retained with original dates.")
+          print("Coverage: " + json.dumps(r.get("coverage", {})))
+          print("Paused without requests: " + ", ".join(r.get("paused", [])))
           if r["failed"]:
               print("Needs attention: " + ", ".join(r["failed"]))
           print("Shipping remains unknown. Retained offers keep their original timestamps.")

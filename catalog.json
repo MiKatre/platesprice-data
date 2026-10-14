@@ -16,6 +16,8 @@
         "Read-only public product endpoints allowed by reviewed robots. No explicit collection ban found in inspected sales terms; not a grant of reuse rights.",
         "Shipping and VAT inclusion not independently verified. No descriptions or images republished."
       ],
+      "paused": true,
+      "pause_reason": "GitHub-hosted HTTP429. Retain original observations; do not retry until explicitly reviewed.",
       "products": [
         {
           "url": "https://singularwod.com/products/disco-olimpico",
@@ -130,6 +132,175 @@
           "evidence": "Variant labels show nominal plate weights, not verified pack totals. No explicit single/pair statement found in sampled HTML or description. Shopify shipping weight is not nominal plate mass.",
           "pack_evidence": null,
           "reviewed_on": "2026-10-14"
+        }
+      ],
+      "feeds": []
+    },
+    {
+      "id": "againfaster-us",
+      "name": "Again Faster US",
+      "origin": "https://www.againfaster.com",
+      "market": "US",
+      "currency": "USD",
+      "currency_evidence_url": "https://www.againfaster.com/",
+      "tax_basis": "unknown",
+      "terms_url": null,
+      "notes": [
+        "Terms URL not discovered in captured homepage links; no claim of terms clearance. Robots allows captured public feed.",
+        "Whole-catalog parsing; pack ambiguity retained without unit price. Shipping not normalized."
+      ],
+      "paused": false,
+      "pause_reason": null,
+      "products": [],
+      "feeds": [
+        {
+          "url": "https://www.againfaster.com/collections/plates/products.json",
+          "adapter": "shopify_feed",
+          "max_pages": 4
+        }
+      ]
+    },
+    {
+      "id": "americanbarbell-us",
+      "name": "American Barbell",
+      "origin": "https://americanbarbell.com",
+      "market": "US",
+      "currency": "USD",
+      "currency_evidence_url": "https://americanbarbell.com/",
+      "tax_basis": "unknown",
+      "terms_url": "https://americanbarbell.com/pages/website-terms",
+      "notes": [
+        "Reviewed. Personal, informational, non-commercial use limitation; not an express scraping/price-collection prohibition. No such express prohibition found in two captured terms pages.",
+        "Whole-catalog parsing; pack ambiguity retained without unit price. Shipping not normalized."
+      ],
+      "paused": false,
+      "pause_reason": null,
+      "products": [],
+      "feeds": [
+        {
+          "url": "https://americanbarbell.com/collections/weight-plates/products.json",
+          "adapter": "shopify_feed",
+          "max_pages": 4
+        }
+      ]
+    },
+    {
+      "id": "bolt-us",
+      "name": "Bolt Fitness Supply",
+      "origin": "https://boltfitnesssupply.com",
+      "market": "US",
+      "currency": "USD",
+      "currency_evidence_url": "https://boltfitnesssupply.com/",
+      "tax_basis": "unknown",
+      "terms_url": "https://boltfitnesssupply.com/policies/terms-of-service",
+      "notes": [
+        "Terms URL linked but /policies/ is robots-disallowed; terms not fetched. No restriction inferred from inaccessible text. Public collection JSON allowed by captured robots.",
+        "Whole-catalog parsing; pack ambiguity retained without unit price. Shipping not normalized."
+      ],
+      "paused": false,
+      "pause_reason": null,
+      "products": [],
+      "feeds": [
+        {
+          "url": "https://boltfitnesssupply.com/collections/plates-weights/products.json",
+          "adapter": "shopify_feed",
+          "max_pages": 4
+        }
+      ]
+    },
+    {
+      "id": "getrxd-us",
+      "name": "Get RXd",
+      "origin": "https://getrxd.com",
+      "market": "US",
+      "currency": "USD",
+      "currency_evidence_url": "https://getrxd.com/products/cast-iron-olympic-plate-45-lbs-piece",
+      "tax_basis": "unknown",
+      "terms_url": "https://getrxd.com/policies/terms-of-service",
+      "notes": [
+        "Reviewed prior raw terms; copyright/IP reservations, no express scraping/crawling/data-collection ban found. Agent-commerce identity clauses are not classified as a nontransactional public-read ban.",
+        "Whole-catalog parsing; pack ambiguity retained without unit price. Shipping not normalized."
+      ],
+      "paused": false,
+      "pause_reason": null,
+      "products": [],
+      "feeds": [
+        {
+          "url": "https://getrxd.com/products.json",
+          "adapter": "shopify_feed",
+          "max_pages": 4
+        }
+      ]
+    },
+    {
+      "id": "prx-us",
+      "name": "PRx Performance",
+      "origin": "https://prxperformance.com",
+      "market": "US",
+      "currency": "USD",
+      "currency_evidence_url": "https://prxperformance.com/",
+      "tax_basis": "unknown",
+      "terms_url": null,
+      "notes": [
+        "Terms URL not discovered in captured homepage links; no claim of terms clearance. Robots allows captured public feed.",
+        "Whole-catalog parsing; pack ambiguity retained without unit price. Shipping not normalized."
+      ],
+      "paused": false,
+      "pause_reason": null,
+      "products": [],
+      "feeds": [
+        {
+          "url": "https://prxperformance.com/collections/olympic-weight-plates/products.json",
+          "adapter": "shopify_feed",
+          "max_pages": 4
+        }
+      ]
+    },
+    {
+      "id": "atletica-eu",
+      "name": "ATLETICA",
+      "origin": "https://atletica.de",
+      "market": "ES",
+      "currency": "EUR",
+      "currency_evidence_url": "https://atletica.de/products/color-bumper-plates-paarweise-5-25kg",
+      "tax_basis": "unknown",
+      "terms_url": "https://atletica.de/pages/legal-imprints",
+      "notes": [
+        "Earlier saved terms inspected: no express automated factual-price collection ban found; generic IP/commercial-content restrictions are not treated as scraping bans.",
+        "Whole-catalog parsing; pack ambiguity retained without unit price. Shipping not normalized."
+      ],
+      "paused": false,
+      "pause_reason": null,
+      "products": [],
+      "feeds": [
+        {
+          "url": "https://atletica.de/collections/hantelscheiben/products.json",
+          "adapter": "shopify_feed",
+          "max_pages": 4
+        }
+      ]
+    },
+    {
+      "id": "strengthshop-eu",
+      "name": "Strength Shop EU",
+      "origin": "https://strengthshop.eu",
+      "market": "ES",
+      "currency": "EUR",
+      "currency_evidence_url": "https://strengthshop.eu/products/deep-dish-cast-iron-plates-singles-or-sets",
+      "tax_basis": "unknown",
+      "terms_url": "https://strengthshop.eu/policies/terms-of-service",
+      "notes": [
+        "Earlier saved terms inspected: no express automated factual-price collection ban found; generic IP/commercial-content restrictions are not treated as scraping bans.",
+        "Whole-catalog parsing; pack ambiguity retained without unit price. Shipping not normalized."
+      ],
+      "paused": false,
+      "pause_reason": null,
+      "products": [],
+      "feeds": [
+        {
+          "url": "https://strengthshop.eu/collections/weight-plates/products.json",
+          "adapter": "shopify_feed",
+          "max_pages": 4
         }
       ]
     }

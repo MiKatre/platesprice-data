@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def reviewed():
-    return Snapshot.model_validate_json((ROOT / "reviewed/latest.json").read_text())
+    return Snapshot.model_validate_json((ROOT / "tests/fixtures/reviewed-pilot.json").read_text())
 
 
 def test_reviewed_catalog_has_exact_pack_weights_and_derived_prices():
@@ -42,7 +42,7 @@ def test_merge_preserves_observation_and_review_dates_without_network():
 
 
 def test_reviewed_sources_require_evidence_and_review_date():
-    data = json.loads((ROOT / "reviewed/latest.json").read_text())
+    data = json.loads((ROOT / "tests/fixtures/reviewed-pilot.json").read_text())
     data["sources"][0]["offers"][0]["pack_evidence"] = None
     with pytest.raises(ValidationError, match="pack evidence"):
         Snapshot.model_validate(data)

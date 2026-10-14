@@ -1,0 +1,1796 @@
+{
+  "captured_on": "2026-10-14",
+  "snapshot_generated_at": "2026-10-14T15:02:34.632427+00:00",
+  "sources": [
+    {
+      "id": "singularwod-es",
+      "name": "Singular WOD",
+      "status": "failed",
+      "collection_mode": "automated",
+      "priced_offers": 13,
+      "confirmed_packs": 0,
+      "market": "ES",
+      "issues": [],
+      "documents": [
+        {
+          "url": "https://singularwod.com/robots.txt",
+          "status": 200,
+          "observed_at": "2026-10-14T12:37:54.992567+00:00",
+          "sha256": "586b5dcdd588dda8507932996f056121ff6d71196857ddaf6951af2cfc0ef407"
+        }
+      ]
+    },
+    {
+      "id": "againfaster-us",
+      "name": "Again Faster US",
+      "status": "ok",
+      "collection_mode": "automated",
+      "priced_offers": 75,
+      "confirmed_packs": 43,
+      "market": "US",
+      "issues": [],
+      "terms_url": null,
+      "access_note": "Terms URL not discovered in captured homepage links; no claim of terms clearance. Robots allows captured public feed.",
+      "documents": [
+        {
+          "url": "https://www.againfaster.com/",
+          "status": 200,
+          "observed_at": "2026-10-14T14:22:53Z",
+          "sha256": "648470c809bff0d8eeb79b2decde25e98b560aa37a11618243593b496f8c8be0"
+        },
+        {
+          "url": "https://www.againfaster.com/collections/plates/products.json?limit=250&page=1",
+          "status": 200,
+          "observed_at": "2026-10-14T14:22:59Z",
+          "sha256": "dff0e3d5ae8a159f0bcba0728dcb15d06350e4600f7e53f075c83a826b338ac4"
+        }
+      ]
+    },
+    {
+      "id": "americanbarbell-us",
+      "name": "American Barbell",
+      "status": "ok",
+      "collection_mode": "automated",
+      "priced_offers": 56,
+      "confirmed_packs": 36,
+      "market": "US",
+      "issues": [],
+      "terms_url": "https://americanbarbell.com/pages/website-terms",
+      "access_note": "Reviewed. Personal, informational, non-commercial use limitation; not an express scraping/price-collection prohibition. No such express prohibition found in two captured terms pages.",
+      "documents": [
+        {
+          "url": "https://americanbarbell.com/",
+          "status": 200,
+          "observed_at": "2026-10-14T14:24:04Z",
+          "sha256": "e31eed44863d380e8deff0a8ba8c14395c3dc4f6c66aeaff8adaf855ee01a6b3"
+        },
+        {
+          "url": "https://americanbarbell.com/collections/weight-plates/products.json?limit=250&page=1",
+          "status": 200,
+          "observed_at": "2026-10-14T14:24:30Z",
+          "sha256": "35e20c64b2e5fdba7b5b41b59df327dcb6b492aa4c71c5eca3969d7017a4d886"
+        }
+      ]
+    },
+    {
+      "id": "bolt-us",
+      "name": "Bolt Fitness Supply",
+      "status": "ok",
+      "collection_mode": "automated",
+      "priced_offers": 40,
+      "confirmed_packs": 39,
+      "market": "US",
+      "issues": [],
+      "terms_url": "https://boltfitnesssupply.com/policies/terms-of-service",
+      "access_note": "Terms URL linked but /policies/ is robots-disallowed; terms not fetched. No restriction inferred from inaccessible text. Public collection JSON allowed by captured robots.",
+      "documents": [
+        {
+          "url": "https://boltfitnesssupply.com/",
+          "status": 200,
+          "observed_at": "2026-10-14T14:23:04Z",
+          "sha256": "d4bb07107d06e97b33eff0296d32ff4302f07dc403e28870feba2c065ef86bc3"
+        },
+        {
+          "url": "https://boltfitnesssupply.com/collections/plates-weights/products.json?limit=250&page=1",
+          "status": 200,
+          "observed_at": "2026-10-14T14:23:06Z",
+          "sha256": "4d5c10a6011a75a9578757dedaa6f53e0dfe19d0b1c000915f91bb2a2ba38ad1"
+        }
+      ]
+    },
+    {
+      "id": "getrxd-us",
+      "name": "Get RXd",
+      "status": "ok",
+      "collection_mode": "automated",
+      "priced_offers": 23,
+      "confirmed_packs": 20,
+      "market": "US",
+      "issues": [
+        "getrxd-us:50017886863655: price outside supported range",
+        "getrxd-us:50046250811687: price outside supported range",
+        "getrxd-us:50046250680615: price outside supported range",
+        "getrxd-us:50046167220519: price outside supported range",
+        "getrxd-us:50045684121895: price outside supported range",
+        "getrxd-us:50045499244839: price outside supported range",
+        "getrxd-us:50017676886311: price outside supported range",
+        "getrxd-us:50017602470183: price outside supported range",
+        "getrxd-us:50016693223719: price outside supported range"
+      ],
+      "terms_url": "https://getrxd.com/policies/terms-of-service",
+      "access_note": "Reviewed prior raw terms; copyright/IP reservations, no express scraping/crawling/data-collection ban found. Agent-commerce identity clauses are not classified as a nontransactional public-read ban.",
+      "documents": [
+        {
+          "url": "https://getrxd.com/products/cast-iron-olympic-plate-45-lbs-piece",
+          "status": 200,
+          "observed_at": "2026-10-14T13:53:39Z",
+          "sha256": "8d17ff7f66e3d21a8d5a950b65a9a764f5f4939ebf3f84ba7dd42d762dd628e8"
+        },
+        {
+          "url": "https://getrxd.com/products.json?limit=250&page=1",
+          "status": 200,
+          "observed_at": "2026-10-14T14:24:22Z",
+          "sha256": "17e2c12a4dc44fa9617a7f751da080470eea9dd5a1cbf11e7b81fe8c98531713"
+        },
+        {
+          "url": "https://getrxd.com/products.json?limit=250&page=2",
+          "status": 200,
+          "observed_at": "2026-10-14T14:24:34Z",
+          "sha256": "a7584eba2f280947753b57dccb34c81e3c1563ee7400a57bec98d7aade6a1eb3"
+        },
+        {
+          "url": "https://getrxd.com/products.json?limit=250&page=3",
+          "status": 200,
+          "observed_at": "2026-10-14T14:24:40Z",
+          "sha256": "1a9114a49d08591e9d135129b684db848286a8f506365e6651c51d5c2b5206ea"
+        },
+        {
+          "url": "https://getrxd.com/products.json?limit=250&page=4",
+          "status": 200,
+          "observed_at": "2026-10-14T14:24:43Z",
+          "sha256": "3573aa0dbb70541e951964ac381251dc2735c7fe16e945ddc1ecfc81a0ac375b"
+        }
+      ]
+    },
+    {
+      "id": "prx-us",
+      "name": "PRx Performance",
+      "status": "ok",
+      "collection_mode": "automated",
+      "priced_offers": 44,
+      "confirmed_packs": 29,
+      "market": "US",
+      "issues": [],
+      "terms_url": null,
+      "access_note": "Terms URL not discovered in captured homepage links; no claim of terms clearance. Robots allows captured public feed.",
+      "documents": [
+        {
+          "url": "https://prxperformance.com/",
+          "status": 200,
+          "observed_at": "2026-10-14T14:23:04Z",
+          "sha256": "e03b99ea3a7e43d5efc2a1bed71a91c74569c4275a2295dc9b89898105086032"
+        },
+        {
+          "url": "https://prxperformance.com/collections/olympic-weight-plates/products.json?limit=250&page=1",
+          "status": 200,
+          "observed_at": "2026-10-14T14:25:19Z",
+          "sha256": "26defc4ed4c53bb973d2f2f2777ee54e6b1c6b83abc0c35b95fb9d9a3a5d19dd"
+        }
+      ]
+    },
+    {
+      "id": "atletica-eu",
+      "name": "ATLETICA",
+      "status": "ok",
+      "collection_mode": "automated",
+      "priced_offers": 153,
+      "confirmed_packs": 73,
+      "market": "ES",
+      "issues": [],
+      "terms_url": "https://atletica.de/pages/legal-imprints",
+      "access_note": "Earlier saved terms inspected: no express automated factual-price collection ban found; generic IP/commercial-content restrictions are not treated as scraping bans.",
+      "spain_delivery_url": "https://atletica.de/pages/bestellablauf-zahlung-versand",
+      "documents": [
+        {
+          "url": "https://atletica.de/products/color-bumper-plates-paarweise-5-25kg",
+          "status": 200,
+          "observed_at": "2026-10-14T13:51:41.418103+00:00",
+          "sha256": "e7fd9830be7255bd27783265a87ff5ecd72381467c8c14c71c7bb01b25633927"
+        },
+        {
+          "url": "https://atletica.de/collections/hantelscheiben/products.json?limit=250&page=1",
+          "status": 200,
+          "observed_at": "2026-10-14T14:22:17.411580+00:00",
+          "sha256": "0a38139a43757e3ec0a177c2b47dad1d25cc05a440a5c26e29d2fc0af5502a72"
+        }
+      ]
+    },
+    {
+      "id": "strengthshop-eu",
+      "name": "Strength Shop EU",
+      "status": "ok",
+      "collection_mode": "automated",
+      "priced_offers": 105,
+      "confirmed_packs": 66,
+      "market": "ES",
+      "issues": [],
+      "terms_url": "https://strengthshop.eu/policies/terms-of-service",
+      "access_note": "Earlier saved terms inspected: no express automated factual-price collection ban found; generic IP/commercial-content restrictions are not treated as scraping bans.",
+      "spain_delivery_url": "https://strengthshop.eu/pages/shipping-deals",
+      "documents": [
+        {
+          "url": "https://strengthshop.eu/products/deep-dish-cast-iron-plates-singles-or-sets",
+          "status": 200,
+          "observed_at": "2026-10-14T13:50:58.386739+00:00",
+          "sha256": "003730429b28df09c5a4cbc22a56848f562965aa62ae2672049610f37bc6a4e6"
+        },
+        {
+          "url": "https://strengthshop.eu/collections/weight-plates/products.json?limit=250&page=1",
+          "status": 200,
+          "observed_at": "2026-10-14T14:22:17.829258+00:00",
+          "sha256": "0d8464d98573e9be51aad9ecd9811e008d7a84c95857c122b7fc2a6c05d5676f"
+        }
+      ]
+    },
+    {
+      "id": "york-us",
+      "name": "York Barbell",
+      "status": "ok",
+      "collection_mode": "reviewed",
+      "priced_offers": 72,
+      "confirmed_packs": 62,
+      "market": "US",
+      "issues": [
+        "york-us:152647: mixed equipment bundle, preflagged",
+        "york-us:152645: mixed equipment bundle, preflagged",
+        "york-us:1655: mixed equipment bundle, preflagged",
+        "york-us:876: mixed equipment bundle, preflagged",
+        "york-us:707: mixed equipment bundle, preflagged",
+        "york-us:899: unresolved weight-selection shell: multiple masses, empty variation terms; no selected price",
+        "york-us:891: unresolved weight-selection shell: multiple masses, empty variation terms; no selected price",
+        "york-us:858: mixed equipment bundle, preflagged",
+        "york-us:822: mixed equipment bundle, preflagged",
+        "york-us:755: unresolved weight-selection shell: multiple masses, empty variation terms; no selected price",
+        "york-us:745: mixed equipment bundle, preflagged",
+        "york-us:734: mixed equipment bundle, preflagged",
+        "york-us:722: mixed equipment bundle, preflagged",
+        "york-us:1229: additional mixed bundle: collars/bar or mobile rack included",
+        "york-us:1227: additional mixed bundle: collars/bar or mobile rack included",
+        "york-us:1226: additional mixed bundle: collars/bar or mobile rack included",
+        "york-us:124638: mixed equipment bundle, preflagged",
+        "york-us:124637: mixed equipment bundle, preflagged",
+        "york-us:794: mixed equipment bundle, preflagged",
+        "york-us:770: mixed equipment bundle, preflagged",
+        "york-us:768: mixed equipment bundle, preflagged",
+        "york-us:4085: explicit title composition recovered: two 25-lb plates"
+      ],
+      "terms_url": null,
+      "access_note": "Terms URL not found in captured homepage or prior purchasing-page review; no claim of terms clearance. Captured robots permits public Store API reads.",
+      "documents": [
+        {
+          "url": "https://yorkbarbell.com/robots.txt",
+          "status": 200,
+          "observed_at": "2026-10-14T14:23:14Z",
+          "sha256": "ff681c02282b139e5096d62e7845668aa6c283386b106c6f49ebdaab5646af1a"
+        },
+        {
+          "url": "https://yorkbarbell.com/",
+          "status": 200,
+          "observed_at": "2026-10-14T14:23:21Z",
+          "sha256": "95ece998f337dd9373123d7220c55be54ffc61c15d5852be869dbbaf08a89c3a"
+        },
+        {
+          "url": "https://yorkbarbell.com/wp-json/wc/store/v1/products?per_page=100&page=1",
+          "status": 200,
+          "observed_at": "2026-10-14T14:24:29Z",
+          "sha256": "c7aff4396efd177db9102c44e6c86e2c9ec7fd86ab10761736699ebab2fd421f"
+        },
+        {
+          "url": "https://yorkbarbell.com/wp-json/wc/store/v1/products?per_page=100&page=2",
+          "status": 200,
+          "observed_at": "2026-10-14T14:24:36Z",
+          "sha256": "6316715c84fc7875b6ff8d91756230cdee0d9a8a4c72b47c7036b7cf6398017d"
+        },
+        {
+          "url": "https://yorkbarbell.com/wp-json/wc/store/v1/products?per_page=100&page=3",
+          "status": 200,
+          "observed_at": "2026-10-14T14:24:44Z",
+          "sha256": "7ed3a9cf555cd68e4d3754be26dd5e4a9f0fef72edc1cd528614a72880b592ea"
+        },
+        {
+          "url": "https://yorkbarbell.com/wp-json/wc/store/v1/products?per_page=100&page=4",
+          "status": 200,
+          "observed_at": "2026-10-14T14:25:39Z",
+          "sha256": "de1e178343e5c62dc7d1ad5e5dd7c8c1b5c307ee7b118532ac00cde1e9d4edf2"
+        },
+        {
+          "url": "https://yorkbarbell.com/wp-json/wc/store/v1/products?per_page=100&category=8&page=1",
+          "status": 200,
+          "observed_at": "2026-10-14T14:25:53Z",
+          "sha256": "be76a06099718729d5f2517326138b47600fc9d5137dab062312d8a2a6804584"
+        },
+        {
+          "url": "https://yorkbarbell.com/wp-json/wc/store/v1/products?per_page=100&type=variation&include=179139,179140,179141,179142,868,869,870,871,872,873,713,714,715,716,717,718,701,702,703,704,705,706,915,914,913,912,916,910,852,853,854,855,856,857,851,828,829,830,831,832,815,814,813,817,124637,124638,802,799,801,800,794,782,778,779,780,781,768,770,753,752,751,750,749,748,742,741,740,739,738,737,730,729,728,727,726,725,448,447,449,450",
+          "status": 200,
+          "observed_at": "2026-10-14T14:26:31Z",
+          "sha256": "255197dfaed299d720b7012573bd39d5759d76b3df014f919dec949c43c506e2"
+        }
+      ]
+    },
+    {
+      "id": "wright-us",
+      "name": "Wright Equipment",
+      "status": "ok",
+      "collection_mode": "reviewed",
+      "priced_offers": 91,
+      "confirmed_packs": 71,
+      "market": "US",
+      "issues": [],
+      "terms_url": "https://wrightequipment.com/terms-of-service/",
+      "access_note": "Reviewed captured terms; no express scraping, crawling, automation, or data-collection prohibition found.",
+      "documents": [
+        {
+          "url": "https://wrightequipment.com/robots.txt",
+          "status": 200,
+          "observed_at": "2026-10-14T14:24:57Z",
+          "sha256": "e07e1fc09346b5304accd6d9a6dc5984d3067c1f158481907a5581dff5a7c8c2"
+        },
+        {
+          "url": "https://wrightequipment.com/",
+          "status": 200,
+          "observed_at": "2026-10-14T14:24:59Z",
+          "sha256": "515ba782cec30e983af1b95c7a683f95559d793a2a286f648f2f8a26908b5d9f"
+        },
+        {
+          "url": "https://wrightequipment.com/terms-of-service/",
+          "status": 200,
+          "observed_at": "2026-10-14T14:25:03Z",
+          "sha256": "241e0762ad81c805e5b12ec815a75df72bf7cb53a566a9c2d4d484c9b2eae0f6"
+        },
+        {
+          "url": "https://wrightequipment.com/wp-json/wc/store/v1/products/categories?per_page=100",
+          "status": 200,
+          "observed_at": "2026-10-14T14:26:28Z",
+          "sha256": "9cc052bef66f8b6ba7259605f5e235e25bcd7233dc965bff365fb05d9fab84c2"
+        },
+        {
+          "url": "https://wrightequipment.com/wp-json/wc/store/v1/products?per_page=100&category=301&page=1",
+          "status": 200,
+          "observed_at": "2026-10-14T14:26:35Z",
+          "sha256": "55b96f29186d2ff032244dbace534fc132ebb95a94c60a18efaf2b1fd80b3c87"
+        },
+        {
+          "url": "https://wrightequipment.com/wp-json/wc/store/v1/products?per_page=100&type=variation&include=16812,16813,16814,16815,16816,10917,10918,10919,10920,10577,10578,10579,10580,10581,10582,10583,10584,10521,10522,10523,10524,10525,10526,10508,10509,10511,10513,10501,10502,10503,10504,10505,10506,10493,10494,10495,10496,10497,10498,10499,10465,10466,10467,10468,10469,10470,10471,10472,10473,10474,10475,10476,11221,10477,10208,10209,10210,10211,10212,10213,10214,15659,15660,15661,15662,15663,15664,15665,15666,15667,15671,15672,15673,15674,15675,15676,15677,15678,15679,15683,15684,15685,15686,15687,15688,15689,15690,15691",
+          "status": 200,
+          "observed_at": "2026-10-14T14:26:42Z",
+          "sha256": "fd9fa2dbfcb3556bdb4fe3a905d5c8465755fb5b0b028a017e94542b42e1e68b"
+        }
+      ]
+    },
+    {
+      "id": "hampton-us",
+      "name": "Hampton Fitness",
+      "status": "failed",
+      "collection_mode": "reviewed",
+      "priced_offers": 24,
+      "confirmed_packs": 11,
+      "market": "US",
+      "issues": [
+        "hampton-us:12483: no captured positive variant price; Hampton stopped HTTP403",
+        "hampton-us:12484: no captured positive variant price; Hampton stopped HTTP403",
+        "hampton-us:12485: no captured positive variant price; Hampton stopped HTTP403",
+        "hampton-us:12487: no captured positive variant price; Hampton stopped HTTP403",
+        "hampton-us:90546: additional mixed bundle: mandatory spring collars in bundled_items",
+        "hampton-us:92051: additional mixed bundle: mandatory spring collars in bundled_items",
+        "hampton-us:2823: mixed equipment bundle, preflagged",
+        "hampton-us:1670: single pack recovered from own short_description and explicit lb variant label",
+        "hampton-us:1671: single pack recovered from own short_description and explicit lb variant label",
+        "hampton-us:1672: single pack recovered from own short_description and explicit lb variant label",
+        "hampton-us:1673: single pack recovered from own short_description and explicit lb variant label",
+        "hampton-us:1674: single pack recovered from own short_description and explicit lb variant label",
+        "hampton-us:1675: single pack recovered from own short_description and explicit lb variant label"
+      ],
+      "terms_url": "https://www.hamptonfit.com/legal/#terms-conditions",
+      "access_note": "Reviewed legal page; no express scraping/data-collection prohibition found. Nevertheless STOPPED after later product HTTP 403; historical captures only, no refresh.",
+      "documents": [
+        {
+          "url": "https://www.hamptonfit.com/robots.txt",
+          "status": 200,
+          "observed_at": "2026-10-14T14:26:25Z",
+          "sha256": "3c7acb0b7be5d869c40807c541ad2a22415c8c8907eade9418029f4fa6521dc4"
+        },
+        {
+          "url": "https://www.hamptonfit.com/",
+          "status": 200,
+          "observed_at": "2026-10-14T14:26:28Z",
+          "sha256": "0a6776629a891e4981822441953bcc90af1ec48762b9e14fffba1dc97955edb6"
+        },
+        {
+          "url": "https://www.hamptonfit.com/legal/#shipping-returns-and-terms",
+          "status": 200,
+          "observed_at": "2026-10-14T14:26:32Z",
+          "sha256": "cd45ec36a1b1e07170fb50a13abd1270e8f7c4656c90d685ddbf6f64b03d9619"
+        },
+        {
+          "url": "https://www.hamptonfit.com/legal/#terms-conditions",
+          "status": 200,
+          "observed_at": "2026-10-14T14:26:36Z",
+          "sha256": "2e7517ef7e2e5fb8abdbc1787c85012d75af8aa32dedf63a8692e9fc4fd05b18"
+        },
+        {
+          "url": "https://www.hamptonfit.com/wp-json/wc/store/v1/products/categories?per_page=100",
+          "status": 200,
+          "observed_at": "2026-10-14T14:26:41Z",
+          "sha256": "d0a6610a4e53d27fd57cef0c04909043cc3148cdea05068beeaa28cec55296f5"
+        },
+        {
+          "url": "https://www.hamptonfit.com/wp-json/wc/store/v1/products?per_page=100&category=1681&page=1",
+          "status": 200,
+          "observed_at": "2026-10-14T14:26:45Z",
+          "sha256": "5a576cc8815bde52ecb250e02442f358ec4dfcb250883a71318475956329e691"
+        },
+        {
+          "url": "https://www.hamptonfit.com/wp-json/wc/store/v1/products?per_page=100&category=1682&page=1",
+          "status": 200,
+          "observed_at": "2026-10-14T14:26:49Z",
+          "sha256": "845413b7bed8679d6a0fd97e2f86935ba3ef37d14733fb1a6807a101e25ddbc0"
+        },
+        {
+          "url": "https://www.hamptonfit.com/wp-json/wc/store/v1/products?per_page=100&category=1667&page=1",
+          "status": 200,
+          "observed_at": "2026-10-14T14:26:54Z",
+          "sha256": "bf12273c73a75b5a029dec8b20ab6e232f74aa83bcc0f8bc491708acfa672a72"
+        },
+        {
+          "url": "https://www.hamptonfit.com/wp-json/wc/store/v1/products?per_page=100&category=1668&page=1",
+          "status": 200,
+          "observed_at": "2026-10-14T14:26:58Z",
+          "sha256": "a79159bd64a579f404d1734da7850da1f6698ec8c9b75b7330b2937a09a65569"
+        },
+        {
+          "url": "https://www.hamptonfit.com/wp-json/wc/store/v1/products?per_page=100&category=46&page=1",
+          "status": 200,
+          "observed_at": "2026-10-14T14:27:03Z",
+          "sha256": "0f6c65c70216bddf90261bd5c9dea17bf5287517398dce9f4b77525bd72b3937"
+        },
+        {
+          "url": "https://www.hamptonfit.com/wp-json/wc/store/v1/products?per_page=100&type=variation&include=1670,1671,1672,1673,1674,1675,1644,1645,1646,1647,1648,1649,1650,3368,3369,3370,3371,1655,1656,1663,1664,1665,1666,1667,12483,12484,12485,12487,216141,216157,216156,216155,216154,216153,216152,216151,216150,216149,216148,216147,216146,216145,216144,216143,216142,216158",
+          "status": 200,
+          "observed_at": "2026-10-14T14:27:08Z",
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "url": "https://www.hamptonfit.com/shop/plates/one-inch-standard-plates/standard-plates/",
+          "status": 200,
+          "observed_at": "2026-10-14T14:28:27Z",
+          "sha256": "472171f0c2ea79c0ae6f1ecb033cec786e1b562f741802e75bd0c8878ad9eb19"
+        },
+        {
+          "url": "https://www.hamptonfit.com/shop/plates/olympic-plates/hampton-olympic-rubber-grip-plate/",
+          "status": 200,
+          "observed_at": "2026-10-14T14:28:31Z",
+          "sha256": "b80f2f17995acbcd08189ee644e52c80851b106d28e80f47a9470d1564df5177"
+        },
+        {
+          "url": "https://www.hamptonfit.com/shop/plates/olympic-plates/hampton-olympic-urethane-grip-plates/",
+          "status": 200,
+          "observed_at": "2026-10-14T14:28:34Z",
+          "sha256": "068e8d105618e7ecb491452f282884eb1117724c3091125064dfa5cb3b4fbdf2"
+        },
+        {
+          "url": "https://www.hamptonfit.com/shop/plates/olympic-plates/olympic-rubber-coated-bumper-plates/",
+          "status": 200,
+          "observed_at": "2026-10-14T14:28:37Z",
+          "sha256": "ecd22e62556e997e8674d1d4214ce26b876c44965ce3f2df15dfab958ff54316"
+        },
+        {
+          "url": "https://www.hamptonfit.com/shop/plates/olympic-plates/hampton-olympic-grip-plate/",
+          "status": 403,
+          "observed_at": "2026-10-14T14:28:39Z",
+          "sha256": "4a233ea75cba9f2c88e9b12ebb25cb9b934cdb64e1860c2c92eca6669bee978f"
+        }
+      ]
+    },
+    {
+      "id": "maniak-es",
+      "name": "Maniak Fitness",
+      "status": "ok",
+      "collection_mode": "reviewed",
+      "priced_offers": 116,
+      "confirmed_packs": 106,
+      "market": "ES",
+      "issues": [
+        "Availability null: productItemList.stock is inventory, not verified purchasability."
+      ],
+      "terms_url": "https://maniakfitness.com/condiciones-de-compra",
+      "access_note": "Earlier saved terms inspected: no express automated factual-price collection ban found; generic IP/commercial-content restrictions are not treated as scraping bans.",
+      "spain_delivery_url": "https://maniakfitness.com/condiciones-de-compra",
+      "documents": [
+        {
+          "url": "https://maniakfitness.com/disco-bumper-black-v2-p258",
+          "status": 200,
+          "observed_at": "2026-10-14T14:22:57.141406+00:00",
+          "sha256": "7fac29a1e5a8760194e0fec895ad0d23d5c208053edbb21ad4d264ce4e16353d"
+        },
+        {
+          "url": "https://maniakfitness.com/disco-bumper-black-v3-p320",
+          "status": 200,
+          "observed_at": "2026-10-14T14:23:01.330467+00:00",
+          "sha256": "fd97ad955b88e352b8d91613868e4ebd0c2cc4f12a00d6118bc0375448629a62"
+        },
+        {
+          "url": "https://maniakfitness.com/disco-bumper-eco-black-logo-p200",
+          "status": 200,
+          "observed_at": "2026-10-14T14:23:07.463153+00:00",
+          "sha256": "84212e70043f45577626ab6f0b8ca3611410bdd477795c232a4c4eb4be30d5f0"
+        },
+        {
+          "url": "https://maniakfitness.com/disco-bumper-eco-color-no-logo-p199",
+          "status": 200,
+          "observed_at": "2026-10-14T14:23:13.598078+00:00",
+          "sha256": "64d31d93ae15e1abf1449eca61a817a32a90f150b9c135d6b1c4b355c03f5ce6"
+        },
+        {
+          "url": "https://maniakfitness.com/disco-bumper-eco-color-v2-p248",
+          "status": 200,
+          "observed_at": "2026-10-14T14:23:17.749030+00:00",
+          "sha256": "fbff39935c7067adf27945f982643f50d29a73032292315c2b826e877a40306c"
+        },
+        {
+          "url": "https://maniakfitness.com/disco-bumper-eco-p182",
+          "status": 200,
+          "observed_at": "2026-10-14T14:23:23.848391+00:00",
+          "sha256": "b1b1f3fe4a317cf1fe35425b6ca18cb9277c05c7437dc1c99ee59718b583c74a"
+        },
+        {
+          "url": "https://maniakfitness.com/disco-bumper-fraccional-black-p13",
+          "status": 200,
+          "observed_at": "2026-10-14T14:23:29.684958+00:00",
+          "sha256": "67eaea9b9003e0d31fc911efd3523734ac4b9dcc5f70917c9851151785c2bc2b"
+        },
+        {
+          "url": "https://maniakfitness.com/disco-bumper-fraccional-topgrade-color-p231",
+          "status": 200,
+          "observed_at": "2026-10-14T14:23:32.985130+00:00",
+          "sha256": "faeba82afc9f1be721856b15775cc4e5c2d5109ffee02bad544d35c79190a9fb"
+        },
+        {
+          "url": "https://maniakfitness.com/disco-bumper-fraccional-topgrade-color-v2-p271",
+          "status": 200,
+          "observed_at": "2026-10-14T14:23:36.859273+00:00",
+          "sha256": "39a0a19de2c93c4c7fbf8a7a8f38e7997b681c40a048a2c771c9dc2d9a8d0da1"
+        },
+        {
+          "url": "https://maniakfitness.com/disco-bumper-hitemp-black-logo-steel-ring-p230",
+          "status": 200,
+          "observed_at": "2026-10-14T14:23:40.544911+00:00",
+          "sha256": "9219bc8533c7e7ca2454415f326c18207fe021631ed1b55a8bc3bacdff5187e5"
+        },
+        {
+          "url": "https://maniakfitness.com/disco-bumper-hitemp-flecks-p240",
+          "status": 200,
+          "observed_at": "2026-10-14T14:23:44.636424+00:00",
+          "sha256": "f6c1931476a011a69d0e2a3a2b87409cf5c3d58207e771f11031b249b166e32e"
+        },
+        {
+          "url": "https://maniakfitness.com/disco-bumper-hitemp-steel-ring-p180",
+          "status": 200,
+          "observed_at": "2026-10-14T14:23:47.899972+00:00",
+          "sha256": "6f2f09643c295b6c9ed9cfaebd6b6543cc72578f920c199170f7c6e05c1807eb"
+        },
+        {
+          "url": "https://maniakfitness.com/disco-bumper-tecnica-p16",
+          "status": 200,
+          "observed_at": "2026-10-14T14:23:51.890741+00:00",
+          "sha256": "825eda6bae3a4e4ba3fccd159ba5b617c2c3c9a8e588f595a4daabb9273068f1"
+        },
+        {
+          "url": "https://maniakfitness.com/disco-bumper-tecnica-topgrade-p306",
+          "status": 200,
+          "observed_at": "2026-10-14T14:23:54.791285+00:00",
+          "sha256": "ffc2ee9b35308c3294fd474a9b99763e4fd04d3bf9e529416c18b61e28417d9f"
+        },
+        {
+          "url": "https://maniakfitness.com/disco-bumper-top-grade-competition-color-p11",
+          "status": 200,
+          "observed_at": "2026-10-14T14:23:58.463639+00:00",
+          "sha256": "b74be73a05bc36e2600bf5b1cb635895c28821b3bf6ea265eb205b1727383bda"
+        },
+        {
+          "url": "https://maniakfitness.com/disco-bumper-top-grade-competition-color-v2-p270",
+          "status": 200,
+          "observed_at": "2026-10-14T14:24:01.526534+00:00",
+          "sha256": "f53a9e193dede782b86ff9d3a065dc83521ce58a106e3664c5134a4add7dacf0"
+        },
+        {
+          "url": "https://maniakfitness.com/disco-bumper-training-v2-color-p8",
+          "status": 200,
+          "observed_at": "2026-10-14T14:24:05.134044+00:00",
+          "sha256": "8f0eefc20fd2f96048d5d6c973856ce4fd394adcd543def5ff093d2b2d77119d"
+        },
+        {
+          "url": "https://maniakfitness.com/disco-bumper-training-v3-color-p249",
+          "status": 200,
+          "observed_at": "2026-10-14T14:24:09.131156+00:00",
+          "sha256": "89b000011733b0f7a5b9f0792fe8b4bc95ac91b4bd5675f36b9eaa719df2f7f4"
+        },
+        {
+          "url": "https://maniakfitness.com/disco-bumper-training-v4-color-p319",
+          "status": 200,
+          "observed_at": "2026-10-14T14:24:12.740100+00:00",
+          "sha256": "fcbf19551efadcc5f66bd361eac874af00762686bea2e9b58d597a35b1604792"
+        },
+        {
+          "url": "https://maniakfitness.com/disco-bumper-training-wood-p15",
+          "status": 200,
+          "observed_at": "2026-10-14T14:24:16.401996+00:00",
+          "sha256": "1b2fef9913f96f9848d45bbe19a35eecedc5a3c47341f37204c9f082478e15e0"
+        },
+        {
+          "url": "https://maniakfitness.com/disco-bumper-uretano-p181",
+          "status": 200,
+          "observed_at": "2026-10-14T14:24:20.726036+00:00",
+          "sha256": "9b4c1789d304689a0cf0e4c0d4d0cb7aab527640114e857841f992e3c6660e79"
+        },
+        {
+          "url": "https://maniakfitness.com/disco-de-metal-calibrado-cromado-pmp-p280",
+          "status": 200,
+          "observed_at": "2026-10-14T14:24:27.465076+00:00",
+          "sha256": "287029ee6b860cb61043f98accdaa01330fd5da6473dddf1ddcad1e08f18f173"
+        },
+        {
+          "url": "https://maniakfitness.com/disco-de-metal-calibrado-para-powerlifting-pwr-p59",
+          "status": 200,
+          "observed_at": "2026-10-14T14:24:31.222135+00:00",
+          "sha256": "af46d259b0ad7d3cfdff10e5d7a0832b2dd3da5fdd706f4805f57b4ca08ec212"
+        },
+        {
+          "url": "https://maniakfitness.com/disco-de-metal-para-powerlifting-raw-p60",
+          "status": 200,
+          "observed_at": "2026-10-14T14:24:35.006476+00:00",
+          "sha256": "2568760e60f4f085dd3b8301d8469a3a24c6b019fb3e40351c85258d9de63719"
+        },
+        {
+          "url": "https://maniakfitness.com/discos-de-metal-calibrados-para-powerlifting-pwr-set-de-2-p57",
+          "status": 200,
+          "observed_at": "2026-10-14T14:24:42.837784+00:00",
+          "sha256": "a540c979d82a77edf9d986d3f8db4b25e3798e51745f0d98b50af37e9929a7bc"
+        },
+        {
+          "url": "https://maniakfitness.com/discos-de-metal-para-powerlifting-raw-set-de-2-p58",
+          "status": 200,
+          "observed_at": "2026-10-14T14:24:46.530933+00:00",
+          "sha256": "0fe144db811856e1e04ca054620ec8a91c5b86e23164564dbd3cbfbfa978a102"
+        },
+        {
+          "url": "https://maniakfitness.com/robots.txt",
+          "status": 200,
+          "observed_at": "2026-10-14T14:22:13.868319+00:00",
+          "sha256": "d8f0eda88db31455a6af17cde2aa41df8e43a6f066a984ccbade426b596549b3"
+        },
+        {
+          "url": "https://maniakfitness.com/weightlift-powerlift-discos-bumpers-c45",
+          "status": 200,
+          "observed_at": "2026-10-14T14:22:19.049035+00:00",
+          "sha256": "e1022a6efbe2b153aec60c7aa00d885b67b75c47b9ad730fe4f45ce2871d1e3e"
+        }
+      ]
+    },
+    {
+      "id": "ruster-es",
+      "name": "Ruster Fitness",
+      "status": "ok",
+      "collection_mode": "reviewed",
+      "priced_offers": 60,
+      "confirmed_packs": 46,
+      "market": "ES",
+      "issues": [
+        "ruster-es:31563: corrected attribute-slug mass 25.0 to displayed option 0.25 kg; corroborated variation_description",
+        "ruster-es:31564: corrected attribute-slug mass 5.0 to displayed option 0.5 kg; corroborated variation_description",
+        "ruster-es:31565: corrected attribute-slug mass 125.0 to displayed option 1.25 kg; corroborated variation_description",
+        "ruster-es:31566: corrected attribute-slug mass 25.0 to displayed option 2.5 kg; corroborated variation_description",
+        "No explicit used sale condition in these captured selections; generic usage prose not treated as condition."
+      ],
+      "terms_url": "https://rusterfitness.com/aviso-legal-y-condiciones-generales-de-uso/",
+      "access_note": "Earlier saved terms inspected: no express automated factual-price collection ban found; generic IP/commercial-content restrictions are not treated as scraping bans.",
+      "spain_delivery_url": "https://rusterfitness.com/faqs/envios/",
+      "documents": [
+        {
+          "url": "https://rusterfitness.com/categoria/discos-pesas/",
+          "status": 200,
+          "observed_at": "2026-10-14T14:22:58.902880+00:00",
+          "sha256": "246c1453d59ae8ca11c63ec9469ece6399014c033a05a4bbd8fab77989dcc1b7"
+        },
+        {
+          "url": "https://rusterfitness.com/categoria/professional-gym/crosstraining/discos/",
+          "status": 200,
+          "observed_at": "2026-10-14T14:22:19.013464+00:00",
+          "sha256": "6e522250afc5d4a3f341363e240b9ab1fd4e9ab450c87d9ca7cbc68d33f22c88"
+        },
+        {
+          "url": "https://rusterfitness.com/faqs/envios/",
+          "status": 200,
+          "observed_at": "2026-10-14T14:28:23.923063+00:00",
+          "sha256": "94b165d1b195f61e81e86b120961b69604332708be8dad038be8071c04479e1f"
+        },
+        {
+          "url": "https://rusterfitness.com/robots.txt",
+          "status": 200,
+          "observed_at": "2026-10-14T14:22:13.647333+00:00",
+          "sha256": "674d3e38b64321c0d016ce1f9a8f92196229069f7f72faea108f90732595d74e"
+        },
+        {
+          "url": "https://rusterfitness.com/shop/color-bumper-pro/",
+          "status": 200,
+          "observed_at": "2026-10-14T14:23:03.649930+00:00",
+          "sha256": "cceb447f4bcc1026f5795d145e6ab6503a3149daa5045ea04b16792666d66324"
+        },
+        {
+          "url": "https://rusterfitness.com/shop/competition-bumper/",
+          "status": 200,
+          "observed_at": "2026-10-14T14:23:08.704738+00:00",
+          "sha256": "c12b65ea9b3cc31843ad494073a84c2025e56e3619ea2abfb5a44aa3138ab918"
+        },
+        {
+          "url": "https://rusterfitness.com/shop/disco-con-agarre-pu/",
+          "status": 200,
+          "observed_at": "2026-10-14T14:23:50.685138+00:00",
+          "sha256": "de2652de1fba16cc252e3744b425a16ba9e3fa27b7ac43ca69a2d2df022c155b"
+        },
+        {
+          "url": "https://rusterfitness.com/shop/disco-con-agarre/",
+          "status": 200,
+          "observed_at": "2026-10-14T14:23:53.872452+00:00",
+          "sha256": "26825ebefd67bc5d1fa8209d0f91b8317fdf835c321407c44017b6fc60249565"
+        },
+        {
+          "url": "https://rusterfitness.com/shop/disco-powerlifting-cromado/",
+          "status": 200,
+          "observed_at": "2026-10-14T14:23:15.542958+00:00",
+          "sha256": "1d5ee11b021fe499009e74ab722337638da50049c38d59e508118120b7430100"
+        },
+        {
+          "url": "https://rusterfitness.com/shop/discos-fraccionales-black/",
+          "status": 200,
+          "observed_at": "2026-10-14T14:23:19.827573+00:00",
+          "sha256": "6ea2c086616f3189cb4061494f3c33849d8b16844261156698fb3c7235b0e26d"
+        },
+        {
+          "url": "https://rusterfitness.com/shop/discos-fraccionales/",
+          "status": 200,
+          "observed_at": "2026-10-14T14:23:31.076041+00:00",
+          "sha256": "23e71abb53083558a67b2f82e6cccb5c6f46bd9fb2a6fea5809d4c541463c277"
+        },
+        {
+          "url": "https://rusterfitness.com/shop/hi-temp-bumper/",
+          "status": 200,
+          "observed_at": "2026-10-14T14:23:34.793592+00:00",
+          "sha256": "3f6b45ca2cff9805bb3fa4940bc6e9a4e63ed957006fa0e1c1225c96187cffc1"
+        },
+        {
+          "url": "https://rusterfitness.com/shop/pro-bumper/",
+          "status": 200,
+          "observed_at": "2026-10-14T14:23:38.376840+00:00",
+          "sha256": "6d35c8c976002479c4c611b79c1b2b7a145811c9c568fd00b3daae4ae70d5f7b"
+        },
+        {
+          "url": "https://rusterfitness.com/shop/ruster-gift-card/",
+          "status": 200,
+          "observed_at": "2026-10-14T14:23:41.337545+00:00",
+          "sha256": "221ae5a819a8dbf3a79d9d0675a7b4dd157b0b1f92ba5f487b1df0f9eb26fd8e"
+        },
+        {
+          "url": "https://rusterfitness.com/shop/technique-plate/",
+          "status": 200,
+          "observed_at": "2026-10-14T14:23:44.785868+00:00",
+          "sha256": "800642c59d669e051b150dfc2a5f733764119ebb5d3b4f33251c800c525817c0"
+        },
+        {
+          "url": "https://rusterfitness.com/shop/training-bumper/",
+          "status": 200,
+          "observed_at": "2026-10-14T14:23:47.706969+00:00",
+          "sha256": "d9f57543fb21d6743a698aff3a18e875205e42ab6ac9503eeeaa516570479c28"
+        }
+      ]
+    },
+    {
+      "id": "kingsbox-eu",
+      "name": "KingsBox",
+      "status": "ok",
+      "collection_mode": "reviewed",
+      "priced_offers": 40,
+      "confirmed_packs": 39,
+      "market": "ES",
+      "issues": [],
+      "terms_url": "https://cdn.kingsbox.com/assets/docs/terms/terms_and_conditions_es.pdf",
+      "access_note": "Terms URL discovered; not fully reviewed in this bounded collection. No blanket reuse permission asserted. No express scraping restriction identified in collected product/catalog responses.",
+      "spain_delivery_url": "https://kingsbox.com/es-es/product/hi-temp-bumper-plates",
+      "documents": [
+        {
+          "url": "https://kingsbox.com/es-es/category/strength/plates",
+          "status": 200,
+          "observed_at": "2026-10-14T14:24:40.735607+00:00",
+          "sha256": "c080be456e9e9707b89a840552ab3171b3a2756f5c70e7e5666fbe476ecbee86"
+        },
+        {
+          "url": "https://kingsbox.com/es-es/product/hi-temp-bumper-plates",
+          "status": 200,
+          "observed_at": "2026-10-14T14:24:45.868932+00:00",
+          "sha256": "6c0ed9e53ae2d008e995c3b414f40725e557c5c2a19e69cdb40f735bb9cf6891"
+        },
+        {
+          "url": "https://kingsbox.com/es-es/product/kingsbox-competition-bumper-plates",
+          "status": 200,
+          "observed_at": "2026-10-14T14:24:50.131961+00:00",
+          "sha256": "659710d3b8be66d11309bb94253fc6b83a74371c09348cc639588f42971464ae"
+        },
+        {
+          "url": "https://kingsbox.com/es-es/product/kingsbox-fractional-plates",
+          "status": 200,
+          "observed_at": "2026-10-14T14:24:53.948790+00:00",
+          "sha256": "5f7e45335f3336ec3afc13a95fa02ff418eeca89aa35630500cb4fcd79f76628"
+        },
+        {
+          "url": "https://kingsbox.com/es-es/product/kingsbox-hi-temp-bumper-plates-3-0",
+          "status": 200,
+          "observed_at": "2026-10-14T14:24:59.436735+00:00",
+          "sha256": "7ff17c1b033116385e22438fba18975afeeffc34cf5522548fb636bce05acd9d"
+        },
+        {
+          "url": "https://kingsbox.com/es-es/product/kingsbox-mad-plates",
+          "status": 200,
+          "observed_at": "2026-10-14T14:25:04.852143+00:00",
+          "sha256": "7ba5ea0dcbf4eb742a9df0f5215f565d3bfe757728fa7f4da63cbb337737b35c"
+        },
+        {
+          "url": "https://kingsbox.com/es-es/product/kingsbox-powerlifting-calibrated-steel-plates",
+          "status": 200,
+          "observed_at": "2026-10-14T14:25:08.923467+00:00",
+          "sha256": "f14a762e60b6555bdefa7d98a7f63f7064013c15ebe9c68e11595835e68f34ce"
+        },
+        {
+          "url": "https://kingsbox.com/es-es/product/outlet-competition-bumper-plates-b-grade",
+          "status": 200,
+          "observed_at": "2026-10-14T14:25:13.777756+00:00",
+          "sha256": "daa5f7ca8d680814f08b70ccde30d9dad6722fe9459821f870c3cb0a4cb5c22a"
+        },
+        {
+          "url": "https://kingsbox.com/es-es/product/royal-black-bumper-plate-set-100-kg",
+          "status": 200,
+          "observed_at": "2026-10-14T14:25:18.603728+00:00",
+          "sha256": "12ff2f3ec9682f87186547e9eccba077cde3e9b2165fff4ab354fe7ae5e136a8"
+        },
+        {
+          "url": "https://kingsbox.com/es-es/product/royal-black-bumper-plates",
+          "status": 200,
+          "observed_at": "2026-10-14T14:25:22.804781+00:00",
+          "sha256": "51bc70cc868cee6efaa5e1a002bf4cf1a2de81743af1892ad00959ed1b9be19c"
+        },
+        {
+          "url": "https://kingsbox.com/es-es/product/royal-chromed-plates",
+          "status": 200,
+          "observed_at": "2026-10-14T14:25:28.280096+00:00",
+          "sha256": "46f734b66beaf717b8775333877f4d9a4c40e598df5cbc96d555e6f295af1cb6"
+        },
+        {
+          "url": "https://kingsbox.com/es-es/product/royal-color-bumper-plates",
+          "status": 200,
+          "observed_at": "2026-10-14T14:25:33.714217+00:00",
+          "sha256": "dd26816054f1cfbef9aa2d52adad9ae33a9b21baeb11735b80377f2d2b6a549d"
+        },
+        {
+          "url": "https://kingsbox.com/robots.txt",
+          "status": 200,
+          "observed_at": "2026-10-14T14:23:13.820731+00:00",
+          "sha256": "a04f4fb87d4471715b4a46919bb13243e78249dcb7f1e7e519bcf09fa649e783"
+        },
+        {
+          "url": "https://kingsbox.com/sitemap.xml",
+          "status": 200,
+          "observed_at": "2026-10-14T14:23:31.264175+00:00",
+          "sha256": "e4011da08dff0ae9e952a4f7c75f8cfbeb27c590b33a80bf6a4898edc0396716"
+        }
+      ]
+    },
+    {
+      "id": "titaniumstrength-es",
+      "name": "Titanium Strength",
+      "status": "ok",
+      "collection_mode": "reviewed",
+      "priced_offers": 68,
+      "confirmed_packs": 17,
+      "market": "ES",
+      "issues": [
+        "titaniumstrength-es:RP:23544: explicit pack recovered from product-local evidence, not related products",
+        "titaniumstrength-es:RP:23545: explicit pack recovered from product-local evidence, not related products",
+        "titaniumstrength-es:RP:23546: explicit pack recovered from product-local evidence, not related products",
+        "titaniumstrength-es:RP:23547: explicit pack recovered from product-local evidence, not related products",
+        "titaniumstrength-es:RP:23548: explicit pack recovered from product-local evidence, not related products",
+        "titaniumstrength-es:RP:23549: explicit pack recovered from product-local evidence, not related products",
+        "titaniumstrength-es:RP:23550: explicit pack recovered from product-local evidence, not related products",
+        "Stale JSON-LD priceValidUntil ignored only after matching visible finalPrice; no checkout/destination verification."
+      ],
+      "terms_url": "https://www.titaniumstrength.es/condiciones-generales",
+      "access_note": "Terms URL discovered; not fully reviewed in this bounded collection. No blanket reuse permission asserted. No express scraping restriction identified in collected product/catalog responses.",
+      "spain_delivery_url": "https://www.titaniumstrength.es/modalidades-de-entrega",
+      "documents": [
+        {
+          "url": "https://www.titaniumstrength.es/bp-hd-discos-olimpicos-bumper-negro-5-25-kg.html",
+          "status": 200,
+          "observed_at": "2026-10-14T14:24:52.987011+00:00",
+          "sha256": "01d8113b9b6ef946e312d62e1503af85bcec4d9f0f2627d40769f3b3942e90bc"
+        },
+        {
+          "url": "https://www.titaniumstrength.es/disco-de-goma-premium-con-3-agarres-tri-grip.html",
+          "status": 200,
+          "observed_at": "2026-10-14T14:24:44.350516+00:00",
+          "sha256": "e9f56dd87c48dc721466176ee6394bd7267b8cd7f29d2ceabd0bd6e7e099fba1"
+        },
+        {
+          "url": "https://www.titaniumstrength.es/disco-olimpico-de-hierro-fundido.html",
+          "status": 200,
+          "observed_at": "2026-10-14T14:24:35.953791+00:00",
+          "sha256": "6b81856ca02f6e5cdfc1c12d420f42660b31b324ccc69be8a1344baf7e957602"
+        },
+        {
+          "url": "https://www.titaniumstrength.es/discos-bumper-olimpicos-de-color-pro-grade.html",
+          "status": 200,
+          "observed_at": "2026-10-14T14:25:07.851015+00:00",
+          "sha256": "2334d00b7078a13d38b69ce95e88be995b8d719ab5948293df22848880b2630a"
+        },
+        {
+          "url": "https://www.titaniumstrength.es/discos-fraccionales-0-5-2-5-kg-par.html",
+          "status": 200,
+          "observed_at": "2026-10-14T14:24:46.945042+00:00",
+          "sha256": "e97e29d7664b5c91c1b95247ece7d1dcf7c5ecff2624bef0a51d6969357cb1bd"
+        },
+        {
+          "url": "https://www.titaniumstrength.es/discos-olimpicos-cromados-powerlifting.html",
+          "status": 200,
+          "observed_at": "2026-10-14T14:24:49.828594+00:00",
+          "sha256": "dbb110e9ea81adf656a46fecf5375644f302758f23d0227433d944492d2bbf5d"
+        },
+        {
+          "url": "https://www.titaniumstrength.es/discos-olimpicos-de-hierro-fundido-1-25-25-kg.html",
+          "status": 200,
+          "observed_at": "2026-10-14T14:24:41.050011+00:00",
+          "sha256": "80175808ca9e1ef543c48ca07b368ca9f4bb866b14a61d0d50408493a042b2a3"
+        },
+        {
+          "url": "https://www.titaniumstrength.es/fdl-disco-bumper-negro-3-0-15-kg.html",
+          "status": 200,
+          "observed_at": "2026-10-14T14:25:05.069608+00:00",
+          "sha256": "ed6b711f3f22e720f422f62eaa809593a92d4f6197fabea6cd092cd4da94970b"
+        },
+        {
+          "url": "https://www.titaniumstrength.es/hbpc-pro-discos-olimpicos-bumper-de-color-5-25-kg.html",
+          "status": 200,
+          "observed_at": "2026-10-14T14:24:58.927950+00:00",
+          "sha256": "76a1f31f4776750a25a8e414b3d2e902bfa0f6e2c033e637fadd3913cdbfac77"
+        },
+        {
+          "url": "https://www.titaniumstrength.es/hbpc-pro-set-de-discos-olimpicos-bumper-de-color-120-kg.html",
+          "status": 200,
+          "observed_at": "2026-10-14T14:25:48.570076+00:00",
+          "sha256": "9e537060d0ce9dbc38e93792b8268ec55ec9b5f5904791d5e82e8a719332f2f7"
+        },
+        {
+          "url": "https://www.titaniumstrength.es/modalidades-de-entrega",
+          "status": 200,
+          "observed_at": "2026-10-14T14:28:23.313762+00:00",
+          "sha256": "71b891d6c9b52e401809e4e447bca1c6c4ab89bf2aa4810f8ea74a26bb13d619"
+        },
+        {
+          "url": "https://www.titaniumstrength.es/musculacion-titanium/discos-olimpicos",
+          "status": 200,
+          "observed_at": "2026-10-14T14:23:51.802237+00:00",
+          "sha256": "0bac230d1e28c2b0f5ed7023dd4c3dacb59746fe79d8ee6156344473ba0e304b"
+        },
+        {
+          "url": "https://www.titaniumstrength.es/peso-libre/discos-olimpicos.html",
+          "status": 404,
+          "observed_at": "2026-10-14T14:23:28.667035+00:00",
+          "sha256": "ab55186a5b3a61e4e1aa16cc361c314c61b6e9062e45d92419fa5985348f81cd"
+        },
+        {
+          "url": "https://www.titaniumstrength.es/robots.txt",
+          "status": 200,
+          "observed_at": "2026-10-14T14:23:13.523904+00:00",
+          "sha256": "e465a9db16c0908e0d3c013b45d78b9742511f503b664df2d6c73b235e2bac8e"
+        },
+        {
+          "url": "https://www.titaniumstrength.es/set-discos-olimpicos-premium-120-kg.html",
+          "status": 200,
+          "observed_at": "2026-10-14T14:25:36.771570+00:00",
+          "sha256": "c97b7019ecde4488064bf5e79d1422b75c5cb6a3e08e9786f2bb8656ef69a747"
+        },
+        {
+          "url": "https://www.titaniumstrength.es/set-discos-olimpicos-premium-150-kg.html",
+          "status": 200,
+          "observed_at": "2026-10-14T14:25:45.870984+00:00",
+          "sha256": "b7adab1cddaf18bdcbdea05dcda9c891ee3005b8c12ea9addcb9ff64abb7cfd7"
+        },
+        {
+          "url": "https://www.titaniumstrength.es/set-discos-olimpicos-premium-60-kg.html",
+          "status": 200,
+          "observed_at": "2026-10-14T14:25:17.862108+00:00",
+          "sha256": "26a30c8eb21a2626334bb0359d0d38c6d803c7c062fd86d89bb5414cf18c5de1"
+        },
+        {
+          "url": "https://www.titaniumstrength.es/set-discos-olimpicos-premium-80-kg.html",
+          "status": 200,
+          "observed_at": "2026-10-14T14:25:23.489719+00:00",
+          "sha256": "9788fe23b868617355e30a2f5d4beddf5f66224bc78a97680242bee05d0313d4"
+        },
+        {
+          "url": "https://www.titaniumstrength.es/titanium-strength-bp15-disco-olimpico-bumper-negro-15-kg.html",
+          "status": 200,
+          "observed_at": "2026-10-14T14:25:11.314606+00:00",
+          "sha256": "79eff10e2467c1cdd2f4201f14ecf88384b17aa9d6001ac336fa9d3ac459e558"
+        },
+        {
+          "url": "https://www.titaniumstrength.es/titanium-strength-set-discos-hexagonales-olimpicos-75-kg.html",
+          "status": 200,
+          "observed_at": "2026-10-14T14:25:29.126054+00:00",
+          "sha256": "20c0380a16d41fb8e1b3149cbf749f66a281544e8cb47ea2acc3393cd7944b7e"
+        },
+        {
+          "url": "https://www.titaniumstrength.es/titanium-strength-set-discos-olimpicos-1000-kg.html",
+          "status": 200,
+          "observed_at": "2026-10-14T14:25:53.867750+00:00",
+          "sha256": "b658f23dfd2729b778b13505e20392144616304592b26937efa72991370ce581"
+        },
+        {
+          "url": "https://www.titaniumstrength.es/titanium-strength-set-discos-olimpicos-120-kg.html",
+          "status": 200,
+          "observed_at": "2026-10-14T14:25:32.870186+00:00",
+          "sha256": "d9b270a9a7b7c8ae2827da27f0815128c38fd94428623eb91344b074f0dd3fbb"
+        },
+        {
+          "url": "https://www.titaniumstrength.es/titanium-strength-set-discos-olimpicos-150-kg.html",
+          "status": 200,
+          "observed_at": "2026-10-14T14:25:42.992752+00:00",
+          "sha256": "a2f2f0290fe4c1c71e703ab55c69f6a4b08a902179b7117afb49435e0fa2ca99"
+        },
+        {
+          "url": "https://www.titaniumstrength.es/titanium-strength-set-discos-olimpicos-500-kg.html",
+          "status": 200,
+          "observed_at": "2026-10-14T14:25:51.269355+00:00",
+          "sha256": "38cd5514e9241a0a80d27dfe292aec29d55a7b34390b184f2b50acdd9b52ee64"
+        },
+        {
+          "url": "https://www.titaniumstrength.es/titanium-strength-set-discos-olimpicos-60-kg.html",
+          "status": 200,
+          "observed_at": "2026-10-14T14:25:14.767819+00:00",
+          "sha256": "1ba9eb3f0b8b7785177d4e261193fd19321cfecf82b1fde148dffa3ee10deddc"
+        },
+        {
+          "url": "https://www.titaniumstrength.es/titanium-strength-set-discos-olimpicos-80-kg.html",
+          "status": 200,
+          "observed_at": "2026-10-14T14:25:20.705566+00:00",
+          "sha256": "cd1191e7c9ed05cf465797041902dd4bf0b97f6ae65f2ddde432b5541c4bd5eb"
+        },
+        {
+          "url": "https://www.titaniumstrength.es/trbp-set-de-discos-olimpicos-bumper-120-kg.html",
+          "status": 200,
+          "observed_at": "2026-10-14T14:25:39.564475+00:00",
+          "sha256": "b4f95e6e9729f9c2ab3bda2816a4d6f0e158609862ea2305255033b53600f542"
+        },
+        {
+          "url": "https://www.titaniumstrength.es/trbp-set-de-discos-olimpicos-bumper-80-kg.html",
+          "status": 200,
+          "observed_at": "2026-10-14T14:25:26.530358+00:00",
+          "sha256": "ba2ad823163ae4ac8ace71fb73ee00fc0e243fadab8be42c6b360c5d1fce6525"
+        },
+        {
+          "url": "https://www.titaniumstrength.es/ultimate-discos-olimpicos-bumper-5-25-kg.html",
+          "status": 200,
+          "observed_at": "2026-10-14T14:25:02.049542+00:00",
+          "sha256": "00d447d93717c578b165219905d238ad2049e91f866cee740e2e71328355cece"
+        }
+      ]
+    },
+    {
+      "id": "sveltus-eu",
+      "name": "Sveltus",
+      "status": "ok",
+      "collection_mode": "reviewed",
+      "priced_offers": 51,
+      "confirmed_packs": 51,
+      "market": "ES",
+      "issues": [
+        "sveltus-eu:2123:0: explicit six-plate composition recovered from title and own short description"
+      ],
+      "terms_url": "https://shop.sveltus.com/en/content/3-terms-of-use",
+      "access_note": "Terms URL discovered; not fully reviewed in this bounded collection. No blanket reuse permission asserted. No express scraping restriction identified in collected product/catalog responses.",
+      "spain_delivery_url": "https://shop.sveltus.com/en/content/1-deliveries",
+      "documents": [
+        {
+          "url": "https://shop.sveltus.com/en/",
+          "status": 200,
+          "observed_at": "2026-10-14T14:23:29.092847+00:00",
+          "sha256": "fc388eceb2a330e9b627ba4be7e10cf3f65bd28ca033241a4bdeba2d485fc254"
+        },
+        {
+          "url": "https://shop.sveltus.com/en/603-plates",
+          "status": 200,
+          "observed_at": "2026-10-14T14:23:52.612452+00:00",
+          "sha256": "2fef5cb41d0fb5ae5ff7673d692b4a63c69b3d2494f82f0bfabe8b75ed1bb30c"
+        },
+        {
+          "url": "https://shop.sveltus.com/en/603-plates?page=2",
+          "status": 200,
+          "observed_at": "2026-10-14T14:24:36.338234+00:00",
+          "sha256": "f4677051a9775a11b12b0dda00a4eb10b490db3f02b3edd15c0a358bbb9d55f6"
+        },
+        {
+          "url": "https://shop.sveltus.com/en/content/1-deliveries",
+          "status": 200,
+          "observed_at": "2026-10-14T14:28:25.538917+00:00",
+          "sha256": "86147ce2e18804933bf1a51dd1067040448f71fb08dad831f07e8a1e7cce9724"
+        },
+        {
+          "url": "https://shop.sveltus.com/en/p/1443-695-olympic-disc-bumper-x1.html",
+          "status": 200,
+          "observed_at": "2026-10-14T14:24:45.414539+00:00",
+          "sha256": "651365decda624b1a1cf817971954db5fb101918aa0fd8c1d474e0d9e9617968"
+        },
+        {
+          "url": "https://shop.sveltus.com/en/p/1443-olympic-disc-bumper-x1.html?group%5B4%5D=164",
+          "status": 200,
+          "observed_at": "2026-10-14T14:29:05.147309+00:00",
+          "sha256": "a7e7c9fe1526ab6d12a6ae46cb0c93adba7650334b3dc211b823065da573303e"
+        },
+        {
+          "url": "https://shop.sveltus.com/en/p/1443-olympic-disc-bumper-x1.html?group%5B4%5D=29",
+          "status": 200,
+          "observed_at": "2026-10-14T14:29:09.336082+00:00",
+          "sha256": "e896f6ea73436708bf7b3eedadc2d7124db6eff039787f6fff463418e286e408"
+        },
+        {
+          "url": "https://shop.sveltus.com/en/p/1443-olympic-disc-bumper-x1.html?group%5B4%5D=33",
+          "status": 200,
+          "observed_at": "2026-10-14T14:29:16.626098+00:00",
+          "sha256": "93c10d04a6a5ffaa34235bc42c8620e447c0b5b2cf0bd64078e1293b606b0f42"
+        },
+        {
+          "url": "https://shop.sveltus.com/en/p/1443-olympic-disc-bumper-x1.html?group%5B4%5D=77",
+          "status": 200,
+          "observed_at": "2026-10-14T14:29:12.991191+00:00",
+          "sha256": "66b7faa3faf5be4bace7e5227e6abfa7bbee4eb6c069769ccd6e2ab976237959"
+        },
+        {
+          "url": "https://shop.sveltus.com/en/p/1443-olympic-disc-bumper-x1.html?group%5B4%5D=78",
+          "status": 200,
+          "observed_at": "2026-10-14T14:29:19.891655+00:00",
+          "sha256": "7faea32768fc494e65c1b18133fb87bb6532c675132e1963e6f253d2bb7fad1a"
+        },
+        {
+          "url": "https://shop.sveltus.com/en/p/1773-3367-olympic-competition-disc-x1.html",
+          "status": 200,
+          "observed_at": "2026-10-14T14:24:52.126189+00:00",
+          "sha256": "96d8dd00fd30b2615ce22748128b95cccc5cd0bceb7bfb4178afbade40c468fc"
+        },
+        {
+          "url": "https://shop.sveltus.com/en/p/1773-olympic-competition-disc-x1.html?group%5B22%5D=252",
+          "status": 502,
+          "observed_at": "2026-10-14T14:29:22.755693+00:00",
+          "sha256": "bf4d0c2fe5252a3e32908499c90a4da5f961c7a7d989c5ef37b406d145929f1b"
+        },
+        {
+          "url": "https://shop.sveltus.com/en/p/1773-olympic-competition-disc-x1.html?group%5B22%5D=262",
+          "status": 200,
+          "observed_at": "2026-10-14T14:29:26.871083+00:00",
+          "sha256": "b8f0dc2bd27c58c4558f9422c87ef187ae84a6fb0c444e905599b49597aa208e"
+        },
+        {
+          "url": "https://shop.sveltus.com/en/p/1773-olympic-competition-disc-x1.html?group%5B22%5D=272",
+          "status": 200,
+          "observed_at": "2026-10-14T14:29:30.239507+00:00",
+          "sha256": "65409dbd43d1bf812f042b434da8b77163cde08b395a68a21034cd044993c037"
+        },
+        {
+          "url": "https://shop.sveltus.com/en/p/1773-olympic-competition-disc-x1.html?group%5B22%5D=282",
+          "status": 200,
+          "observed_at": "2026-10-14T14:29:33.573870+00:00",
+          "sha256": "2b3b641bdac38c0c98b654464f120c2aea13794ff943683cb0abf212960f8e4c"
+        },
+        {
+          "url": "https://shop.sveltus.com/en/p/1777-3409-olympic-disc-with-handles-x1.html",
+          "status": 200,
+          "observed_at": "2026-10-14T14:25:11.508298+00:00",
+          "sha256": "11040ceb0857c925f817e8ca1cfa3e0c1bb6b993ca7968205c5a9e7ad9642652"
+        },
+        {
+          "url": "https://shop.sveltus.com/en/p/1777-olympic-disc-with-handles-x1.html?group%5B4%5D=165",
+          "status": 200,
+          "observed_at": "2026-10-14T14:31:33.030189+00:00",
+          "sha256": "2a5899664990f9eeb02cf9994457211e2c35d065abb7835bdb32fb6898f18aa5"
+        },
+        {
+          "url": "https://shop.sveltus.com/en/p/1777-olympic-disc-with-handles-x1.html?group%5B4%5D=29",
+          "status": 200,
+          "observed_at": "2026-10-14T14:31:37.217864+00:00",
+          "sha256": "902af9154b622172daf278cf77100d84125ede8f7f4e37d5837790b8e6136642"
+        },
+        {
+          "url": "https://shop.sveltus.com/en/p/1777-olympic-disc-with-handles-x1.html?group%5B4%5D=33",
+          "status": 200,
+          "observed_at": "2026-10-14T14:31:41.422968+00:00",
+          "sha256": "75b038b15c9f58cae39f6c33275bf01262d3da04f810c5b7705c71f20393e20e"
+        },
+        {
+          "url": "https://shop.sveltus.com/en/p/1778-3413-starting-olympic-disc-x1.html",
+          "status": 200,
+          "observed_at": "2026-10-14T14:25:15.102946+00:00",
+          "sha256": "ce70f6d2d8da7abc5f821befc93eeab98b573684791495c83f368728b2b8c64e"
+        },
+        {
+          "url": "https://shop.sveltus.com/en/p/1778-starting-olympic-disc-x1.html?group%5B22%5D=237",
+          "status": 200,
+          "observed_at": "2026-10-14T14:30:32.602185+00:00",
+          "sha256": "d7a5f21ab8e28df3bbceb0ade00cc53b6bd9673107e28d8f154b7aed01235b6a"
+        },
+        {
+          "url": "https://shop.sveltus.com/en/p/1778-starting-olympic-disc-x1.html?group%5B22%5D=242",
+          "status": 200,
+          "observed_at": "2026-10-14T14:30:36.735980+00:00",
+          "sha256": "7cb32fd299d67c99a32003a3d462477e114c00acbf9bcb679f28d141f4f8ca15"
+        },
+        {
+          "url": "https://shop.sveltus.com/en/p/1778-starting-olympic-disc-x1.html?group%5B22%5D=252",
+          "status": 200,
+          "observed_at": "2026-10-14T14:30:40.282907+00:00",
+          "sha256": "7649e4fcac4a8e870b335baf003e4f4d3447e74f927437ddcc9c395ac84983ab"
+        },
+        {
+          "url": "https://shop.sveltus.com/en/p/1778-starting-olympic-disc-x1.html?group%5B22%5D=272",
+          "status": 200,
+          "observed_at": "2026-10-14T14:30:43.491146+00:00",
+          "sha256": "fd2ff75968181d56bde178e4a4e26a7a157c081f980f6bacdd961e73418b4a0e"
+        },
+        {
+          "url": "https://shop.sveltus.com/en/p/1778-starting-olympic-disc-x1.html?group%5B22%5D=282",
+          "status": 200,
+          "observed_at": "2026-10-14T14:30:47.366052+00:00",
+          "sha256": "e71ace8bdf6757df556ef93ff5b1ed0300bd59aaf26e9e5dacabc0c511ec680c"
+        },
+        {
+          "url": "https://shop.sveltus.com/en/p/1778-starting-olympic-disc-x1.html?group%5B22%5D=454",
+          "status": 200,
+          "observed_at": "2026-10-14T14:30:29.434863+00:00",
+          "sha256": "4bb9932f0942012c321da3677873071b5822419d4552d5c467ccc50d433a07f7"
+        },
+        {
+          "url": "https://shop.sveltus.com/en/p/1779-3430-olympic-rubber-disc-x1.html",
+          "status": 200,
+          "observed_at": "2026-10-14T14:24:41.670908+00:00",
+          "sha256": "aa7f0f38a5d15edaec7940b67a96e9f2b17b5922a586adf15c4cae2f69d54267"
+        },
+        {
+          "url": "https://shop.sveltus.com/en/p/1779-olympic-rubber-disc-x1.html?group%5B22%5D=252",
+          "status": 200,
+          "observed_at": "2026-10-14T14:30:15.711423+00:00",
+          "sha256": "ed21ffb0660f6d71f7fb754729e6db911ff6dbe29e4b03c4575a14c91495df6c"
+        },
+        {
+          "url": "https://shop.sveltus.com/en/p/1779-olympic-rubber-disc-x1.html?group%5B22%5D=262",
+          "status": 200,
+          "observed_at": "2026-10-14T14:30:19.116483+00:00",
+          "sha256": "b4e30e7e78c92368f3905df20d9855a7608241e3a81ead480007c97ac6669554"
+        },
+        {
+          "url": "https://shop.sveltus.com/en/p/1779-olympic-rubber-disc-x1.html?group%5B22%5D=272",
+          "status": 200,
+          "observed_at": "2026-10-14T14:30:22.795454+00:00",
+          "sha256": "c783c717e0b8f22a926528aa765253989118796f42df224aad2872b9148e39f2"
+        },
+        {
+          "url": "https://shop.sveltus.com/en/p/1779-olympic-rubber-disc-x1.html?group%5B22%5D=282",
+          "status": 200,
+          "observed_at": "2026-10-14T14:30:25.940621+00:00",
+          "sha256": "c4c29d5cc21e041a7392bc47274ef4f096fcf4594ef71ad69bad481d23f187dc"
+        },
+        {
+          "url": "https://shop.sveltus.com/en/p/1783-3520-olympic-mini-disc-x1.html",
+          "status": 200,
+          "observed_at": "2026-10-14T14:24:58.815485+00:00",
+          "sha256": "3368ee2180fd76ba3725ac608a178594dc78f5a3c88d0ff6f366ce7413232c11"
+        },
+        {
+          "url": "https://shop.sveltus.com/en/p/1783-olympic-mini-disc-x1.html?group%5B22%5D=235",
+          "status": 200,
+          "observed_at": "2026-10-14T14:31:21.745949+00:00",
+          "sha256": "72a6ce484a5541e175f13035690b1fe9cf5242db4a84e8f7998fdba7ac92c654"
+        },
+        {
+          "url": "https://shop.sveltus.com/en/p/1783-olympic-mini-disc-x1.html?group%5B22%5D=236",
+          "status": 200,
+          "observed_at": "2026-10-14T14:31:25.686333+00:00",
+          "sha256": "b56aff5cf7b48fd862db8b95fc6ee6a38383fa440aec2e307c1f07b65454593b"
+        },
+        {
+          "url": "https://shop.sveltus.com/en/p/1783-olympic-mini-disc-x1.html?group%5B22%5D=237",
+          "status": 200,
+          "observed_at": "2026-10-14T14:31:29.459087+00:00",
+          "sha256": "88fc71e40931d83fdac63bdb244f7bc626173be7cc8faad17ef40a381b487874"
+        },
+        {
+          "url": "https://shop.sveltus.com/en/p/1783-olympic-mini-disc-x1.html?group%5B22%5D=425",
+          "status": 200,
+          "observed_at": "2026-10-14T14:31:18.597504+00:00",
+          "sha256": "7d3b4423900f23bff63c020ffca66b50c2e651130a7f90f973b40d4f9ceed994"
+        },
+        {
+          "url": "https://shop.sveltus.com/en/p/1787-3509-startx-olympic-disc-x1.html",
+          "status": 200,
+          "observed_at": "2026-10-14T14:25:03.427585+00:00",
+          "sha256": "99b675603f24959c8002e21f7a30de3ce90ff216ddd90799b558629cf60c8584"
+        },
+        {
+          "url": "https://shop.sveltus.com/en/p/1901-3814-olympic-disc-training-eco-x1.html",
+          "status": 200,
+          "observed_at": "2026-10-14T14:24:48.828673+00:00",
+          "sha256": "7c752d25d1d775ccd0ecbd730c941cac73576921b7659a3f8fd6d7a9a2a464a0"
+        },
+        {
+          "url": "https://shop.sveltus.com/en/p/1901-olympic-disc-training-eco-x1.html?group%5B22%5D=252",
+          "status": 200,
+          "observed_at": "2026-10-14T14:29:38.139195+00:00",
+          "sha256": "acfc825f53f1924e526301e12f6310566102227a55bb3430231592e974315270"
+        },
+        {
+          "url": "https://shop.sveltus.com/en/p/1901-olympic-disc-training-eco-x1.html?group%5B22%5D=262",
+          "status": 200,
+          "observed_at": "2026-10-14T14:29:42.148501+00:00",
+          "sha256": "94f8a2b282efa5c68ae1bf4a04de68d68405b5d30a3a3232eb1f7c1753d05b6c"
+        },
+        {
+          "url": "https://shop.sveltus.com/en/p/1901-olympic-disc-training-eco-x1.html?group%5B22%5D=272",
+          "status": 200,
+          "observed_at": "2026-10-14T14:29:46.115672+00:00",
+          "sha256": "4ce966b274464c04518360ee8c57e7618265863fc155a9853bb66392ae0f0a3c"
+        },
+        {
+          "url": "https://shop.sveltus.com/en/p/1901-olympic-disc-training-eco-x1.html?group%5B22%5D=282",
+          "status": 200,
+          "observed_at": "2026-10-14T14:29:51.575577+00:00",
+          "sha256": "4c28b65c81db2059a78dd40f56d9d70243974105ce01ea6c9fb65a7801a9296d"
+        },
+        {
+          "url": "https://shop.sveltus.com/en/p/1940-3985-olympic-wheel-disc-x1.html",
+          "status": 200,
+          "observed_at": "2026-10-14T14:25:06.901513+00:00",
+          "sha256": "c94fefdb6922350fbef5878c110f32f1391a8b51d665edb588a7fee320577b7a"
+        },
+        {
+          "url": "https://shop.sveltus.com/en/p/1940-olympic-wheel-disc-x1.html?group%5B22%5D=237",
+          "status": 200,
+          "observed_at": "2026-10-14T14:30:54.711859+00:00",
+          "sha256": "5acea9cc491bc514de7084a08a4e9a557d453eb96a10f5e12ace0e0a7c3a6faf"
+        },
+        {
+          "url": "https://shop.sveltus.com/en/p/1940-olympic-wheel-disc-x1.html?group%5B22%5D=252",
+          "status": 200,
+          "observed_at": "2026-10-14T14:30:59.242233+00:00",
+          "sha256": "03033cdf823e31f89f89006bfa30cbecb7421ed6d401fd76b9f0a8586266248c"
+        },
+        {
+          "url": "https://shop.sveltus.com/en/p/1940-olympic-wheel-disc-x1.html?group%5B22%5D=262",
+          "status": 200,
+          "observed_at": "2026-10-14T14:31:04.541605+00:00",
+          "sha256": "5d853c96a833cc41405b0a11f7b962e34e9adfd2f363669fb93030e36a99c192"
+        },
+        {
+          "url": "https://shop.sveltus.com/en/p/1940-olympic-wheel-disc-x1.html?group%5B22%5D=272",
+          "status": 200,
+          "observed_at": "2026-10-14T14:31:09.481034+00:00",
+          "sha256": "8d25840c40461f0116399179e6c83c88abd400bee68960f91a51b3689d6e6ff2"
+        },
+        {
+          "url": "https://shop.sveltus.com/en/p/1940-olympic-wheel-disc-x1.html?group%5B22%5D=282",
+          "status": 200,
+          "observed_at": "2026-10-14T14:31:13.050885+00:00",
+          "sha256": "48e37d48d2be0f24152badc2805c3973f5289b93bd179aa45626a2f5b2d8c4e7"
+        },
+        {
+          "url": "https://shop.sveltus.com/en/p/1940-olympic-wheel-disc-x1.html?group%5B22%5D=454",
+          "status": 200,
+          "observed_at": "2026-10-14T14:30:51.027295+00:00",
+          "sha256": "ed270da15de1518080a0502f8abfcbed18d51c4541db8a2876696a08f97ccd21"
+        },
+        {
+          "url": "https://shop.sveltus.com/en/p/2056-4482-pump-disc-with-handles-x1.html",
+          "status": 200,
+          "observed_at": "2026-10-14T14:25:20.016095+00:00",
+          "sha256": "75a483533c33ec90464b87ab3a00faed617296416b07ae087197dfe998c9e077"
+        },
+        {
+          "url": "https://shop.sveltus.com/en/p/2056-pump-disc-with-handles-x1.html?group%5B22%5D=237",
+          "status": 200,
+          "observed_at": "2026-10-14T14:29:55.058817+00:00",
+          "sha256": "8f38ccfbbec52506c987e8b65212fc273c20e7fcd4fb3cd26db3165ef64c97e2"
+        },
+        {
+          "url": "https://shop.sveltus.com/en/p/2056-pump-disc-with-handles-x1.html?group%5B22%5D=242",
+          "status": 200,
+          "observed_at": "2026-10-14T14:29:59.036183+00:00",
+          "sha256": "21dc0f18cc82d41ee9787b5fbc9a9b26a7612e46303143e54a51826319e86b3d"
+        },
+        {
+          "url": "https://shop.sveltus.com/en/p/2056-pump-disc-with-handles-x1.html?group%5B22%5D=252",
+          "status": 200,
+          "observed_at": "2026-10-14T14:30:02.990291+00:00",
+          "sha256": "096c8cc1f6030568c2083f6c39089c5c99f7469ad89fd42b703f6c7f7e5ab396"
+        },
+        {
+          "url": "https://shop.sveltus.com/en/p/2056-pump-disc-with-handles-x1.html?group%5B22%5D=262",
+          "status": 200,
+          "observed_at": "2026-10-14T14:30:08.114030+00:00",
+          "sha256": "1fa4ed0a608deb9c4be17395fe8eaabcaf25b03d2f313afb282c230f1c1a8c05"
+        },
+        {
+          "url": "https://shop.sveltus.com/en/p/2056-pump-disc-with-handles-x1.html?group%5B22%5D=272",
+          "status": 200,
+          "observed_at": "2026-10-14T14:30:11.938925+00:00",
+          "sha256": "1ed3ad2727370eed34563a7c118feaae5a310309efe8313d747bf573d2ba347a"
+        },
+        {
+          "url": "https://shop.sveltus.com/en/p/2123-training-disc-pack-10kg-x6.html",
+          "status": 200,
+          "observed_at": "2026-10-14T14:25:23.140150+00:00",
+          "sha256": "a1d5f3c00ef6013b1feb4a62a02b02724952b8d301f60f9dbb297f4365dd1f9b"
+        },
+        {
+          "url": "https://shop.sveltus.com/robots.txt",
+          "status": 200,
+          "observed_at": "2026-10-14T14:23:14.136082+00:00",
+          "sha256": "230011724d6cdb0907241553f911e8be67235fced17e791147008d0d0c29dc19"
+        }
+      ]
+    },
+    {
+      "id": "againfaster-eu",
+      "name": "Again Faster Europe",
+      "status": "quarantined",
+      "collection_mode": "reviewed",
+      "priced_offers": 0,
+      "confirmed_packs": 0,
+      "market": null,
+      "issues": [
+        "againfaster-eu:100kg-Coloured-Dynamic-Package: unsupported actual capture currency GBP; no FX or ES relabelling",
+        "againfaster-eu:100kg-CRUMB-PACKAGE: unsupported actual capture currency GBP; no FX or ES relabelling",
+        "againfaster-eu:150kg-Coloured-Dynamic-Package: unsupported actual capture currency GBP; no FX or ES relabelling",
+        "againfaster-eu:150kg-CRUMB-PACKAGE: unsupported actual capture currency GBP; no FX or ES relabelling",
+        "againfaster-eu:220kg-CRUMB-PACKAGE: unsupported actual capture currency GBP; no FX or ES relabelling",
+        "againfaster-eu:60kg-Coloured-Dynamic-Package: unsupported actual capture currency GBP; no FX or ES relabelling",
+        "againfaster-eu:60kg-CRUMB-PACKAGE: unsupported actual capture currency GBP; no FX or ES relabelling",
+        "againfaster-eu:60kg-Tri-Grip-Package: unsupported actual capture currency GBP; no FX or ES relabelling",
+        "againfaster-eu:50-005: unsupported actual capture currency GBP; no FX or ES relabelling",
+        "againfaster-eu:50-006: unsupported actual capture currency GBP; no FX or ES relabelling",
+        "againfaster-eu:50-007: unsupported actual capture currency GBP; no FX or ES relabelling",
+        "againfaster-eu:50-008: unsupported actual capture currency GBP; no FX or ES relabelling",
+        "againfaster-eu:50-009: unsupported actual capture currency GBP; no FX or ES relabelling",
+        "againfaster-eu:50-305: unsupported actual capture currency GBP; no FX or ES relabelling",
+        "againfaster-eu:50-306: unsupported actual capture currency GBP; no FX or ES relabelling",
+        "againfaster-eu:50-307: unsupported actual capture currency GBP; no FX or ES relabelling",
+        "againfaster-eu:50-308: unsupported actual capture currency GBP; no FX or ES relabelling",
+        "againfaster-eu:50-309: unsupported actual capture currency GBP; no FX or ES relabelling",
+        "againfaster-eu:50-015: unsupported actual capture currency GBP; no FX or ES relabelling",
+        "againfaster-eu:50-016: unsupported actual capture currency GBP; no FX or ES relabelling",
+        "againfaster-eu:50-017: unsupported actual capture currency GBP; no FX or ES relabelling",
+        "againfaster-eu:50-018: unsupported actual capture currency GBP; no FX or ES relabelling",
+        "againfaster-eu:50-019: unsupported actual capture currency GBP; no FX or ES relabelling",
+        "againfaster-eu:50-379: unsupported actual capture currency GBP; no FX or ES relabelling",
+        "againfaster-eu:50-380: unsupported actual capture currency GBP; no FX or ES relabelling",
+        "againfaster-eu:50-381: unsupported actual capture currency GBP; no FX or ES relabelling",
+        "againfaster-eu:50-382: unsupported actual capture currency GBP; no FX or ES relabelling",
+        "againfaster-eu:50-383: unsupported actual capture currency GBP; no FX or ES relabelling",
+        "againfaster-eu:50-384: unsupported actual capture currency GBP; no FX or ES relabelling",
+        "againfaster-eu:50-385: unsupported actual capture currency GBP; no FX or ES relabelling",
+        "againfaster-eu:50-325: unsupported actual capture currency GBP; no FX or ES relabelling",
+        "againfaster-eu:50-326: unsupported actual capture currency GBP; no FX or ES relabelling",
+        "againfaster-eu:50-327: unsupported actual capture currency GBP; no FX or ES relabelling",
+        "againfaster-eu:50-328: unsupported actual capture currency GBP; no FX or ES relabelling",
+        "againfaster-eu:50-329: unsupported actual capture currency GBP; no FX or ES relabelling",
+        "againfaster-eu:50-698: unsupported actual capture currency GBP; no FX or ES relabelling",
+        "againfaster-eu:50-699: unsupported actual capture currency GBP; no FX or ES relabelling",
+        "againfaster-eu:50-700: unsupported actual capture currency GBP; no FX or ES relabelling",
+        "againfaster-eu:50-701: unsupported actual capture currency GBP; no FX or ES relabelling",
+        "againfaster-eu:50-702: unsupported actual capture currency GBP; no FX or ES relabelling",
+        "againfaster-eu:50-703: unsupported actual capture currency GBP; no FX or ES relabelling"
+      ],
+      "terms_url": "https://againfaster.eu/terms-and-conditions",
+      "access_note": "Terms URL discovered; not fully reviewed in this bounded collection. No blanket reuse permission asserted. No express scraping restriction identified in collected product/catalog responses.",
+      "spain_delivery_url": "https://againfaster.eu/es/shipping-returns",
+      "documents": [
+        {
+          "url": "https://againfaster.eu/",
+          "status": 200,
+          "observed_at": "2026-10-14T14:23:26.831383+00:00",
+          "sha256": "e51a8cf4e40b1cac08a18fa394a1f3892b638966d4f1ff4e7e4527deb90ef833"
+        },
+        {
+          "url": "https://againfaster.eu/en_gb/weightlifting-bars-plates/plates.html",
+          "status": 200,
+          "observed_at": "2026-10-14T14:23:52.139535+00:00",
+          "sha256": "cd93730291540ec6e0428d8955e2addd36e37aa146633569a45389391ff78330"
+        },
+        {
+          "url": "https://againfaster.eu/en_gb/weightlifting-bars-plates/plates.html?p=2",
+          "status": 200,
+          "observed_at": "2026-10-14T14:24:40.589692+00:00",
+          "sha256": "f5839a48bc5d1543c654bcb5c6c10819eed1ba4eebaba16b327d140a3bc8dab1"
+        },
+        {
+          "url": "https://againfaster.eu/en_gb/weightlifting-bars-plates/plates/100kg-coloured-dynamic-plate-package.html",
+          "status": 200,
+          "observed_at": "2026-10-14T14:27:19.249843+00:00",
+          "sha256": "45d7ce0fb7e067cc00c083dc9000bfa630219bac2e33d5f2090ed158b8b1a005"
+        },
+        {
+          "url": "https://againfaster.eu/en_gb/weightlifting-bars-plates/plates/100kg-crumb-bumper-plates-package.html",
+          "status": 200,
+          "observed_at": "2026-10-14T14:26:20.920869+00:00",
+          "sha256": "8d97e8b8c84ac5b420ef77814624f812d97899a8b5f3888d30e8df4d0049b8a3"
+        },
+        {
+          "url": "https://againfaster.eu/en_gb/weightlifting-bars-plates/plates/150kg-coloured-dynamic-plate-package.html",
+          "status": 200,
+          "observed_at": "2026-10-14T14:27:31.759505+00:00",
+          "sha256": "38f0531ae476a7d01b6fd90e56d5df964779de74c6606199073737c09abec4cd"
+        },
+        {
+          "url": "https://againfaster.eu/en_gb/weightlifting-bars-plates/plates/150kg-crumb-bumper-plates-package.html",
+          "status": 200,
+          "observed_at": "2026-10-14T14:26:33.450386+00:00",
+          "sha256": "758a185f8f170711ba7105e0f0d362501c7354fceab78311b4d68c5adc1e5605"
+        },
+        {
+          "url": "https://againfaster.eu/en_gb/weightlifting-bars-plates/plates/220kg-crumb-bumper-plates-package.html",
+          "status": 200,
+          "observed_at": "2026-10-14T14:26:44.774962+00:00",
+          "sha256": "2c794ffb3c8d233d34c290eec01cc1de37fe306000bc203b450fcce232de3a71"
+        },
+        {
+          "url": "https://againfaster.eu/en_gb/weightlifting-bars-plates/plates/60kg-coloured-dynamic-plate-package.html",
+          "status": 200,
+          "observed_at": "2026-10-14T14:27:06.864650+00:00",
+          "sha256": "f86b5f94a2e0ba43ca7dd57cf995d94ce96e5d498b6b906909ff377d6f4ecf69"
+        },
+        {
+          "url": "https://againfaster.eu/en_gb/weightlifting-bars-plates/plates/60kg-crumb-bumper-plates-package.html",
+          "status": 200,
+          "observed_at": "2026-10-14T14:26:07.069821+00:00",
+          "sha256": "d70d911bac7fc3aed44d37120b3914d9df9aaefa2eba23552c2926af9eecb959"
+        },
+        {
+          "url": "https://againfaster.eu/en_gb/weightlifting-bars-plates/plates/60kg-tri-grip-weight-set.html",
+          "status": 200,
+          "observed_at": "2026-10-14T14:26:55.751472+00:00",
+          "sha256": "23300054293928dcb2e7073fec8b4501318d887df237713439bda557ffb5dd1c"
+        },
+        {
+          "url": "https://againfaster.eu/en_gb/weightlifting-bars-plates/plates/again-faster-coloured-dynamic-weight-plates.html",
+          "status": 200,
+          "observed_at": "2026-10-14T14:24:53.154057+00:00",
+          "sha256": "9dcbe2d11348a22e11c0a2a97ee6a78344971c83e739fe017934a687a616401f"
+        },
+        {
+          "url": "https://againfaster.eu/en_gb/weightlifting-bars-plates/plates/again-faster-crumb-rubber-bumper-plates.html",
+          "status": 200,
+          "observed_at": "2026-10-14T14:25:27.561601+00:00",
+          "sha256": "58ec89063ec29819137be4191a8be2e3b63cf77711b92f458d30840e6599bc7c"
+        },
+        {
+          "url": "https://againfaster.eu/en_gb/weightlifting-bars-plates/plates/again-faster-dynamic-weight-plates.html",
+          "status": 200,
+          "observed_at": "2026-10-14T14:25:04.422425+00:00",
+          "sha256": "15561be806f3f306aac7ed013f82e6df552bbf2374e1377e5f69ade84f526d59"
+        },
+        {
+          "url": "https://againfaster.eu/en_gb/weightlifting-bars-plates/plates/again-faster-tri-grip-rubber-weight-plates.html",
+          "status": 200,
+          "observed_at": "2026-10-14T14:25:55.056849+00:00",
+          "sha256": "58b9891c2d98c7a897d5d4421ef3284933303cfc266b5c6689f02611d42581e9"
+        },
+        {
+          "url": "https://againfaster.eu/en_gb/weightlifting-bars-plates/plates/again-faster-virgin-rubber-bumper-plates.html",
+          "status": 200,
+          "observed_at": "2026-10-14T14:25:42.588588+00:00",
+          "sha256": "7a844f68285729db53f4eb56659de5ed0479edd0d2f4ef1d5721c478ba2adf22"
+        },
+        {
+          "url": "https://againfaster.eu/en_gb/weightlifting-bars-plates/plates/fractional-change-plates.html",
+          "status": 200,
+          "observed_at": "2026-10-14T14:25:16.759519+00:00",
+          "sha256": "36dd7f6183b3e9e6d43b03dcd5e774cb852eadceaaaa6efbfdcc34b6664729b1"
+        },
+        {
+          "url": "https://againfaster.eu/es/shipping-returns",
+          "status": 200,
+          "observed_at": "2026-10-14T14:31:15.007329+00:00",
+          "sha256": "53443ee828124d35d2ffbb136522251ab4e0a1cc338be40d9ba37c8772fed3d3"
+        },
+        {
+          "url": "https://againfaster.eu/robots.txt",
+          "status": 200,
+          "observed_at": "2026-10-14T14:23:13.530246+00:00",
+          "sha256": "7c7d50c395ce525ec8336f3d3fa74f38a3a5c8530638d8d5b8bf0ebc6c2a8479"
+        }
+      ]
+    }
+  ],
+  "other_candidates": [
+    {
+      "name": "REP Fitness",
+      "origin": "https://repfitness.com",
+      "proof_url": "https://repfitness.com/pages/terms-conditions-privacy",
+      "limitation": "Explicit prohibition: Attempts to harvest, collect, gather, or assemble information or data.",
+      "requests_this_run": 0
+    },
+    {
+      "name": "Fringe Sport",
+      "origin": "https://www.fringesport.com",
+      "proof_url": "https://www.fringesport.com/pages/terms-of-service",
+      "limitation": "Explicit automated-access and scraping bans: Accessing or attempting to access the Website through automated means; Scraping, reproducing, republishing ...",
+      "requests_this_run": 0
+    },
+    {
+      "name": "Bells of Steel US",
+      "origin": "https://bellsofsteel.us",
+      "proof_url": "https://bellsofsteel.us/policies/terms-of-service",
+      "limitation": "Section 12(i): to spam, phish, pharm, pretext, spider, crawl, or scrape.",
+      "requests_this_run": 0
+    },
+    {
+      "name": "Giant Lifting",
+      "origin": "https://giantlifting.com",
+      "proof_url": "https://giantlifting.com/pages/terms-of-service",
+      "limitation": "Section 12(i): to spam, phish, pharm, pretext, spider, crawl, or scrape.",
+      "requests_this_run": 0
+    },
+    {
+      "name": "Titan",
+      "origin": "https://titan.fitness",
+      "proof_url": "https://titan.fitness/pages/terms",
+      "limitation": "Section 12(i): to spam, phish, pharm, pretext, spider, crawl, or scrape.",
+      "requests_this_run": 0
+    },
+    {
+      "name": "Rogue",
+      "origin": "https://www.roguefitness.com",
+      "proof_url": "https://www.roguefitness.com/terms-of-use",
+      "limitation": "Prior terms request HTTP 403; no terms prohibition asserted.",
+      "requests_this_run": 0
+    },
+    {
+      "name": "Micro Gainz",
+      "origin": "https://microgainz.com",
+      "proof_url": "https://microgainz.com/policies/terms-of-service",
+      "limitation": "Prior captured section 12 spider/crawl/scrape prohibition.",
+      "requests_this_run": 0
+    },
+    {
+      "name": "The Strength Co.",
+      "origin": "https://www.thestrength.co",
+      "proof_url": "https://www.thestrength.co/policies/terms-of-service",
+      "limitation": "Prior captured section 12 spider/crawl/scrape prohibition.",
+      "requests_this_run": 0
+    },
+    {
+      "name": "Vulcan",
+      "origin": "https://www.vulcanstrength.com",
+      "proof_url": "https://www.vulcanstrength.com/robots.txt",
+      "limitation": "Prior robots excludes named AI bots. Broader noncommercial/reproduction terms are not reclassified as an express scraping ban.",
+      "requests_this_run": 0
+    },
+    {
+      "name": "CAP Barbell",
+      "origin": "https://capbarbell.com",
+      "proof_urls": [
+        "https://capbarbell.com/",
+        "https://capbarbell.com/policies/terms-of-service"
+      ],
+      "limitation": "Terms collection/automation language requires review; collection paused"
+    },
+    {
+      "name": "EliteFTS",
+      "origin": "https://www.elitefts.com",
+      "proof_urls": [
+        "https://elitefts.com/",
+        "https://www.elitefts.com/pages/elitefts-mobile-sms-terms-conditions",
+        "https://www.elitefts.com/pages/elitefts-terms-of-service"
+      ],
+      "limitation": "Terms collection/automation language requires review; collection paused"
+    },
+    {
+      "name": "Fitness Superstore US",
+      "origin": "https://www.fitnesssuperstore.com",
+      "proof_urls": [],
+      "limitation": "Homepage inaccessible; see request log"
+    },
+    {
+      "name": "Gymreapers",
+      "origin": "https://www.gymreapers.com",
+      "proof_urls": [
+        "https://www.gymreapers.com/"
+      ],
+      "limitation": "Discovery only; not yet captured/imported."
+    },
+    {
+      "name": "HulkFit",
+      "origin": "https://www.hulkfitproducts.com",
+      "proof_urls": [],
+      "limitation": "Homepage inaccessible; see request log"
+    },
+    {
+      "name": "Living Fit",
+      "origin": "https://www.living.fit",
+      "proof_urls": [
+        "https://www.living.fit/",
+        "https://www.living.fit/pages/terms"
+      ],
+      "limitation": "Terms collection/automation language requires review; collection paused"
+    },
+    {
+      "name": "Major Fitness",
+      "origin": "https://www.majorfitness.com",
+      "proof_urls": [
+        "https://www.majorfitness.com/",
+        "https://www.majorfitness.com/policies/terms-of-service"
+      ],
+      "limitation": "Terms collection/automation language requires review; collection paused"
+    },
+    {
+      "name": "RitFit",
+      "origin": "https://www.ritfitsports.com",
+      "proof_urls": [
+        "https://www.ritfitsports.com/",
+        "https://www.ritfitsports.com/pages/terms-of-service"
+      ],
+      "limitation": "Terms collection/automation language requires review; collection paused"
+    },
+    {
+      "name": "Sorinex",
+      "origin": "https://www.sorinex.com",
+      "proof_urls": [
+        "https://www.sorinex.com/",
+        "https://www.sorinex.com/terms-and-conditions"
+      ],
+      "limitation": "Discovery only; not yet captured/imported."
+    },
+    {
+      "name": "Strength Warehouse USA",
+      "origin": "https://strengthwarehouseusa.com",
+      "proof_urls": [],
+      "limitation": "Homepage inaccessible; see request log"
+    },
+    {
+      "name": "Troy Barbell & Fitness",
+      "origin": "https://troyfitness.com",
+      "proof_urls": [
+        "https://troyfitness.com/",
+        "https://troyfitness.com/policies/terms-of-service"
+      ],
+      "limitation": "Terms collection/automation language requires review; collection paused"
+    },
+    {
+      "name": "Tru Grit Fitness",
+      "origin": "https://trugrit-fitness.com",
+      "proof_urls": [
+        "https://trugrit-fitness.com/"
+      ],
+      "limitation": "Discovery only; not yet captured/imported."
+    },
+    {
+      "name": "XMark",
+      "origin": "https://xmarkfitness.com",
+      "proof_urls": [
+        "https://xmarkfitness.com/",
+        "https://xmarkfitness.com/policies/terms-of-service"
+      ],
+      "limitation": "Terms collection/automation language requires review; collection paused"
+    }
+  ]
+}

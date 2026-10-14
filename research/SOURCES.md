@@ -3,7 +3,13 @@
 Research, not legal advice or a claim that access grants data rights.
 Stop reasons distinguish explicit collection bans, access failures and broader use restrictions.
 
-## Added after Codex CLI research — reviewed snapshots
+## Current catalog-scale coverage
+
+See [CATALOGS.md](CATALOGS.md): 16 retailers, 1,031 priced observations, 709 confirmed packs.
+Maniak/Ruster now included after product-local evidence review; earlier generic-IP holds below are historical,
+not current blanket collection bans. Explicit automation restrictions and access blocks remain exceptions.
+
+## Initial reviewed seed — superseded by catalog-scale capture
 
 25 observations across four retailers; 12 have explicit pack contents and real unit prices.
 The new sources are curated observations, not silently enabled scrapers. `reviewed/latest.json`
