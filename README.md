@@ -92,6 +92,18 @@ Manual-only until hosted access is verified. Singular remains individually pause
 2. Artifact contains snapshot/report, not raw merchant content.
 3. Separate minimal write-enabled publisher commits only `data/latest.json`.
 4. Refuse stale publication if `master` changed. Never force-push.
-5. Publish good/retained observations before signalling partial failure.
+5. Validate before committing; request a Netlify rebuild for the exact published data commit.
+6. Publish good/retained observations and request the rebuild before signalling partial failure.
 
-Actions pinned to SHAs. No deployed website build hook yet. No affiliate applications or outreach.
+### Website publication
+
+- `Publish website`: data-file pushes to `master`, or manual dispatch. Validates saved data; never collects.
+- Collector publisher calls the hook explicitly; pushes made with `GITHUB_TOKEN` do not start other Actions.
+- `scripts/trigger_build.py`: strict snapshot/pack validation, pinned commit payload, bounded retries; secret URL never logged.
+- `NETLIFY_BUILD_HOOK`: GitHub repository secret for the PlatesPrice Netlify project. No private website credentials.
+- Netlify validates again and packages the immutable public snapshot. Fetch/validation failure preserves the previous deployment.
+- Original observation dates and failed-source status remain unchanged. No freshness claims from rebuilding.
+- Schedule remains paused. To republish saved data without merchant requests:
+  `gh workflow run publish-website.yml --repo MiKatre/platesprice-data --ref master`.
+
+Actions pinned to SHAs. No affiliate applications or outreach.
