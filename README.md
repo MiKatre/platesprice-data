@@ -38,14 +38,16 @@ saved actual responses and synthetic regressions; hosted access is not yet valid
 - `research/coverage.json`: per-storefront counts, capture hashes, access/coverage notes.
 - `runs/report.json`: ignored run report; uploaded as a 14-day Actions artifact.
 - `tests/fixtures/`: frozen pilot arithmetic cases, independent of live catalog growth.
-- `plates/amazon.py` (+ `amazon_*.js`): Amazon trial via Cloudflare Kitesurf remote browser. Client copied in
-  `kitesurf/` from agent-stuff `skills/kitesurf` (`npm ci --prefix kitesurf`). Credentials: env or
+- `plates/amazon.py` (+ `amazon_*.js`): Amazon.es / Amazon.com via Cloudflare Kitesurf remote browser. Client copied
+  in `kitesurf/` from agent-stuff `skills/kitesurf` (`npm ci --prefix kitesurf`). Credentials: env or
   `~/.config/kitesurf/credentials.json`; Actions secrets `KITESURF_ACCOUNT_ID`, `KITESURF_API_TOKEN`.
-  Daily `Amazon trial` workflow commits `amazon/`. Searches, then one product page per session.
-  Pack = size label "N x mass", else one mass × Pair/Single/listed item count; otherwise unknown.
-  Output `amazon/latest.json` + per-run access log `amazon/trial.jsonl`; not merged into `data/latest.json`.
-  Prices follow the remote browser's location: a market only counts when Amazon delivers there
-  (Amazon.es from the US drops 21% VAT; Amazon.com from Spain shows EUR). Otherwise `wrong_location`. `uv run --locked python -m plates.amazon`
+  Searches, then one product page per session (images/fonts blocked). Each page first sets the market's
+  delivery postcode (Madrid 28001 / New York 10001): Amazon prices for the delivery address
+  (Amazon.es drops 21% VAT abroad). Pages still priced elsewhere: `wrong_location`, dropped.
+  Pack = size label "N x mass" or "(a+b+c) xN" with matching total, else one mass × Pair/Single/item count.
+  `amazon/latest.json` + run log `amazon/trial.jsonl`; `--publish` merges into `data/latest.json`
+  (the catalog collector keeps them too). Daily `Amazon prices` workflow publishes and rebuilds the site.
+  `uv run --locked python -m plates.amazon [--only ES|US] [--publish]`
 - `.captures/`: ignored local evidence cache. No merchant HTML, images or descriptions published.
 
 ## Collection rules

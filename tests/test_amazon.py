@@ -2,7 +2,7 @@
 
 from decimal import Decimal
 
-from plates.amazon import availability, collect, offer, pack, parse_price
+from plates.amazon import availability, collect, offer, pack, parse_price, script
 from plates.models import Offer
 from tests.conftest import AT
 
@@ -10,6 +10,7 @@ from tests.conftest import AT
 def page(title="VirtuFit Hi-Temp Bumper Plate - Rubber Olympic Disc - 50mm", **extra):
     return {
         "captcha": False,
+        "deliver": "Madrid 28001",
         "title": title,
         "price": "79,95€",
         "availability": "En stock",
@@ -67,6 +68,15 @@ def test_pack_needs_one_mass_and_an_item_count():
     assert [(c.weight, c.count) for c in pack("Bumper Plate", ["10lbs Pair, Black"], [])[0]] == [
         (10, 2)
     ]
+    # Change-plate groups: each plate in brackets, N times; a wrong stated total stays unknown.
+    group = pack("Change Weight Plates", ["17.5 LB (1.25+2.5+5) x2"], [])[0]
+    assert [(c.weight, c.unit, c.count) for c in group] == [
+        (Decimal("1.25"), "lb", 2),
+        (Decimal("2.5"), "lb", 2),
+        (5, "lb", 2),
+    ]
+    assert sum(c.count for c in pack("Change", ["15 LB (2.5LB+5LB)X2"], [])[0]) == 4
+    assert pack("Change", ["20 LB (1.25+2.5+5) x2"], [])[0] == []
     # Several masses without an explicit composition stay unknown.
     assert pack("Set of 6 Olympic Plates 2x10kg 4x5kg", [], ["Number of Items 6"])[0] != []
     assert pack("Olympic Plates 10 kg and 5 kg", [], ["Number of Items 6"]) == ([], None)
@@ -121,48 +131,66 @@ def test_collect_counts_captchas_and_errors_without_stopping():
     assert state.status == "ok" and [o.variant_id for o in state.offers] == ["B1"]
 
 
-def test_collect_skips_products_priced_for_another_country():
-    pages = []
+def test_product_script_sets_the_market_postcode():
+    source = script("product", "https://www.amazon.es/dp/B1?psc=1", "ES")
+    assert '"28001"' in source and '"https://www.amazon.es/dp/B1?psc=1"' in source
+    assert "__" not in source
 
+
+def test_collect_skips_prices_quoted_for_another_country():
     def run(source):
         if "/s?k=" in source:
-            # Amazon.es from a US browser drops Spanish VAT.
             return {
                 "captcha": False,
-                "deliver": "Estados Unidos",
-                "results": [{"asin": "B1", "title": "Bumper Plate 25 kg", "sponsored": False}],
+                "results": [
+                    {"asin": "B1", "title": "Bumper Plate 25 kg", "sponsored": False},
+                    {"asin": "B2", "title": "Bumper Plate 20 kg", "sponsored": False},
+                ],
             }
-        pages.append(source)
-        return page()
+        # The postcode change failed for B2: Amazon.es without Spanish VAT.
+        return page(deliver="Estados Unidos") if "/dp/B2" in source else page()
 
     state, stats = collect("ES", run)
-    assert stats["wrong_location"] and stats["products"] == 0 and pages == []
-    assert state.status == "failed" and state.offers == []
+    assert stats["wrong_location"] == 1 and stats["loaded"] == 2
+    assert [o.variant_id for o in state.offers] == ["B1"]
 
 
-def test_wrong_location_run_keeps_saved_offers(tmp_path, monkeypatch):
+def test_run_without_offers_keeps_saved_offers(tmp_path, monkeypatch):
     import plates.amazon as amazon
 
-    saved, _ = collect(
-        "ES",
-        lambda source: (
-            {
-                "captcha": False,
-                "deliver": "28071",
-                "results": [{"asin": "B1", "title": "Bumper Plate 25 kg", "sponsored": False}],
-            }
-            if "/s?k=" in source
-            else page()
-        ),
-    )
+    search = {
+        "captcha": False,
+        "results": [{"asin": "B1", "title": "Bumper Plate 25 kg", "sponsored": False}],
+    }
+    saved, _ = collect("ES", lambda source: search if "/s?k=" in source else page())
     monkeypatch.setattr(amazon, "OUT", tmp_path)
     (tmp_path / "latest.json").write_text(
         amazon.Snapshot(generated_at=saved.attempted_at, sources=[saved]).model_dump_json()
     )
-    abroad = {"captcha": False, "deliver": "Estados Unidos", "results": []}
-    monkeypatch.setattr(amazon, "kitesurf", lambda source: abroad)
+    abroad = page(deliver="Estados Unidos")
+    monkeypatch.setattr(amazon, "kitesurf", lambda source: search if "/s?k=" in source else abroad)
     monkeypatch.setattr(amazon, "collect", lambda market: collect(market, amazon.kitesurf))
     amazon.main(["--only", "ES"])
     kept = amazon.Snapshot.model_validate_json((tmp_path / "latest.json").read_text())
     assert [o.variant_id for o in kept.sources[0].offers] == ["B1"]
-    assert 'wrong_location": true' in (tmp_path / "trial.jsonl").read_text()
+    assert '"wrong_location": 1' in (tmp_path / "trial.jsonl").read_text()
+
+
+def test_published_snapshot_takes_the_latest_amazon_sources(tmp_path):
+    from plates.amazon import with_amazon
+    from plates.models import Snapshot, SourceState
+
+    search = {
+        "captcha": False,
+        "results": [{"asin": "B1", "title": "Bumper Plate 25 kg", "sponsored": False}],
+    }
+    fresh, _ = collect("ES", lambda source: search if "/s?k=" in source else page())
+    shop = SourceState(id="shop", name="Shop", status="ok", attempted_at=AT)
+    stale = SourceState(id="amazon-es", name="Amazon.es", status="failed", attempted_at=AT)
+    published = Snapshot(generated_at=AT, sources=[shop, stale])
+    saved = tmp_path / "amazon.json"
+    saved.write_text(Snapshot(generated_at=fresh.attempted_at, sources=[fresh]).model_dump_json())
+    merged = with_amazon(published, saved)
+    assert [s.id for s in merged.sources] == ["shop", "amazon-es"]
+    assert merged.sources[1].offers and merged.generated_at == fresh.attempted_at
+    assert with_amazon(published, tmp_path / "missing.json") == published

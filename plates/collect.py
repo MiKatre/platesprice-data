@@ -14,6 +14,7 @@ from urllib.parse import urlsplit
 import httpx
 
 from .adapters import check_currency, parse_product
+from .amazon import with_amazon
 from .feeds import catalog_signature, collect_feeds
 from .fetch import USER_AGENT, Fetcher
 from .models import Catalog, Snapshot, SourceState
@@ -215,6 +216,8 @@ def main(argv=None):
     ) as client:
         snapshot, attempted = run(catalog, previous, client, args.only)
     snapshot = merge_reviewed(snapshot, reviewed)
+    # Amazon comes from its own browser-based collector; keep its latest saved offers.
+    snapshot = with_amazon(snapshot)
     payload = snapshot.model_dump(mode="json")
     atomic_json(args.output, payload)
     summary = {
