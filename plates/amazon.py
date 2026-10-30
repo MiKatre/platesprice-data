@@ -37,6 +37,8 @@ MARKETS = {
         "currency": "EUR",
         "language": "es_ES",
         "terms": ["discos bumper", "discos olimpicos hierro", "discos fraccionales 50mm"],
+        # Outside Spain, Amazon.es removes Spanish VAT (21%): only a Spanish delivery counts.
+        "deliver": r"Spain|España|\b\d{5}\b",
     },
     "US": {
         "id": "amazon-us",
@@ -45,9 +47,9 @@ MARKETS = {
         "currency": "USD",
         "language": "en_US",
         "terms": ["bumper plates", "cast iron olympic plates", "olympic change plates"],
-        # Kitesurf browsers run from Spain here: Amazon.com shows EUR and Spain delivery.
-        # One page per session leaves no room to set a US ZIP first.
-        "paused": "Remote browser located in Spain; Amazon.com quotes EUR for Spain delivery.",
+        # From abroad Amazon.com names the country and converts prices; a US visitor sees
+        # "Update location" or a ZIP. One page per session leaves no room to set a ZIP first.
+        "deliver": r"Update location|United States|\b\d{5}\b",
     },
 }
 PRODUCTS_PER_MARKET = 30
@@ -212,7 +214,10 @@ def collect(market: str, run=kitesurf) -> tuple[SourceState, dict]:
         for item in result["results"]:
             if item["asin"] and not item["sponsored"] and _PLATE.search(item["title"]):
                 asins.setdefault(item["asin"], item["title"])
-    chosen = list(asins)[:PRODUCTS_PER_MARKET]
+    # Prices depend on where Amazon thinks the remote browser is; skip pages priced elsewhere.
+    located = bool(re.search(config["deliver"], stats.get("deliver_to") or ""))
+    stats["wrong_location"] = stats["search_ok"] > 0 and not located
+    chosen = list(asins)[:PRODUCTS_PER_MARKET] if located else []
     stats["products"] = len(chosen)
 
     def product(asin):
@@ -263,9 +268,11 @@ def main(argv=None):
     OUT.mkdir(exist_ok=True)
     previous = OUT / "latest.json"
     states = Snapshot.model_validate_json(previous.read_text()).sources if previous.exists() else []
-    for market in [args.only] if args.only else [m for m in MARKETS if "paused" not in MARKETS[m]]:
+    for market in [args.only] if args.only else MARKETS:
         state, stats = collect(market)
-        states = [s for s in states if s.id != state.id] + [state]
+        # A run seen from another country says nothing about local prices: keep the saved ones.
+        if not stats["wrong_location"]:
+            states = [s for s in states if s.id != state.id] + [state]
         with (OUT / "trial.jsonl").open("a") as log:
             log.write(json.dumps(stats) + "\n")
         summary = {k: v for k, v in stats.items() if k != "errors"}

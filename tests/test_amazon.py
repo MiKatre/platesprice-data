@@ -97,6 +97,7 @@ def test_collect_counts_captchas_and_errors_without_stopping():
         if "/s?k=discos+bumper" in source:
             return {
                 "captcha": False,
+                "deliver": "Madrid 28071",
                 "results": [
                     {"asin": "B1", "title": "Bumper Plate 25 kg", "sponsored": False},
                     {"asin": "B2", "title": "Bumper Plate 20 kg", "sponsored": False},
@@ -118,3 +119,50 @@ def test_collect_counts_captchas_and_errors_without_stopping():
     assert (stats["loaded"], stats["captcha"], stats["offers"], stats["per_kg"]) == (1, 1, 1, 1)
     assert len(stats["errors"]) == 3 and stats["retried"] == 1
     assert state.status == "ok" and [o.variant_id for o in state.offers] == ["B1"]
+
+
+def test_collect_skips_products_priced_for_another_country():
+    pages = []
+
+    def run(source):
+        if "/s?k=" in source:
+            # Amazon.es from a US browser drops Spanish VAT.
+            return {
+                "captcha": False,
+                "deliver": "Estados Unidos",
+                "results": [{"asin": "B1", "title": "Bumper Plate 25 kg", "sponsored": False}],
+            }
+        pages.append(source)
+        return page()
+
+    state, stats = collect("ES", run)
+    assert stats["wrong_location"] and stats["products"] == 0 and pages == []
+    assert state.status == "failed" and state.offers == []
+
+
+def test_wrong_location_run_keeps_saved_offers(tmp_path, monkeypatch):
+    import plates.amazon as amazon
+
+    saved, _ = collect(
+        "ES",
+        lambda source: (
+            {
+                "captcha": False,
+                "deliver": "28071",
+                "results": [{"asin": "B1", "title": "Bumper Plate 25 kg", "sponsored": False}],
+            }
+            if "/s?k=" in source
+            else page()
+        ),
+    )
+    monkeypatch.setattr(amazon, "OUT", tmp_path)
+    (tmp_path / "latest.json").write_text(
+        amazon.Snapshot(generated_at=saved.attempted_at, sources=[saved]).model_dump_json()
+    )
+    abroad = {"captcha": False, "deliver": "Estados Unidos", "results": []}
+    monkeypatch.setattr(amazon, "kitesurf", lambda source: abroad)
+    monkeypatch.setattr(amazon, "collect", lambda market: collect(market, amazon.kitesurf))
+    amazon.main(["--only", "ES"])
+    kept = amazon.Snapshot.model_validate_json((tmp_path / "latest.json").read_text())
+    assert [o.variant_id for o in kept.sources[0].offers] == ["B1"]
+    assert 'wrong_location": true' in (tmp_path / "trial.jsonl").read_text()

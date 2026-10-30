@@ -44,7 +44,8 @@ saved actual responses and synthetic regressions; hosted access is not yet valid
   Daily `Amazon trial` workflow commits `amazon/`. Searches, then one product page per session.
   Pack = size label "N x mass", else one mass × Pair/Single/listed item count; otherwise unknown.
   Output `amazon/latest.json` + per-run access log `amazon/trial.jsonl`; not merged into `data/latest.json`.
-  Amazon.com paused locally: browser located in Spain gets EUR prices; the workflow tries both. `uv run --locked python -m plates.amazon`
+  Prices follow the remote browser's location: a market only counts when Amazon delivers there
+  (Amazon.es from the US drops 21% VAT; Amazon.com from Spain shows EUR). Otherwise `wrong_location`. `uv run --locked python -m plates.amazon`
 - `.captures/`: ignored local evidence cache. No merchant HTML, images or descriptions published.
 
 ## Collection rules
