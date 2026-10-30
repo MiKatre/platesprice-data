@@ -72,6 +72,10 @@ def test_pack_needs_one_mass_and_an_item_count():
     assert pack("Bumper", ["20 kg total pair"], ["Number of Items 2"]) == ([], None)
     assert pack("Bumper", ["10 kg, not a pair"], ["Number of Items 2"]) == ([], None)
     assert pack("Bumper", ["5-25 kg"], ["Number of Items 2"]) == ([], None)
+    assert pack("Sveltus Disco Pump Asas – 2, 5 kg Unisex", [], ["Número de productos 1"]) == (
+        [],
+        None,
+    )
     # Change-plate groups: each plate in brackets, N times; a wrong stated total stays unknown.
     group = pack("Change Weight Plates", ["17.5 LB (1.25+2.5+5) x2"], [])[0]
     assert [(c.weight, c.unit, c.count) for c in group] == [

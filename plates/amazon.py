@@ -91,9 +91,11 @@ _GROUP = re.compile(
 )
 _WORD_PAIR = re.compile(r"\b(?:pairs?|pareja)\b", re.I)
 _WORD_SINGLE = re.compile(r"\b(?:single|unidad|1 pc)\b", re.I)
-# "20 kg total pair", "not a pair": the mass or the count word is not a per-plate statement.
+# "20 kg total pair", "not a pair", "2, 5 kg": not a clear per-plate mass and count.
 _AMBIGUOUS = re.compile(
-    r"\b(?:total|en total|combined|not (?:a |an )?(?:pair|single)|no (?:es )?(?:pareja|unidad))\b",
+    r"\b(?:total|en total|combined|not (?:a |an )?(?:pair|single)|no (?:es )?(?:pareja|unidad))\b"
+    # "2, 5 kg": 2.5 kg, or 2 and 5 kg.
+    r"|\d,\s+\d+(?:[.,]\d+)?\s*(?:kg|lb)",
     re.I,
 )
 _RANGE = re.compile(
