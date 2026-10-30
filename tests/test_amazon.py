@@ -68,6 +68,10 @@ def test_pack_needs_one_mass_and_an_item_count():
     assert [(c.weight, c.count) for c in pack("Bumper Plate", ["10lbs Pair, Black"], [])[0]] == [
         (10, 2)
     ]
+    # Totals, negations and family ranges are not per-plate statements.
+    assert pack("Bumper", ["20 kg total pair"], ["Number of Items 2"]) == ([], None)
+    assert pack("Bumper", ["10 kg, not a pair"], ["Number of Items 2"]) == ([], None)
+    assert pack("Bumper", ["5-25 kg"], ["Number of Items 2"]) == ([], None)
     # Change-plate groups: each plate in brackets, N times; a wrong stated total stays unknown.
     group = pack("Change Weight Plates", ["17.5 LB (1.25+2.5+5) x2"], [])[0]
     assert [(c.weight, c.unit, c.count) for c in group] == [
@@ -131,6 +135,22 @@ def test_collect_counts_captchas_and_errors_without_stopping():
     assert state.status == "ok" and [o.variant_id for o in state.offers] == ["B1"]
 
 
+def test_only_the_market_postcode_counts_as_local():
+    assert offer("ES", "B1", page(deliver="New York 10001"), AT) is not None  # offer() is neutral
+    _, stats = collect(
+        "ES",
+        lambda source: (
+            {
+                "captcha": False,
+                "results": [{"asin": "B1", "title": "Bumper Plate 25 kg", "sponsored": False}],
+            }
+            if "/s?k=" in source
+            else page(deliver="New York 10001")
+        ),
+    )
+    assert stats["wrong_location"] == 1 and stats["offers"] == 0
+
+
 def test_product_script_sets_the_market_postcode():
     source = script("product", "https://www.amazon.es/dp/B1?psc=1", "ES")
     assert '"28001"' in source and '"https://www.amazon.es/dp/B1?psc=1"' in source
@@ -170,9 +190,11 @@ def test_run_without_offers_keeps_saved_offers(tmp_path, monkeypatch):
     abroad = page(deliver="Estados Unidos")
     monkeypatch.setattr(amazon, "kitesurf", lambda source: search if "/s?k=" in source else abroad)
     monkeypatch.setattr(amazon, "collect", lambda market: collect(market, amazon.kitesurf))
-    amazon.main(["--only", "ES"])
+    assert amazon.main(["--only", "ES"]) == 1
     kept = amazon.Snapshot.model_validate_json((tmp_path / "latest.json").read_text())
     assert [o.variant_id for o in kept.sources[0].offers] == ["B1"]
+    assert kept.sources[0].status == "failed" and kept.sources[0].retained_previous
+    assert kept.sources[0].offers[0].observed_at == saved.offers[0].observed_at
     assert '"wrong_location": 1' in (tmp_path / "trial.jsonl").read_text()
 
 

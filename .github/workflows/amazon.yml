@@ -30,6 +30,8 @@ jobs:
       # Each product page is priced for the market's own postcode (Madrid 28001 / New York 10001);
       # pages Amazon still prices for elsewhere are counted as wrong_location and dropped.
       - name: Collect Amazon prices
+        id: collect
+        continue-on-error: true
         env:
           KITESURF_ACCOUNT_ID: ${{ secrets.KITESURF_ACCOUNT_ID }}
           KITESURF_API_TOKEN: ${{ secrets.KITESURF_API_TOKEN }}
@@ -64,3 +66,6 @@ jobs:
         env:
           NETLIFY_BUILD_HOOK: ${{ secrets.NETLIFY_BUILD_HOOK }}
         run: uv run --locked python -m scripts.trigger_build
+      - name: Signal degraded collection after publishing retained offers
+        if: steps.collect.outcome == 'failure'
+        run: exit 1

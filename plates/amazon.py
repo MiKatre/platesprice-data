@@ -40,7 +40,7 @@ MARKETS = {
         # Amazon prices for the delivery address: Amazon.es drops Spanish VAT (21%) abroad.
         # Each product session sets this postcode first; only pages priced for Spain count.
         "zip": "28001",
-        "deliver": r"Spain|España|\b\d{5}\b",
+        "deliver": r"\b28001\b",
     },
     "US": {
         "id": "amazon-us",
@@ -51,7 +51,7 @@ MARKETS = {
         "terms": ["bumper plates", "cast iron olympic plates", "olympic change plates"],
         # From abroad Amazon.com converts prices to the visitor's currency.
         "zip": "10001",
-        "deliver": r"United States|\b\d{5}\b",
+        "deliver": r"\b10001\b",
     },
 }
 PRODUCTS_PER_MARKET = 30
@@ -91,6 +91,11 @@ _GROUP = re.compile(
 )
 _WORD_PAIR = re.compile(r"\b(?:pairs?|pareja)\b", re.I)
 _WORD_SINGLE = re.compile(r"\b(?:single|unidad|1 pc)\b", re.I)
+# "20 kg total pair", "not a pair": the mass or the count word is not a per-plate statement.
+_AMBIGUOUS = re.compile(
+    r"\b(?:total|en total|combined|not (?:a |an )?(?:pair|single)|no (?:es )?(?:pareja|unidad))\b",
+    re.I,
+)
 _RANGE = re.compile(
     r"\d+(?:[.,]\d+)?\s*(?:kgs?|lbs?)?\s*[-–/]\s*\d+(?:[.,]\d+)?\s*(?:kgs?|lbs?)\b", re.I
 )
@@ -168,11 +173,14 @@ def pack(title: str, selected: list[str], details: list[str]) -> tuple[list[Comp
     A size naming a mass we cannot resolve stays unknown rather than borrowing the title's.
     """
     listed = next((int(m[1]) for d in details if (m := _COUNT.match(d))), None)
-    for text in (" ".join(selected), _RANGE.sub("", title)):
+    for text in (" ".join(selected), title):
+        text = _RANGE.sub("", text)  # a family range (5-25 kg) is not the selected plate
         text = re.sub(r"(\d)-(?=[a-z])", r"\1 ", text, flags=re.I)  # "45-Pound"
         if components := _group(text) or _times(text):
             return components, text.strip()[:80]
         masses = {_mass(*m.groups()) for m in _MASS.finditer(text)}
+        if masses and _AMBIGUOUS.search(text):
+            break
         count = 2 if _WORD_PAIR.search(text) else 1 if _WORD_SINGLE.search(text) else listed
         if len(masses) == 1 and count and count <= 10:
             weight, unit = masses.pop()
@@ -315,11 +323,22 @@ def main(argv=None):
     OUT.mkdir(exist_ok=True)
     previous = OUT / "latest.json"
     states = Snapshot.model_validate_json(previous.read_text()).sources if previous.exists() else []
+    failed = False
     for market in [args.only] if args.only else MARKETS:
         state, stats = collect(market)
-        # A run without offers (blocked, mislocated, broken) keeps the last saved ones.
-        if state.offers:
-            states = [s for s in states if s.id != state.id] + [state]
+        # A run without offers (blocked, mislocated, broken) stays failed but keeps the last
+        # saved offers with their original dates, like the catalog collectors.
+        prior = next((s for s in states if s.id == state.id), None)
+        if not state.offers and prior and prior.offers:
+            state = state.model_copy(
+                update={
+                    "offers": prior.offers,
+                    "retained_previous": True,
+                    "last_success_at": prior.last_success_at,
+                }
+            )
+        failed |= state.status != "ok"
+        states = [s for s in states if s.id != state.id] + [state]
         with (OUT / "trial.jsonl").open("a") as log:
             log.write(json.dumps(stats) + "\n")
         summary = {k: v for k, v in stats.items() if k != "errors"}
@@ -331,7 +350,9 @@ def main(argv=None):
         PUBLISHED.write_text(
             json.dumps(published.model_dump(mode="json"), indent=2, ensure_ascii=False) + "\n"
         )
+    # Publish retained data, but make a degraded run visible.
+    return 1 if failed else 0
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())
