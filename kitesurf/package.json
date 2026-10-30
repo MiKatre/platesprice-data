@@ -1,0 +1,14 @@
+{
+  "name": "kitesurf-skill",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Copy of the Kitesurf skill client (MiKatre/agent-stuff skills/kitesurf) for the Amazon trial workflow",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {},
+  "dependencies": {
+    "puppeteer-core": "25.12.0"
+  }
+}

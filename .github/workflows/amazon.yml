@@ -1,0 +1,56 @@
+name: Amazon trial
+on:
+  # Daily trial of access through Cloudflare Kitesurf; output stays out of data/latest.json.
+  schedule:
+    - cron: "17 6 * * *"
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: amazon-trial
+  cancel-in-progress: false
+jobs:
+  trial:
+    if: github.repository == 'MiKatre/platesprice-data' && github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: astral-sh/setup-uv@d0cc045d04ccac9d8b7881df0226f9e82c39688e # v6
+        with:
+          version: "0.12.17"
+          python-version: "3.12"
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: "22"
+      - run: uv sync --locked
+      - run: npm ci --prefix kitesurf --ignore-scripts
+      # Both markets: the remote browser's location decides which one Amazon prices correctly.
+      # Wrong-currency prices are refused, so a mislocated market logs loads but no offers.
+      - name: Collect Amazon trial
+        env:
+          KITESURF_ACCOUNT_ID: ${{ secrets.KITESURF_ACCOUNT_ID }}
+          KITESURF_API_TOKEN: ${{ secrets.KITESURF_API_TOKEN }}
+        run: |
+          uv run --locked python -m plates.amazon --only ES
+          uv run --locked python -m plates.amazon --only US
+      - name: Commit trial results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- amazon/latest.json amazon/trial.jsonl
+          if ! git diff --cached --quiet; then
+            git commit -m "chore(amazon): daily trial results"
+            git pull --rebase origin master
+            git push origin HEAD:master
+          fi
+          python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import json
+          print("## Amazon trial")
+          for line in open("amazon/trial.jsonl").read().splitlines()[-2:]:
+              r = json.loads(line)
+              print(f"- {r['market']} (delivers to {r.get('deliver_to')}): {r['loaded']}/{r['products']} pages, "
+                    f"{r['captcha']} captcha, {r['offers']} offers, {r['per_kg']} per kg, {len(r['errors'])} errors")
+          PY

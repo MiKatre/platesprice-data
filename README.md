@@ -38,6 +38,13 @@ saved actual responses and synthetic regressions; hosted access is not yet valid
 - `research/coverage.json`: per-storefront counts, capture hashes, access/coverage notes.
 - `runs/report.json`: ignored run report; uploaded as a 14-day Actions artifact.
 - `tests/fixtures/`: frozen pilot arithmetic cases, independent of live catalog growth.
+- `plates/amazon.py` (+ `amazon_*.js`): Amazon trial via Cloudflare Kitesurf remote browser. Client copied in
+  `kitesurf/` from agent-stuff `skills/kitesurf` (`npm ci --prefix kitesurf`). Credentials: env or
+  `~/.config/kitesurf/credentials.json`; Actions secrets `KITESURF_ACCOUNT_ID`, `KITESURF_API_TOKEN`.
+  Daily `Amazon trial` workflow commits `amazon/`. Searches, then one product page per session.
+  Pack = size label "N x mass", else one mass × Pair/Single/listed item count; otherwise unknown.
+  Output `amazon/latest.json` + per-run access log `amazon/trial.jsonl`; not merged into `data/latest.json`.
+  Amazon.com paused locally: browser located in Spain gets EUR prices; the workflow tries both. `uv run --locked python -m plates.amazon`
 - `.captures/`: ignored local evidence cache. No merchant HTML, images or descriptions published.
 
 ## Collection rules
