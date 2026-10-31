@@ -1,14 +1,14 @@
 {
  "schema_version": 1,
- "generated_at": "2026-10-31T13:01:33.683387Z",
+ "generated_at": "2026-10-31T17:11:35.894943Z",
  "sources": [
   {
    "id": "amazon-es",
    "name": "Amazon.es",
-   "status": "ok",
-   "attempted_at": "2026-10-31T12:43:48.243998Z",
+   "status": "failed",
+   "attempted_at": "2026-10-31T16:37:46.841097Z",
    "last_success_at": "2026-10-31T12:43:48.243998Z",
-   "retained_previous": false,
+   "retained_previous": true,
    "error": null,
    "collection_mode": "automated",
    "reviewed_at": null,
@@ -323,10 +323,10 @@
    "documents": [],
    "coverage": {
     "products": 30,
-    "loaded": 18,
+    "loaded": 0,
     "captcha": 0,
-    "offers": 9,
-    "per_kg": 9
+    "offers": 0,
+    "per_kg": 0
    },
    "issues": [],
    "catalog_signature": null
@@ -335,7 +335,7 @@
    "id": "amazon-us",
    "name": "Amazon.com",
    "status": "failed",
-   "attempted_at": "2026-10-31T12:54:12.569533Z",
+   "attempted_at": "2026-10-31T16:54:47.957494Z",
    "last_success_at": "2026-10-30T21:53:05.532669Z",
    "retained_previous": true,
    "error": null,
@@ -632,7 +632,7 @@
    "documents": [],
    "coverage": {
     "products": 30,
-    "loaded": 24,
+    "loaded": 0,
     "captcha": 0,
     "offers": 0,
     "per_kg": 0
