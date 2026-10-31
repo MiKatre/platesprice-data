@@ -135,7 +135,8 @@ def test_collect_counts_captchas_and_errors_without_stopping():
     state, stats = collect("ES", run)
     assert (stats["searches"], stats["search_ok"], stats["products"]) == (3, 1, 3)
     assert (stats["loaded"], stats["captcha"], stats["offers"], stats["per_kg"]) == (1, 1, 1, 1)
-    assert len(stats["errors"]) == 3 and stats["retried"] == 1
+    assert len(stats["errors"]) == 3 and stats["retried"] == 2
+    assert sorted(stats["missed"]) == ["B2", "B3"]
     assert state.status == "ok" and [o.variant_id for o in state.offers] == ["B1"]
 
 
@@ -177,6 +178,68 @@ def test_collect_skips_prices_quoted_for_another_country():
     state, stats = collect("ES", run)
     assert stats["wrong_location"] == 1 and stats["loaded"] == 2
     assert [o.variant_id for o in state.offers] == ["B1"]
+
+
+SEARCH = {
+    "captcha": False,
+    "results": [
+        {"asin": f"B{n}", "title": "Bumper Plate 25 kg", "sponsored": False} for n in range(1, 6)
+    ],
+}
+
+
+def test_refused_postcode_is_retried_in_a_fresh_session():
+    tries = []
+
+    def run(source):
+        if "/s?k=" in source:
+            return SEARCH
+        tries.append(source)
+        if len(tries) == 1:
+            return page(deliver="Update location", move="postcode request: HTTP 200, 0 bytes")
+        return page()
+
+    with_one_refusal = {**SEARCH, "results": SEARCH["results"][:1]}
+    state, stats = collect("ES", lambda s: with_one_refusal if "/s?k=" in s else run(s))
+    assert len(tries) == 2 and stats["retried"] == 1
+    assert stats["wrong_location"] == 0 and stats["missed"] == []
+    assert [o.variant_id for o in state.offers] == ["B1"]
+
+
+def test_postcode_never_set_reports_why():
+    refused = page(deliver="Update location", move="postcode request: HTTP 200, 0 bytes")
+    _, stats = collect("ES", lambda s: SEARCH if "/s?k=" in s else refused)
+    assert stats["wrong_location"] == 5 and stats["retried"] == 10
+    assert sorted(stats["missed"]) == ["B1", "B2", "B3", "B4", "B5"]
+    assert stats["errors"][0].endswith("postcode request: HTTP 200, 0 bytes")
+
+
+def test_partial_run_keeps_saved_offers_only_for_unread_products():
+    from plates.amazon import degraded, retained
+
+    saved, _ = collect("ES", lambda s: SEARCH if "/s?k=" in s else page())
+    saved = saved.model_copy(update={"attempted_at": AT, "last_success_at": AT})
+    saved.offers[1].observed_at = AT
+
+    def run(source):
+        if "/s?k=" in source:
+            return SEARCH
+        if "/dp/B2" in source:
+            raise RuntimeError("session is dead")
+        if "/dp/B3" in source:
+            return page(title="Esterilla de yoga")  # read: no longer a plate offer
+        return page()
+
+    fresh, stats = collect("ES", run)
+    merged = retained(fresh, saved, stats["missed"])
+    assert sorted(o.variant_id for o in merged.offers) == ["B1", "B2", "B4", "B5"]
+    assert merged.status == "ok" and merged.retained_previous
+    assert merged.last_success_at == fresh.last_success_at
+    assert next(o for o in merged.offers if o.variant_id == "B2").observed_at == AT
+    assert not degraded(merged, stats)  # 4 of 5 read
+    assert degraded(merged, {**stats, "missed": ["B2", "B3"]})
+    complete = retained(fresh, saved, [])
+    assert complete == fresh and not complete.retained_previous
 
 
 def test_run_without_offers_keeps_saved_offers(tmp_path, monkeypatch):

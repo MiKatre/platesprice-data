@@ -56,6 +56,9 @@ MARKETS = {
 }
 PRODUCTS_PER_MARKET = 30
 PARALLEL_SESSIONS = 3
+PRODUCT_ATTEMPTS = 3
+# Under this share of products read for the market's postcode, the run counts as degraded.
+MIN_COVERAGE = 0.8
 KITESURF = os.environ.get(
     "KITESURF_CLI", str(Path(__file__).resolve().parent.parent / "kitesurf/kitesurf.mjs")
 )
@@ -239,6 +242,7 @@ def collect(market: str, run=kitesurf) -> tuple[SourceState, dict]:
         "captcha": 0,
         "wrong_location": 0,
         "errors": [],
+        "missed": [],
         "offers": 0,
         "per_kg": 0,
     }
@@ -259,31 +263,44 @@ def collect(market: str, run=kitesurf) -> tuple[SourceState, dict]:
     chosen = list(asins)[:PRODUCTS_PER_MARKET]
     stats["products"] = len(chosen)
 
+    def local(page):
+        return re.search(config["deliver"], page.get("deliver") or "")
+
     def product(asin):
         url = f"{config['origin']}/dp/{asin}?language={config['language']}&psc=1"
-        # One retry: heavy pages sometimes crash the remote page engine.
-        for retry in (False, True):
-            stats["retried"] += retry
+        # A fresh session recovers crashed page engines and refused postcode changes.
+        result = asin, None, None
+        for attempt in range(PRODUCT_ATTEMPTS):
+            stats["retried"] += attempt > 0
             try:
-                return asin, run(script("product", url, market)), None
+                page = run(script("product", url, market))
             except Exception as exc:  # noqa: BLE001
-                error = f"product {asin}: {exc}"[:200]
-        return asin, None, error
+                result = asin, None, f"product {asin}: {exc}"[:200]
+                continue
+            result = asin, page, None
+            if page["captcha"] or local(page):
+                break
+        return result
 
     offers, issues = [], []
     with ThreadPoolExecutor(PARALLEL_SESSIONS) as pool:
         for asin, page, error in pool.map(product, chosen):
             if error or page is None:
                 stats["errors"].append(error)
+                stats["missed"].append(asin)
                 continue
             if page["captcha"]:
                 stats["captcha"] += 1
+                stats["missed"].append(asin)
                 continue
             stats["loaded"] += 1
             stats["deliver_to"] = page.get("deliver")
             # Never keep a price quoted for another country's delivery address.
-            if not re.search(config["deliver"], page.get("deliver") or ""):
+            if not local(page):
                 stats["wrong_location"] += 1
+                stats["missed"].append(asin)
+                if page.get("move"):
+                    stats["errors"].append(f"product {asin}: {page['move']}"[:200])
                 continue
             try:
                 if item := offer(market, asin, page, at):
@@ -317,6 +334,27 @@ def with_amazon(snapshot: Snapshot, path: Path = OUT / "latest.json") -> Snapsho
     )
 
 
+def retained(state: SourceState, prior: SourceState | None, missed: list[str]) -> SourceState:
+    """Keep saved offers, with their original dates, for what this run could not read.
+
+    A run without offers keeps them all and stays failed, like the catalog collectors.
+    """
+    if not prior or not prior.offers:
+        return state
+    if not state.offers:
+        update = {"offers": prior.offers, "last_success_at": prior.last_success_at}
+        return state.model_copy(update={**update, "retained_previous": True})
+    kept = [o for o in prior.offers if o.variant_id in set(missed)]
+    if not kept:
+        return state
+    return state.model_copy(update={"offers": state.offers + kept, "retained_previous": True})
+
+
+def degraded(state: SourceState, stats: dict) -> bool:
+    read = stats["products"] - len(stats["missed"])
+    return state.status != "ok" or read < stats["products"] * MIN_COVERAGE
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--only", choices=sorted(MARKETS))
@@ -328,18 +366,9 @@ def main(argv=None):
     failed = False
     for market in [args.only] if args.only else MARKETS:
         state, stats = collect(market)
-        # A run without offers (blocked, mislocated, broken) stays failed but keeps the last
-        # saved offers with their original dates, like the catalog collectors.
         prior = next((s for s in states if s.id == state.id), None)
-        if not state.offers and prior and prior.offers:
-            state = state.model_copy(
-                update={
-                    "offers": prior.offers,
-                    "retained_previous": True,
-                    "last_success_at": prior.last_success_at,
-                }
-            )
-        failed |= state.status != "ok"
+        state = retained(state, prior, stats["missed"])
+        failed |= degraded(state, stats)
         states = [s for s in states if s.id != state.id] + [state]
         with (OUT / "trial.jsonl").open("a") as log:
             log.write(json.dumps(stats) + "\n")

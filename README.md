@@ -43,7 +43,8 @@ saved actual responses and synthetic regressions; hosted access is not yet valid
   `~/.config/kitesurf/credentials.json`; Actions secrets `KITESURF_ACCOUNT_ID`, `KITESURF_API_TOKEN`.
   Searches, then one product page per session (images/fonts blocked). Each page first sets the market's
   delivery postcode (Madrid 28001 / New York 10001): Amazon prices for the delivery address
-  (Amazon.es drops 21% VAT abroad). Pages still priced elsewhere: `wrong_location`, dropped.
+  (Amazon.es drops 21% VAT abroad). Pages still priced elsewhere after 3 sessions: `wrong_location`.
+  Unread products (`missed`) keep their saved offers and dates; under 80% read, the run exits 1 after publishing.
   Pack = size label "N x mass" or "(a+b+c) xN" with matching total, else one mass × Pair/Single/item count.
   `amazon/latest.json` + run log `amazon/trial.jsonl`; `--publish` merges into `data/latest.json`
   (the catalog collector keeps them too). Daily `Amazon prices` workflow publishes and rebuilds the site.
