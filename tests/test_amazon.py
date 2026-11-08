@@ -206,6 +206,22 @@ def test_refused_postcode_is_retried_in_a_fresh_session():
     assert [o.variant_id for o in state.offers] == ["B1"]
 
 
+def test_failed_search_is_retried_in_a_fresh_session():
+    tries = []
+
+    def run(source):
+        if "/s?k=" not in source:
+            return page()
+        tries.append(source)
+        if len(tries) == 1:
+            raise RuntimeError("Waiting for selector failed")
+        return SEARCH
+
+    _, stats = collect("ES", run)
+    assert len(tries) == 4 and stats["search_ok"] == 3 and stats["errors"] == []
+    assert stats["products"] == 5
+
+
 def test_postcode_never_set_reports_why():
     refused = page(deliver="Update location", move="postcode request: HTTP 200, 0 bytes")
     _, stats = collect("ES", lambda s: SEARCH if "/s?k=" in s else refused)

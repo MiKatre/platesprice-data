@@ -56,7 +56,8 @@ MARKETS = {
 }
 PRODUCTS_PER_MARKET = 30
 PARALLEL_SESSIONS = 3
-PRODUCT_ATTEMPTS = 3
+# Attempts per search or product page, each in a fresh session (timeouts are often transient).
+ATTEMPTS = 3
 # Under this share of products read for the market's postcode, the run counts as degraded.
 MIN_COVERAGE = 0.8
 KITESURF = os.environ.get(
@@ -250,10 +251,14 @@ def collect(market: str, run=kitesurf) -> tuple[SourceState, dict]:
     for term in config["terms"]:
         stats["searches"] += 1
         url = f"{config['origin']}/s?k={term.replace(' ', '+')}&language={config['language']}"
-        try:
-            result = run(script("search", url, market))
-        except Exception as exc:  # noqa: BLE001 - every failure is a trial data point
-            stats["errors"].append(f"search {term}: {exc}"[:200])
+        for _ in range(ATTEMPTS):
+            try:
+                result = run(script("search", url, market))
+                break
+            except Exception as exc:  # noqa: BLE001 - every failure is a trial data point
+                error = f"search {term}: {exc}"[:200]
+        else:
+            stats["errors"].append(error)
             continue
         stats["captcha"] += result["captcha"]
         stats["search_ok"] += not result["captcha"]
@@ -270,7 +275,7 @@ def collect(market: str, run=kitesurf) -> tuple[SourceState, dict]:
         url = f"{config['origin']}/dp/{asin}?language={config['language']}&psc=1"
         # A fresh session recovers crashed page engines and refused postcode changes.
         result = asin, None, None
-        for attempt in range(PRODUCT_ATTEMPTS):
+        for attempt in range(ATTEMPTS):
             stats["retried"] += attempt > 0
             try:
                 page = run(script("product", url, market))
