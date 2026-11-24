@@ -299,3 +299,42 @@ def test_published_snapshot_takes_the_latest_amazon_sources(tmp_path):
     assert [s.id for s in merged.sources] == ["shop", "amazon-es"]
     assert merged.sources[1].offers and merged.generated_at == fresh.attempted_at
     assert with_amazon(published, tmp_path / "missing.json") == published
+
+
+def test_degraded_run_keeps_all_prior_offers_not_freshly_read():
+    from plates.amazon import retained
+
+    saved, _ = collect("ES", lambda s: SEARCH if "/s?k=" in s else page())
+    # Only B1 slipped through a mostly-blocked run; B2..B5 were not even in search results.
+    one_hit = {**SEARCH, "results": SEARCH["results"][:1]}
+    fresh, _ = collect("ES", lambda s: one_hit if "/s?k=" in s else page())
+    merged = retained(fresh, saved, missed=[], keep_all_prior=True)
+    assert sorted(o.variant_id for o in merged.offers) == ["B1", "B2", "B3", "B4", "B5"]
+    assert merged.retained_previous
+
+
+def test_main_skips_paused_markets_and_preserves_their_saved_state(tmp_path, monkeypatch):
+    import plates.amazon as amazon
+
+    search = {
+        "captcha": False,
+        "results": [{"asin": "B1", "title": "Bumper Plate 25 kg", "sponsored": False}],
+    }
+    us_page = page(deliver="New York 10001", price="$79.95", availability="In Stock")
+    saved_es, _ = collect("ES", lambda source: search if "/s?k=" in source else page())
+    monkeypatch.setattr(amazon, "OUT", tmp_path)
+    (tmp_path / "latest.json").write_text(
+        amazon.Snapshot(generated_at=saved_es.attempted_at, sources=[saved_es]).model_dump_json()
+    )
+    called = []
+
+    def fake_collect(market):
+        called.append(market)
+        return collect(market, lambda source: search if "/s?k=" in source else us_page)
+
+    monkeypatch.setattr(amazon, "collect", fake_collect)
+    assert amazon.main([]) == 0
+    assert called == ["US"]
+    kept = amazon.Snapshot.model_validate_json((tmp_path / "latest.json").read_text())
+    assert [s.id for s in kept.sources] == ["amazon-es", "amazon-us"]
+    assert kept.sources[0].offers[0].variant_id == "B1"

@@ -52,11 +52,21 @@ jobs:
             git pull --rebase origin master
             git push origin HEAD:master
           fi
-          python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          uv run --locked python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
           import json
+          from plates.amazon import MARKETS
           print("## Amazon prices")
-          for line in open("amazon/trial.jsonl").read().splitlines()[-2:]:
+          latest = {}
+          for line in open("amazon/trial.jsonl").read().splitlines():
               r = json.loads(line)
+              latest[r["market"]] = r
+          for market, config in MARKETS.items():
+              if config.get("paused"):
+                  print(f"- {market}: paused (retained prior offers)")
+                  continue
+              r = latest.get(market)
+              if not r:
+                  continue
               print(f"- {r['market']} (delivers to {r.get('deliver_to')}): {r['loaded']}/{r['products']} pages, "
                     f"{r['captcha']} captcha, {r['wrong_location']} wrong location, {r['offers']} offers, "
                     f"{r['per_kg']} per kg, {len(r['errors'])} errors")

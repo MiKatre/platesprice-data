@@ -41,6 +41,8 @@ MARKETS = {
         # Each product session sets this postcode first; only pages priced for Spain count.
         "zip": "28001",
         "deliver": r"\b28001\b",
+        # Paused 2026-11-25: Amazon.es serves validateCaptcha/503 blocks via Kitesurf since Nov 20.
+        "paused": True,
     },
     "US": {
         "id": "amazon-us",
@@ -339,17 +341,29 @@ def with_amazon(snapshot: Snapshot, path: Path = OUT / "latest.json") -> Snapsho
     )
 
 
-def retained(state: SourceState, prior: SourceState | None, missed: list[str]) -> SourceState:
+def retained(
+    state: SourceState,
+    prior: SourceState | None,
+    missed: list[str],
+    *,
+    keep_all_prior: bool = False,
+) -> SourceState:
     """Keep saved offers, with their original dates, for what this run could not read.
 
     A run without offers keeps them all and stays failed, like the catalog collectors.
+    When keep_all_prior is set (degraded coverage), keep all prior offers not freshly read
+    so a mostly-blocked run cannot prune valid prior offers.
     """
     if not prior or not prior.offers:
         return state
     if not state.offers:
         update = {"offers": prior.offers, "last_success_at": prior.last_success_at}
         return state.model_copy(update={**update, "retained_previous": True})
-    kept = [o for o in prior.offers if o.variant_id in set(missed)]
+    if keep_all_prior:
+        fresh_ids = {o.variant_id for o in state.offers}
+        kept = [o for o in prior.offers if o.variant_id not in fresh_ids]
+    else:
+        kept = [o for o in prior.offers if o.variant_id in set(missed)]
     if not kept:
         return state
     return state.model_copy(update={"offers": state.offers + kept, "retained_previous": True})
@@ -369,11 +383,15 @@ def main(argv=None):
     previous = OUT / "latest.json"
     states = Snapshot.model_validate_json(previous.read_text()).sources if previous.exists() else []
     failed = False
-    for market in [args.only] if args.only else MARKETS:
+    markets = (
+        [args.only] if args.only else [m for m, cfg in MARKETS.items() if not cfg.get("paused")]
+    )
+    for market in markets:
         state, stats = collect(market)
         prior = next((s for s in states if s.id == state.id), None)
-        state = retained(state, prior, stats["missed"])
-        failed |= degraded(state, stats)
+        is_degraded = degraded(state, stats)
+        state = retained(state, prior, stats["missed"], keep_all_prior=is_degraded)
+        failed |= is_degraded
         states = [s for s in states if s.id != state.id] + [state]
         with (OUT / "trial.jsonl").open("a") as log:
             log.write(json.dumps(stats) + "\n")
